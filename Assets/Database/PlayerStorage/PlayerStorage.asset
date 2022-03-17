@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd0070dc0124c0409c8bd92767ee444, type: 3}
+  m_Name: PlayerStorage
+  m_EditorClassIdentifier: 
+  _isInstance: 1
+  _storageItems:
+  - _ingredient: {fileID: 11400000, guid: 598a4f7ff604d59419cb596f99b3bdcf, type: 2}
+    _volumes:
+    - 1
+  - _ingredient: {fileID: 11400000, guid: 65be3ae5cda734e48aece02a5c3f4e70, type: 2}
+    _volumes:
+    - 0.75
+  _moneyManager:
+    _totalMoney: 316
+    _gainedOnCurrentDay: 77

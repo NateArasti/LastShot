@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c34b070e31d9a0a4588552ad99b268b0, type: 3}
+  m_Name: A_Whiskey
+  m_EditorClassIdentifier: 
+  _keyName: A_WHISKEY
+  _icon: {fileID: 0}
+  _tags: 00000000
+  _description: ???
+  _textReceipt: ???
+  _glassPrefab: {fileID: 3845340031205017563, guid: e99ad08e05150a74ca2f0ce8064998c3, type: 3}
+  _instruments:
+  - {fileID: 1873407730657382996, guid: 8608821564ae43d4a97516c80ebd9737, type: 3}
+  - {fileID: 375901777353788135, guid: 22c46bda26938704d8c0af13df159e39, type: 3}
+  _alcohols:
+  - {fileID: 11400000, guid: 65be3ae5cda734e48aece02a5c3f4e70, type: 2}
+  - {fileID: 11400000, guid: e6dad68fea2194d41b1c200c6a9c354f, type: 2}
+  _additionalIngredients:
+  - {fileID: 11400000, guid: 0018debdd32af0444a7382c347deb39d, type: 2}
+  - {fileID: 11400000, guid: 60a2bd574c296844bac2c783703b9717, type: 2}
+  _perfectActions:
+  - _currentActionType: 1
+    _ingredient: {fileID: 11400000, guid: 65be3ae5cda734e48aece02a5c3f4e70, type: 2}
+    _quantity: 150
+    _timeAmout: 0
+    _intensity: 0
+  - _currentActionType: 1
+    _ingredient: {fileID: 11400000, guid: 60a2bd574c296844bac2c783703b9717, type: 2}
+    _quantity: 3
+    _timeAmout: 0
+    _intensity: 0
