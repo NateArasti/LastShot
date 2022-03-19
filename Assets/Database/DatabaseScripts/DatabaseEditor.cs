@@ -32,3 +32,35 @@ class IngredientDatabaseEditor : Editor
         if (GUILayout.Button("Distinct")) database.Distinct();
     }
 }
+
+[CustomEditor(typeof(DrinkDatabase))]
+class DrinkDatabaseEditor : Editor
+{
+    private SerializedProperty _spritesFolderPath;
+
+    private void OnEnable()
+    {
+        _spritesFolderPath = serializedObject.FindProperty("_spritesFolderPath");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        var database = (DrinkDatabase)target;
+        GUILayout.Space(20);
+
+        if (GUILayout.Button("Load Objects From Resources")) database.LoadFromResources();
+        GUILayout.Space(5);
+
+        if (GUILayout.Button("Load Table Data")) database.LoadTableData();
+        GUILayout.Space(5);
+
+        EditorGUILayout.PropertyField(_spritesFolderPath);
+        serializedObject.ApplyModifiedProperties();
+        GUILayout.Space(10);
+
+        if (GUILayout.Button("Load Sprites From Resources")) database.LoadSpritesFromResources();
+
+        if (GUILayout.Button("Distinct")) database.Distinct();
+    }
+}

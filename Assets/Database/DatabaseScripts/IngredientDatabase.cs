@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "IngredientsDatabase", menuName = "Data/Database/IngredientDatabase")]
 public class IngredientDatabase : Database<Ingredient>
 {
-    [SerializeField] [HideInInspector]
+    [SerializeField]
     private string _spritesFolderPath;
 
     public void LoadSpritesFromResources()

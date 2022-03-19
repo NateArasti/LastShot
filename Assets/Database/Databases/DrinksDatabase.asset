@@ -12,6 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f2b243911748942920b9d958755b0f, type: 3}
   m_Name: DrinksDatabase
   m_EditorClassIdentifier: 
-  _resourcesDatabase: 
-  _databaseObjects: []
-  _dataTable: {fileID: 0}
+  _resourcesDatabase: Drinks\DrinkObjects
+  _databaseObjects:
+  - {fileID: 11400000, guid: 4871132da4663464f90859f0b4151e9e, type: 2}
+  - {fileID: 11400000, guid: c735110f40a28ff41aa6f7064627c055, type: 2}
+  - {fileID: 11400000, guid: 65e1b62af5d9da84eb6bca5825802aae, type: 2}
+  - {fileID: 11400000, guid: e489eead50facb948b3e18fc86ec0277, type: 2}
+  - {fileID: 11400000, guid: 0cd569adae4d49e44a310e06957436c1, type: 2}
+  - {fileID: 11400000, guid: 2d5731092d300c54dad660767af66d99, type: 2}
+  - {fileID: 11400000, guid: 83f638cf77a76f24bba84e39c0dffaab, type: 2}
+  - {fileID: 11400000, guid: 956a2c46f4e0508479fd15d0b411a4d0, type: 2}
+  - {fileID: 11400000, guid: 7eb681f7c7e9b184d8205f844f5de65e, type: 2}
+  - {fileID: 11400000, guid: fd41382222594fd4da5251063a32c35d, type: 2}
+  - {fileID: 11400000, guid: 406dc1bb5e9fd294eba0d21b9f10c1a2, type: 2}
+  - {fileID: 11400000, guid: e2a3c07eab138b5498f30c7683f618c6, type: 2}
+  - {fileID: 11400000, guid: 3c27e43f5a6aeb240b02af5ac299b163, type: 2}
+  - {fileID: 11400000, guid: 6070e122036165941ae18b7f013e0ada, type: 2}
+  - {fileID: 11400000, guid: cfa1b1869df898648a4c80630cb06fd7, type: 2}
+  - {fileID: 11400000, guid: 0a70ceeec2ba7bd4f9c6e25500dbadad, type: 2}
+  - {fileID: 11400000, guid: b12764f6ac020f942a7b675713fe79c0, type: 2}
+  - {fileID: 11400000, guid: 83be38b31a9b69445bbd7c94d2ff971f, type: 2}
+  - {fileID: 11400000, guid: 8f461ae4c91a87b47a9666cd6102acfb, type: 2}
+  - {fileID: 11400000, guid: 014e7bb7550f74f46b7c8bf4bff06ff1, type: 2}
+  - {fileID: 11400000, guid: 883ce3f1e34467c46b5806821fcf4334, type: 2}
+  - {fileID: 11400000, guid: 31e71f8ddc45ba242a5bf7b66a4f0736, type: 2}
+  - {fileID: 11400000, guid: ba5099741981d5b49a1324037a729213, type: 2}
+  - {fileID: 11400000, guid: b30af89479a8f7a44b582bc74fb579f7, type: 2}
+  - {fileID: 11400000, guid: 421f82668d681124d9062aeebd486550, type: 2}
+  - {fileID: 11400000, guid: 6591441649bae214fbedc6d5c4355755, type: 2}
+  - {fileID: 11400000, guid: e2e9de42aaf2f2443b2cdc4d9614324c, type: 2}
+  - {fileID: 11400000, guid: f5ffa7eb0ac2e264582e2557b2ad7ae9, type: 2}
+  - {fileID: 11400000, guid: d6e86a2aa7af49949837509042c01cd6, type: 2}
+  - {fileID: 11400000, guid: 8b85e927ab038744d812f30b001a3469, type: 2}
+  - {fileID: 11400000, guid: 6cd005760607bbe408aeffa2b1b66057, type: 2}
+  - {fileID: 11400000, guid: 07574da8fd324ea438e44cf9c2833d4c, type: 2}
+  - {fileID: 11400000, guid: 99ad164ef9f2630489601fd4ff18082d, type: 2}
+  - {fileID: 11400000, guid: c9fb97dd818e3c14e83cf7beb6b11fe8, type: 2}
+  - {fileID: 11400000, guid: 04a7304092c49e949ba1f7ec5c2c8eca, type: 2}
+  - {fileID: 11400000, guid: 91e5e9188aeed2c4c8f3dfb2e9d2734a, type: 2}
+  - {fileID: 11400000, guid: 970c215f37aea9249bbc00f3812145c6, type: 2}
+  - {fileID: 11400000, guid: 3001a5bb7d3ec644593e8083b042af32, type: 2}
+  - {fileID: 11400000, guid: da9187d5aeffcd8488f90894f980083b, type: 2}
+  - {fileID: 11400000, guid: 111b08db0b8ecf84ba0e23d1fcf35a56, type: 2}
+  - {fileID: 11400000, guid: a118c5da3154933478de06c5be3d6d2a, type: 2}
+  - {fileID: 11400000, guid: 4209aac61fc6a974a9df83d57ce93944, type: 2}
+  _dataTable: {fileID: 4900000, guid: 138e906be0514134191b7a32dc5d9876, type: 3}
+  _spritesFolderPath: Drinks\DrinkIcons
