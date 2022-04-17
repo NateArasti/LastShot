@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class TypeWriter : MonoBehaviour
 {
-    [SerializeField] private float typingSpeed = 20f;
+    [SerializeField] private float _typingSpeed = 20f;
 
     public bool IsTypingEnded { get; private set; } = true;
 
-    private TMP_Text currentTextLabel;
-    private string currentPhrase;
-    private Coroutine currentTypeCoroutine;
+    private TMP_Text _currentTextLabel;
+    private string _currentPhrase;
 
     public void StartTypingPhrase(string phrase, TMP_Text textLabel, string coloredPhrase)
     {
-        currentPhrase = coloredPhrase;
-        currentTextLabel = textLabel;
-        currentTextLabel.text = string.Empty;
+        _currentPhrase = coloredPhrase;
+        _currentTextLabel = textLabel;
+        _currentTextLabel.text = string.Empty;
         IsTypingEnded = false;
-        currentTypeCoroutine = StartCoroutine(Write(phrase));
+        StartCoroutine(Write(phrase));
     }
 
     private IEnumerator Write(string phrase)
@@ -28,11 +27,11 @@ public class TypeWriter : MonoBehaviour
         var textLength = phrase.Length;
         while (letterIndex < textLength)
         {
-            t += Time.deltaTime * typingSpeed;
+            t += Time.deltaTime * _typingSpeed;
             letterIndex = Mathf.FloorToInt(t);
             letterIndex = Mathf.Clamp(letterIndex, 0, textLength);
 
-            currentTextLabel.text = phrase.Substring(0, letterIndex);
+            _currentTextLabel.text = phrase[..letterIndex];
 
             yield return null;
         }
@@ -41,12 +40,12 @@ public class TypeWriter : MonoBehaviour
 
     public void EndTyping()
     {
-        if (currentTextLabel == null || currentPhrase == null) 
+        if (_currentTextLabel == null || _currentPhrase == null) 
             return;
-        StopCoroutine(currentTypeCoroutine);
-        currentTextLabel.text = currentPhrase;
-        currentTextLabel = null;
-        currentPhrase = null;
+        StopAllCoroutines();
+        _currentTextLabel.text = _currentPhrase;
+        _currentTextLabel = null;
+        _currentPhrase = null;
         IsTypingEnded = true;
     }
 }

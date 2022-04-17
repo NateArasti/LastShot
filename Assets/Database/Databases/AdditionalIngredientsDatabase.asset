@@ -12,8 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63fc34d31d1ea740bfb858dafa24d23, type: 3}
   m_Name: AdditionalIngredientsDatabase
   m_EditorClassIdentifier: 
-  _resourcesDatabase: AdditionalIngredients\AdditionalIngredientObjects
+  _resourcesDatabase: AdditionalIngredients
   _databaseObjects:
-  - {fileID: 11400000, guid: 598a4f7ff604d59419cb596f99b3bdcf, type: 2}
+  - {fileID: 11400000, guid: 45046a93f5f396c44a018bfda17079f0, type: 2}
+  - {fileID: 11400000, guid: 879b429794665b842bc67841421a5046, type: 2}
+  - {fileID: 11400000, guid: 09e65e4b363c73e4a8d7288d4ef6df1d, type: 2}
+  - {fileID: 11400000, guid: f9e009182a682d74e8709bc2b973179d, type: 2}
+  - {fileID: 11400000, guid: ab8c1a51e9cb21549a5274bdf968418d, type: 2}
+  - {fileID: 11400000, guid: f97032ebb3659fa4582e2ba76a96a98f, type: 2}
+  - {fileID: 11400000, guid: a681c62da2f8b16418df379bc7712d90, type: 2}
+  - {fileID: 11400000, guid: be7060afd000bcf48948ce791aff8edb, type: 2}
+  - {fileID: 11400000, guid: 3efd2220ffd9edb46be25a494e48ab0f, type: 2}
+  - {fileID: 11400000, guid: e28466e36d688434ebb1c89042212c22, type: 2}
+  - {fileID: 11400000, guid: 204229a7f247b4544917cee769e0e5b4, type: 2}
+  - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+  - {fileID: 11400000, guid: 374d882eaee3743428d732de09341c74, type: 2}
+  - {fileID: 11400000, guid: ae0ebbce20a7ece4c865a7d13e8db0d1, type: 2}
+  - {fileID: 11400000, guid: ca04bb24cb61baf4085ff02f3f12d46a, type: 2}
+  - {fileID: 11400000, guid: bf70e36369c927e4089782eece832bc9, type: 2}
+  - {fileID: 11400000, guid: 9fb1dabea38ff814fb21c5e389de3895, type: 2}
+  - {fileID: 11400000, guid: 73eda3233604e574caf408cf8faac456, type: 2}
+  - {fileID: 11400000, guid: eb783953c50cf0c418cd6690f1bdecf3, type: 2}
+  - {fileID: 11400000, guid: f56bf1fd583c1164f8d92f9d1583c886, type: 2}
+  - {fileID: 11400000, guid: df825f11740e703499ecdc51e6519b4c, type: 2}
+  - {fileID: 11400000, guid: eef8028c3ffbdd347b9db269be9ffc08, type: 2}
+  - {fileID: 11400000, guid: 9cb6eaab8851b6041abdd526f86abfa8, type: 2}
+  - {fileID: 11400000, guid: 316d7109f4bfe7b4aa9301ce8f1a22fa, type: 2}
+  - {fileID: 11400000, guid: 128881ec0c6023b429abd322063228b5, type: 2}
+  - {fileID: 11400000, guid: c4158792a7ec38c40aa624bff01d15a4, type: 2}
+  - {fileID: 11400000, guid: 232187f9fc1505646af37a0ee7913a8c, type: 2}
+  - {fileID: 11400000, guid: 4600325485f33b443829bd4e0852a83f, type: 2}
+  - {fileID: 11400000, guid: 08fcd85fda9df1943a66bc4eec7a50d0, type: 2}
   _dataTable: {fileID: 4900000, guid: 414ff0521f327334ba99f88050737f30, type: 3}
-  _spritesFolderPath: AdditionalIngredients\AdditionalIngredientSprites
+  _spritesFolderPath: AdditionalIngredients

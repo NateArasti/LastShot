@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609f72a994bc37b4899d2f7af2810570, type: 3}
   m_Name: DatabaseManager
   m_EditorClassIdentifier: 
-  _isInstance: 1
   _alcoholDatabase: {fileID: 11400000, guid: 04589c90649494046b498fbe46512019, type: 2}
   _additionalIngredientsDatabase: {fileID: 11400000, guid: 414c7d2a8c4cf544484274d48befe026, type: 2}
-  _characterDatabaseDatabase: {fileID: 11400000, guid: c0efcdd346662db43a17851558cd9475, type: 2}
+  _storyCharacterDatabaseDatabase: {fileID: 11400000, guid: c0efcdd346662db43a17851558cd9475, type: 2}
   _drinkDatabase: {fileID: 11400000, guid: 983722bc707a6354baf90e763ecb1ceb, type: 2}

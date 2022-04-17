@@ -4,18 +4,19 @@ using UnityEngine;
 
 public static class TablesParser
 {
-    public static void WriteParsedTableData<T>(this Database<T> database, TextAsset objectsTable) where T : Object, IDatabaseObject
+    public static void WriteParsedTableData<T>(this Database<T> database, TextAsset objectsTable) where T : Object, IDatabaseObject, ISpriteDatabaseObject
     {
         var parsedTable = GetParsedTable(objectsTable);
         for (var i = 1; i < parsedTable.Count; i++)
         {
-            if (database.TryGetValue(parsedTable[i][0], out var databaseObject))
+            if (database.TryGetValue(parsedTable[i][0], out var databaseObject) && parsedTable[i].Length > 1)
                 databaseObject.WriteData(parsedTable[i]);
         }
     }
 
-    private static List<string[]> GetParsedTable(TextAsset table) => 
-        table.text.Split('\n')
+    public static List<string[]> GetParsedTable(TextAsset table) => 
+            table.text
+            .Split('\n')
             .Select(textLines => textLines.Split(';'))
             .ToList();
 

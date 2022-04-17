@@ -1,15 +1,33 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Ink.Runtime;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
-// ReSharper disable MustUseReturnValue
-
-[RequireComponent(typeof(TypeWriter))]
+[RequireComponent(typeof(DialogueUI))]
 public class DialogueSystem : MonoBehaviour
 {
+    public enum DialogueState
+    {
+        None,
+        SimplePhrase,
+        PlayerChoice,
+        PlayerSuggest,
+        TagState
+    }
+
+    public enum EventType
+    {
+        End,
+        Order,
+        Wait,
+        GuestChoice,
+        Check,
+        Grade,
+        PlayerSuggest
+    }
+
     private static readonly KeyCode[] KeyCodesToSkip =
     {
         KeyCode.Space,
@@ -18,124 +36,246 @@ public class DialogueSystem : MonoBehaviour
         KeyCode.Return
     };
 
-    [SerializeField] private DialogueChoice[] _dialogueChoices;
-    [SerializeField] private CharactersUI _charactersUI;
-    [SerializeField] private TMP_Text _dialogueTextLabel;
-    private Story _currentDialogue;
-    private bool _decisionIsMade;
-    private bool _dialogueIsGoing;
+    [SerializeField] private Dialogue _dialogue;
 
-    private FastAction<DialogueEvents.EventType> _onDialogueEvent;
+    private readonly UnityEvent<EventType> _dialogueEventInvoker = new();
 
-    private TypeWriter _typeWriter;
+    private readonly IReadOnlyDictionary<EventType, UnityEvent> _dialogueEvents =
+        new Dictionary<EventType, UnityEvent>
+        {
+            [EventType.End] = new(),
+            [EventType.PlayerSuggest] = new(),
+            [EventType.Order] = new(),
+            [EventType.Wait] = new(),
+            [EventType.GuestChoice] = new(),
+            [EventType.Check] = new(),
+            [EventType.Grade] = new()
+        };
 
-    public Drink ChosenDrink { get; private set; }
+    private Dialogue _currentDialogue;
+
+    private Dialogue.OrderData _currentOrderData;
+    private DialogueState _currentState;
+    private Story _currentStory;
+    private DialogueUI _dialogueUI;
 
     private void Awake()
     {
-        _typeWriter = GetComponent<TypeWriter>();
+        _dialogueUI = GetComponent<DialogueUI>();
+        _dialogueEventInvoker.AddListener(type => _dialogueEvents[type].Invoke());
+
+        _dialogueEvents[EventType.PlayerSuggest].AddListener(() =>
+        {
+            _currentOrderData.Drink = DatabaseManager.DrinkDatabase.GetObjectsCollection().ToList().GetRandomObject();
+            print(_currentOrderData.Drink);
+            print(_currentOrderData.Character.KeyName);
+        });
+        CreateTagEvents();
+    }
+
+    private void Start()
+    {
+        StartDialogue(_dialogue);
     }
 
     private void Update()
     {
-        if (!_dialogueIsGoing) return;
-        if (KeyCodesToSkip.Any(Input.GetKeyDown)) UpdateDialogue();
+        if (_currentState != DialogueState.SimplePhrase || !KeyCodesToSkip.Any(Input.GetKeyDown)) return;
+        if (_dialogueUI.IsTypingPhrase)
+            _dialogueUI.EndTyping();
+        else
+            UpdateDialogueState();
     }
 
-    public void StartDialogue(TextAsset dialogue, FastAction<DialogueEvents.EventType> dialogueEventInvoker)
+    public void StartDialogue(Dialogue dialogue)
     {
-        if (_dialogueIsGoing)
-            throw new UnityException("Dialogue is already going!!!");
-
-        _onDialogueEvent = dialogueEventInvoker;
-        _currentDialogue = new Story(dialogue.text);
-        _dialogueIsGoing = true;
-        ShowNewPhrase();
+        if (_currentState != DialogueState.None) throw new UnityException("Dialogue is already going!!!");
+        _currentDialogue = dialogue;
+        _currentStory = new Story(_currentDialogue.Text.text);
+        UpdateDialogueState();
     }
 
     private void EndDialogue()
     {
-        _dialogueIsGoing = false;
-        _onDialogueEvent.Call(DialogueEvents.EventType.End);
+        _currentDialogue = null;
+        _currentStory = null;
+        _currentState = DialogueState.None;
+        _dialogueEventInvoker.Invoke(EventType.End);
     }
 
-    private void UpdateDialogue(bool ignoreTags = false)
+    private void UpdateDialogueState(bool ignoreTags = false)
     {
-        if (_typeWriter.IsTypingEnded)
+        TryParseErrors();
+        if (!ignoreTags && _currentStory.currentTags.Count > 0)
         {
-            if (_currentDialogue.currentTags.Count > 0 && !ignoreTags)
-            {
-                var dialogueTag = _currentDialogue.currentTags[0];
-                if (!Enum.TryParse<DialogueEvents.EventType>(dialogueTag, true, out var eventType))
-                    throw new UnityException($"No such tag - {dialogueTag}");
-                _onDialogueEvent.Call(eventType);
-                return;
-            }
+            _currentState = DialogueState.TagState;
+        }
+        else if (_currentStory.currentChoices.Count > 0)
+        {
+            _currentState = DialogueState.PlayerChoice;
+        }
+        else if (!_currentStory.canContinue)
+        {
+            Debug.Log("Can't continue");
+            EndDialogue();
+            return;
+        }
+        else if(_currentState != DialogueState.PlayerSuggest)
+        {
+            _currentState = DialogueState.SimplePhrase;
+        }
 
-            if (_currentDialogue.currentChoices.Count != 0)
-                StartCoroutine(ShowChoices());
-            else if (!_currentDialogue.canContinue)
-                EndDialogue();
-            else
-                ShowNewPhrase();
-        }
-        else
+        InvokeStateEvent();
+    }
+
+    private void InvokeStateEvent()
+    {
+        switch (_currentState)
         {
-            _typeWriter.EndTyping();
+            case DialogueState.SimplePhrase:
+                ShowNewPhrase();
+                break;
+            case DialogueState.PlayerChoice:
+                ParsePlayerChoices();
+                break;
+            case DialogueState.TagState:
+                ParseTags();
+                break;
+            case DialogueState.PlayerSuggest:
+                LetPlayerChooseDrink();
+                break;
+            case DialogueState.None:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void LetPlayerChooseDrink()
+    {
+        _dialogueEventInvoker.Invoke(EventType.PlayerSuggest);
+    }
+
+    private void ParsePlayerChoices()
+    {
+        _dialogueUI.ShowChoices(_currentStory.currentChoices, MakeDecision);
+    }
+
+    private void ParsePlayerChoices(List<Choice> choices, UnityAction<int> chooseAction)
+    {
+        _dialogueUI.ShowChoices(choices, chooseAction);
+    }
+
+    private void ParseTags()
+    {
+        var phraseTag = _currentStory.currentTags[0];
+        if (Enum.TryParse(phraseTag, true, out EventType parsedTag))
+            _dialogueEventInvoker.Invoke(parsedTag);
+    }
+
+    private void TryParseErrors()
+    {
+        if (_dialogueUI.IsTypingPhrase)
+            throw new UnityException("Trying to update dialogue while typing phrase");
+        if (_currentDialogue == null)
+            throw new UnityException("No dialogue");
+        if (_currentStory == null)
+            throw new UnityException("No story");
     }
 
     private void ShowNewPhrase()
     {
-        var currentText = _currentDialogue.Continue();
-        
-        if (currentText == string.Empty || currentText == "event\n")
+        var text = _currentStory.Continue();
+        if (text == string.Empty)
         {
-            UpdateDialogue();
+            UpdateDialogueState();
             return;
         }
+        var data = InkyParser.ParsePhrase(text, _currentDialogue.Participants);
 
-        var (character, alcohol, coloredPhrase, phrase) = 
-            InkyParser.ParsePhrase(currentText);
-        _charactersUI.ShowCharacter(character);
-        _typeWriter.StartTypingPhrase(phrase, _dialogueTextLabel, coloredPhrase);
-        if(character.CharacterType == CharacterType.NPC)
-            ChosenDrink = character.Drink;
-        //if (alcohol != null && character.CharacterType == CharacterType.NPC)
-        //    _onDialogueEvent.Call(DialogueEvents.EventType.DrinkSuggestedByGuest);
+        ParseOrderData(data);
+
+        _dialogueUI.SetCharacterUI(
+            data.PhraseCharacter.Portrait,
+            data.PhraseCharacter.CharacterType,
+            data.PhraseCharacter.CharacterName);
+
+        _dialogueUI.ShowSimplePhrase(data.SimplePhrase, data.ColoredPhrase);
     }
 
-    private IEnumerator ShowChoices()
+    private void ParseOrderData(InkyParser.PhraseData data)
     {
-        _decisionIsMade = false;
-        _dialogueTextLabel.enabled = false;
-        var choices = _currentDialogue.currentChoices;
-        for (var i = 0; i < choices.Count; i++)
+
+        if (data.Drink != null)
         {
-            _dialogueChoices[i].gameObject.SetActive(true);
-            _dialogueChoices[i].SetChoice(choices[i].index, choices[i].text, MakeDecision);
+            if (data.Drink.KeyName == "ANYTHING")
+            {
+                _currentState = DialogueState.PlayerSuggest;
+                return;
+            }
+            _currentOrderData.Drink = data.Drink;
+            _currentOrderData.Character = null;
+            if (data.PhraseCharacter.CharacterType != CharacterType.MainCharacter)
+                _currentOrderData.Character = data.PhraseCharacter;
         }
 
-        yield return new WaitUntil(() => _decisionIsMade);
+        if(_currentOrderData.Character == null)
+            _currentOrderData.Character = data.PhraseCharacter;
     }
 
     private void MakeDecision(int choiceIndex)
     {
-        _currentDialogue.ChooseChoiceIndex(choiceIndex);
-        UpdateDialogue();
-        _decisionIsMade = true;
-        _dialogueTextLabel.enabled = true;
-        foreach (var choice in _dialogueChoices) choice.gameObject.SetActive(false);
+        _currentStory.ChooseChoiceIndex(choiceIndex);
+        //_currentStory.Continue();
+        UpdateDialogueState();
     }
 
-    public void MakeTagDecision(int choiceIndex)
+    private void CreateTagEvents()
     {
-        _currentDialogue.ChooseChoiceIndex(choiceIndex);
-        UpdateDialogue(ignoreTags: true);
-    }
+        _dialogueEvents[EventType.Order].AddListener(() =>
+        {
+            _currentOrderData.Grade = _currentOrderData.Character.GetCharacterGrade();
+            //_currentOrderData.Grade = CharacterGuestGrade.Excellent;
+            UpdateDialogueState(true);
+        });
 
-    public void ContinueDialogue()
-    {
-        UpdateDialogue(true);
+        _dialogueEvents[EventType.Check].AddListener(() =>
+        {
+            var check = true;
+            if (check)
+            {
+                _currentState = DialogueState.PlayerChoice;
+                ParsePlayerChoices(
+                    _currentStory.currentChoices.Take(2).ToList(),
+                    index =>
+                    {
+                        _currentStory.ChooseChoiceIndex(index);
+                        _currentStory.Continue();
+                        UpdateDialogueState(true);
+                    });
+            }
+            else
+            {
+                _currentStory.ChooseChoiceIndex(2);
+                UpdateDialogueState(true);
+            }
+        });
+
+        _dialogueEvents[EventType.Grade].AddListener(() =>
+        {
+            _currentStory.ChooseChoiceIndex((int) _currentOrderData.Grade);
+            UpdateDialogueState(true);
+        });
+
+        _dialogueEvents[EventType.GuestChoice].AddListener(() =>
+        {
+            _currentStory.ChooseChoiceIndex(0);
+            UpdateDialogueState(true);
+        });
+
+        _dialogueEvents[EventType.Wait].AddListener(() =>
+        {
+
+        });
     }
 }

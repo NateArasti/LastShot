@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: BURBON
   m_EditorClassIdentifier: 
   _keyName: BURBON
-  _tags: 00000000
-  _description: ???
-  _textReceipt: ???
-  _glassPrefab: {fileID: 0}
-  _alcohols: []
-  _additionalIngredients: []
-  _perfectActions: []
+  _name: 
+  _sprite: {fileID: 0}
+  _tags: 
+  _description: 
+  _textReceipt: 
+  _drinkReceipt:
+    _glassPrefab: {fileID: 0}
+    _alcohols: []
+    _additionalIngredients: []
+    _perfectActions: []

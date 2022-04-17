@@ -15,7 +15,7 @@ public class PlayerStorageEditor : Editor
 
         if (GUILayout.Button("Generate Money Data"))
         {
-            playerStorage.MoneyData.PutRandomNumbers();
+            PlayerStorage.MoneyData.PutRandomNumbers();
         }
 
         GUILayout.Space(20f);

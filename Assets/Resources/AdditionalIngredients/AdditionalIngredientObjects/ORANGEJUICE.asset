@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5539bd80f502d2418e9e619c8028c17, type: 3}
+  m_Name: ORANGEJUICE
+  m_EditorClassIdentifier: 
+  _keyName: ORANGEJUICE
+  _sprite: {fileID: 21300000, guid: 4fbbc858480dcfa4787c63c895ae2a89, type: 3}
+  _buyQuantityStep: 1
+  _costPerObject: 1
+  _mainColor: {r: 0, g: 0, b: 0, a: 0}
+  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  _delayBetweenDrops: 0.05

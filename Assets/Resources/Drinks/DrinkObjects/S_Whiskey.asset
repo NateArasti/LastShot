@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c34b070e31d9a0a4588552ad99b268b0, type: 3}
-  m_Name: S_Whiskey
+  m_Name: S_WHISKEY
   m_EditorClassIdentifier: 
   _keyName: S_WHISKEY
-  _tags: 00000000
-  _description: ???
-  _textReceipt: ???
-  _glassPrefab: {fileID: 3845340031205017563, guid: e99ad08e05150a74ca2f0ce8064998c3, type: 3}
-  _alcohols: []
-  _additionalIngredients: []
-  _perfectActions: []
+  _infoData:
+    _sprite: {fileID: 21300000, guid: ed476d680d58149408ad25cabb5722b5, type: 3}
+    _name: "\u0428\u043E\u0442\u043B\u0430\u043D\u0434\u0441\u043A\u0438\u0439 \u0432\u0438\u0441\u043A\u0438"
+    _description: 
+    _tags: 
+    _textReceipt: 
+  _drinkReceipt:
+    _glassPrefab: {fileID: 0}
+    _alcohols: []
+    _additionalIngredients: []
+    _perfectActions: []

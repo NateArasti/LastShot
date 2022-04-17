@@ -2,18 +2,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public  abstract class Database<T> : ScriptableObject where T : Object, IDatabaseObject
+public  abstract class Database<T> : ScriptableObject where T : Object, IDatabaseObject, ISpriteDatabaseObject
 {
     [SerializeField] private string _resourcesDatabase;
     [SerializeField] private T[] _databaseObjects;
     [SerializeField] private TextAsset _dataTable;
-    private readonly Dictionary<string, T> _dataDictionary = new Dictionary<string, T>();
+    [SerializeField]
+    private string _spritesFolderPath;
+
+    private readonly Dictionary<string, T> _dataDictionary = new();
 
     public void LoadFromResources()
     {
         _databaseObjects = Resources.LoadAll<T>(_resourcesDatabase);
         OnValidate();
         Debug.Log($"Loaded Objects for {name} successfully");
+    }
+
+    public void LoadSpritesFromResources()
+    {
+        foreach (var sprite in Resources.LoadAll<Sprite>(_spritesFolderPath))
+        {
+            if (TryGetValue(sprite.name, out var obj))
+                obj.Sprite = sprite;
+        }
+        Debug.Log($"Loaded Sprites for {name} successfully");
     }
 
     public void LoadTableData()

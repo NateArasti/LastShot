@@ -4,30 +4,23 @@ using UnityEngine;
 [CustomEditor(typeof(IngredientDatabase))]
 class IngredientDatabaseEditor : Editor
 {
-    private SerializedProperty _spritesFolderPath;
-
-    private void OnEnable()
-    {
-        _spritesFolderPath = serializedObject.FindProperty("_spritesFolderPath");
-    }
-
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        var database = (IngredientDatabase)target;
+        var database = (IngredientDatabase) target;
         GUILayout.Space(20);
 
         if (GUILayout.Button("Load Objects From Resources")) database.LoadFromResources();
-        GUILayout.Space(5);
+
+        GUILayout.Space(10);
 
         if (GUILayout.Button("Load Table Data")) database.LoadTableData();
-        GUILayout.Space(5);
 
-        EditorGUILayout.PropertyField(_spritesFolderPath);
-        serializedObject.ApplyModifiedProperties();
         GUILayout.Space(10);
 
         if (GUILayout.Button("Load Sprites From Resources")) database.LoadSpritesFromResources();
+
+        GUILayout.Space(10);
 
         if (GUILayout.Button("Distinct")) database.Distinct();
     }
@@ -36,13 +29,6 @@ class IngredientDatabaseEditor : Editor
 [CustomEditor(typeof(DrinkDatabase))]
 class DrinkDatabaseEditor : Editor
 {
-    private SerializedProperty _spritesFolderPath;
-
-    private void OnEnable()
-    {
-        _spritesFolderPath = serializedObject.FindProperty("_spritesFolderPath");
-    }
-
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -50,16 +36,16 @@ class DrinkDatabaseEditor : Editor
         GUILayout.Space(20);
 
         if (GUILayout.Button("Load Objects From Resources")) database.LoadFromResources();
-        GUILayout.Space(5);
+
+        GUILayout.Space(10);
 
         if (GUILayout.Button("Load Table Data")) database.LoadTableData();
-        GUILayout.Space(5);
 
-        EditorGUILayout.PropertyField(_spritesFolderPath);
-        serializedObject.ApplyModifiedProperties();
         GUILayout.Space(10);
 
         if (GUILayout.Button("Load Sprites From Resources")) database.LoadSpritesFromResources();
+
+        GUILayout.Space(10);
 
         if (GUILayout.Button("Distinct")) database.Distinct();
     }

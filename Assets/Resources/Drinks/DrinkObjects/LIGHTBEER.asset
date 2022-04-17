@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34b070e31d9a0a4588552ad99b268b0, type: 3}
   m_Name: LIGHTBEER
   m_EditorClassIdentifier: 
-  _keyName: LIGHTBEER
-  _tags: 0100000004000000
-  _description: ???
-  _textReceipt: ???
-  _glassPrefab: {fileID: 0}
-  _alcohols: []
-  _additionalIngredients: []
-  _perfectActions: []
+  _keyName: 
+  _name: 
+  _sprite: {fileID: 0}
+  _tags: 
+  _description: 
+  _textReceipt: 
+  _drinkReceipt:
+    _glassPrefab: {fileID: 0}
+    _alcohols: []
+    _additionalIngredients: []
+    _perfectActions: []

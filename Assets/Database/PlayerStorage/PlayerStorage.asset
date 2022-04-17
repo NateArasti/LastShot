@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd0070dc0124c0409c8bd92767ee444, type: 3}
   m_Name: PlayerStorage
   m_EditorClassIdentifier: 
-  _isInstance: 1
   _storageItems:
   - _ingredient: {fileID: 11400000, guid: 598a4f7ff604d59419cb596f99b3bdcf, type: 2}
     _volumes:

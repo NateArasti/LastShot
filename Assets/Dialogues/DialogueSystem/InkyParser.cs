@@ -1,38 +1,68 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
 public static class InkyParser
 {
-    public static (Character character, Ingredient alcohol, string coloredPhrase, string simplePhrase) ParsePhrase(string line)
+    public static PhraseData ParsePhrase(string line, IReadOnlyCollection<Character> participants)
     {
         var characterEndIndex = line.IndexOf(':');
         if (characterEndIndex == -1)
             throw new UnityException($"No character in line - {line}");
-        Ingredient alcohol = null;
-        string phrase;
-        if (DatabaseManager.CharacterDatabase.TryGetValue(line.Substring(0, characterEndIndex), out var character))
-            phrase = line.Substring(characterEndIndex + 1, line.Length - characterEndIndex - 1);
-        else
-            throw new UnityException($"No character in line, parsed name - {line.Substring(0, characterEndIndex)}");
 
-        var orderOpenTag = Regex.Match(phrase, @"<[^>]*>");
-        var orderCloseTag = Regex.Match(phrase, @"</[^>]*>");
+        var characterName = line[..characterEndIndex];
+        var character = ParseCharacter(characterName, participants);
+
+        var phrase = line.Substring(characterEndIndex + 1, line.Length - characterEndIndex - 1);
+        var orderTag = Regex.Match(phrase, @"<.*>.*</.*>");
         var coloredPhrase = "";
-        if (orderOpenTag != Match.Empty)
+        Drink drink = null;
+
+        if (orderTag != Match.Empty)
         {
-            var alcoholKeyName = orderOpenTag.Value.Substring(5, orderOpenTag.Length - 6);
-            if (DatabaseManager.AlcoholDatabase.TryGetValue(alcoholKeyName, out alcohol))
-            {
-                coloredPhrase = phrase.Replace(orderOpenTag.Value, "<color=#ffa500ff>");
-                coloredPhrase = coloredPhrase.Replace(orderCloseTag.Value, "</color>");
-            }
-            orderOpenTag = Regex.Match(phrase, @"<[^>]*>");
-            phrase = phrase.Remove(orderOpenTag.Index, orderOpenTag.Length);
-            orderCloseTag = Regex.Match(phrase, @"</[^>]*>");
-            phrase = phrase.Remove(orderCloseTag.Index, orderCloseTag.Length);
+            var orderTagValue = orderTag.Value;
+            var orderKeyName = Regex.Match(orderTagValue, @"_(.*?)>").Groups[1].Value;
+            if (DatabaseManager.DrinkDatabase.TryGetValue(orderKeyName, out drink))
+                coloredPhrase = phrase.Replace(orderTagValue, 
+                    $"<color=#ffa500ff>{drink.InfoData.Name}</color>");
+            else 
+                throw new UnityException($"No such drink {orderKeyName}");
         }
-        if (coloredPhrase == "")
+        if (coloredPhrase == string.Empty)
             coloredPhrase = phrase;
-        return (character, alcohol, coloredPhrase, phrase);
+
+        return new PhraseData(character, drink, coloredPhrase, phrase);
+    }
+
+    private static Character ParseCharacter(string characterName, IReadOnlyCollection<Character> participants)
+    {
+        var name = DatabaseManager.CharacterDatabase.TryGetName(characterName);
+        if(! participants.TryGetObject(
+               characterName, 
+               (ch, s) => ch.KeyName == s,
+               out var character))
+        {
+            throw new UnityException($"No character in line, parsed name - {characterName},{name}");
+        }
+
+        character.CharacterName = name;
+
+        return character;
+    }
+
+    public readonly struct PhraseData
+    {
+        public readonly Character PhraseCharacter;
+        public readonly Drink Drink;
+        public readonly string ColoredPhrase;
+        public readonly string SimplePhrase;
+
+        public PhraseData(Character character, Drink alcohol, string coloredPhrase, string simplePhrase)
+        {
+            PhraseCharacter = character;
+            Drink = alcohol;
+            ColoredPhrase = coloredPhrase;
+            SimplePhrase = simplePhrase;
+        }
     }
 }

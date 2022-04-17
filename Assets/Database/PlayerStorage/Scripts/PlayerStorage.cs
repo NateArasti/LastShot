@@ -5,31 +5,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerStorage", menuName = "Data/PlayerStorage")]
 public class PlayerStorage : ScriptableObject
 {
-    [Tooltip("When toggled, makes this variant a main instance")]
-    [SerializeField] private bool _isInstance;
-    [SerializeField] private List<StorageItem> _storageItems = new List<StorageItem>();
-    private Dictionary<Ingredient, float[]> _volumes = new Dictionary<Ingredient, float[]>();
-    [SerializeField] private MoneyManager _moneyManager = new MoneyManager();
-    public static PlayerStorage Instance { get; private set; }
+    private static PlayerStorage _instance;
 
-    public MoneyManager MoneyData => _moneyManager;
+    [SerializeField] private List<StorageItem> _storageItems = new();
+    [SerializeField] private MoneyManager _moneyManager = new();
+    private Dictionary<Ingredient, float[]> _volumes = new();
+
+    public static MoneyManager MoneyData => _instance._moneyManager;
+
+    public void SetAsInstance() => _instance = this;
 
     private void OnValidate()
     {
-        if (_isInstance && Instance != this)
-        {
-            if(Instance != null)
-                Instance._isInstance = false;
-            Instance = this;
-        }
         RefillDictionary();
     }
 
-    public bool TryGetIngredientSumQuantity(Ingredient ingredient, out float quantity)
+    public static bool TryGetIngredientSumQuantity(Ingredient ingredient, out float quantity)
     {
-        if (_volumes.ContainsKey(ingredient))
+        if (_instance._volumes.ContainsKey(ingredient))
         {
-            quantity = _volumes[ingredient].Sum();
+            quantity = _instance._volumes[ingredient].Sum();
             return true;
         }
 
@@ -44,12 +39,6 @@ public class PlayerStorage : ScriptableObject
         {
             _volumes[storageItem._ingredient] = storageItem._volumes;
         }
-    }
-
-    private void OnEnable()
-    {
-        _isInstance = true;
-        OnValidate();
     }
 
     public void Distinct()
@@ -84,11 +73,11 @@ public class PlayerStorage : ScriptableObject
         storageItem._volumes = ingredient switch
         {
             PourIngredient _ => putRandomNumbers
-                ? StorageItem.GetRandomValues(ingredient.Data.buyQuantityStep)
-                : new[] {ingredient.Data.buyQuantityStep},
+                ? StorageItem.GetRandomValues(ingredient.Data.BuyQuantityStep)
+                : new[] {ingredient.Data.BuyQuantityStep },
             DropIngredient _ => putRandomNumbers
-                ? StorageItem.GetRandomValues(ingredient.Data.buyQuantityStep, true)
-                : new[] {ingredient.Data.buyQuantityStep},
+                ? StorageItem.GetRandomValues(ingredient.Data.BuyQuantityStep, true)
+                : new[] {ingredient.Data.BuyQuantityStep },
             _ => storageItem._volumes
         };
         _storageItems.Add(storageItem);
@@ -96,7 +85,7 @@ public class PlayerStorage : ScriptableObject
     }
 
     [System.Serializable]
-    struct StorageItem
+    private struct StorageItem
     {
         public Ingredient _ingredient;
         public float[] _volumes;
