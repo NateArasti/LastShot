@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: MINT
   m_EditorClassIdentifier: 
   _keyName: MINT
-  _sprite: {fileID: 21300000, guid: ffad6a65f96186545b837ece12baa94d, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1
+  _infoData:
+    _sprite: {fileID: 21300000, guid: ffad6a65f96186545b837ece12baa94d, type: 3}
+    _name: "\u041C\u044F\u0442\u0430"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 1
+    _class: 1
+    _containingDrinks: []
   _mass: 0
   _float: 0

@@ -13,7 +13,13 @@ public class PlayerStorage : ScriptableObject
 
     public static MoneyManager MoneyData => _instance._moneyManager;
 
-    public void SetAsInstance() => _instance = this;
+    public void PutRandomNumbers() => _moneyManager.PutRandomNumbers();
+
+    public void SetAsInstance()
+    {
+        _instance = this;
+        MoneyData.ResetCurrentMoney();
+    }
 
     private void OnValidate()
     {

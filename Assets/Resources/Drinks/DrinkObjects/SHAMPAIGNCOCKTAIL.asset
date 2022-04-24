@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: SHAMPAIGNCOCKTAIL
   m_EditorClassIdentifier: 
   _keyName: SHAMPAIGNCOCKTAIL
-  _name: 
-  _sprite: {fileID: 0}
-  _tags: 
-  _description: 
-  _textReceipt: 
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 472da0b9f655e61459905aed49fb537e, type: 3}
+    _name: "\u0428\u0430\u043C\u043F\u0430\u043D\u044C \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C"
+    _description: "\u0427\u0442\u043E-\u0442\u043E"
+    _tags: 000000000000000000000000
+    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
+      \u0427\u0442\u043E-\u0442\u043E"
   _drinkReceipt:
     _glassPrefab: {fileID: 0}
-    _alcohols: []
-    _additionalIngredients: []
+    _ingredients: []
     _perfectActions: []

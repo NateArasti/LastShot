@@ -16,11 +16,11 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: ed476d680d58149408ad25cabb5722b5, type: 3}
     _name: "\u0428\u043E\u0442\u043B\u0430\u043D\u0434\u0441\u043A\u0438\u0439 \u0432\u0438\u0441\u043A\u0438"
-    _description: 
-    _tags: 
-    _textReceipt: 
+    _description: "\u0427\u0442\u043E-\u0442\u043E"
+    _tags: 000000000000000000000000
+    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
+      \u0427\u0442\u043E-\u0442\u043E"
   _drinkReceipt:
     _glassPrefab: {fileID: 0}
-    _alcohols: []
-    _additionalIngredients: []
+    _ingredients: []
     _perfectActions: []

@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: BURBON
   m_EditorClassIdentifier: 
   _keyName: BURBON
-  _name: 
-  _sprite: {fileID: 0}
-  _tags: 
-  _description: 
-  _textReceipt: 
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 8b093a4abc6f5a546961a610ff245f21, type: 3}
+    _name: "\u0411\u0443\u0440\u0431\u043E\u043D"
+    _description: "\u0427\u0442\u043E-\u0442\u043E"
+    _tags: 000000000000000000000000
+    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
+      \u0427\u0442\u043E-\u0442\u043E"
   _drinkReceipt:
     _glassPrefab: {fileID: 0}
-    _alcohols: []
-    _additionalIngredients: []
+    _ingredients: []
     _perfectActions: []

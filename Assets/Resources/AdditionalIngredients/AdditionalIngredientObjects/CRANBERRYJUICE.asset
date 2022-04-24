@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: CRANBERRYJUICE
   m_EditorClassIdentifier: 
   _keyName: CRANBERRYJUICE
-  _sprite: {fileID: 21300000, guid: d73cc6b9b3414564c824206b5a3f6899, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1
+  _infoData:
+    _sprite: {fileID: 21300000, guid: d73cc6b9b3414564c824206b5a3f6899, type: 3}
+    _name: "\u041A\u043B\u044E\u043A\u0432\u0435\u043D\u043D\u044B\u0439 \u0441\u043E\u043A"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 1
+    _class: 1
+    _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: DARKBEER
   m_EditorClassIdentifier: 
   _keyName: DARKBEER
-  _sprite: {fileID: 21300000, guid: 68a80a5259b99d643ba2a1fce327efda, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 350
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 68a80a5259b99d643ba2a1fce327efda, type: 3}
+    _name: "\u0422\u0451\u043C\u043D\u043E\u0435 \u043F\u0438\u0432\u043E"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 350
+    _class: 0
+    _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

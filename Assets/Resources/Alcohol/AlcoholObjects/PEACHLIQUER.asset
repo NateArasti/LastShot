@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: PEACHLIQUER
   m_EditorClassIdentifier: 
   _keyName: PEACHLIQUER
-  _sprite: {fileID: 21300000, guid: cb9d27c68ff3eca4689dfe3e5b52b9b4, type: 3}
-  _buyQuantityStep: 0.7
-  _costPerObject: 1000
+  _infoData:
+    _sprite: {fileID: 21300000, guid: cb9d27c68ff3eca4689dfe3e5b52b9b4, type: 3}
+    _name: "\u041F\u0435\u0440\u0441\u0438\u043A\u043E\u0432\u044B\u0439 \u043B\u0438\u043A\u0435\u0440"
+    _description: 
+    _buyQuantityStep: 0.7
+    _costPerObject: 1000
+    _class: 0
+    _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: IRSIHCREAME
   m_EditorClassIdentifier: 
   _keyName: IRSIHCREAME
-  _sprite: {fileID: 21300000, guid: 62398641b067e744893fe7a36f5bec7e, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1300
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 62398641b067e744893fe7a36f5bec7e, type: 3}
+    _name: "\u0410\u0439\u0440\u0438\u0448 \u043A\u0440\u0438\u043C"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 1300
+    _class: 0
+    _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

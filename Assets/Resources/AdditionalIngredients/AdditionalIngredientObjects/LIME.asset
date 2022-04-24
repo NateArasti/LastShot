@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: LIME
   m_EditorClassIdentifier: 
   _keyName: LIME
-  _sprite: {fileID: 21300000, guid: 972be586ab2a2d94e873ca4fe8f52ab5, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 972be586ab2a2d94e873ca4fe8f52ab5, type: 3}
+    _name: "\u041B\u0430\u0439\u043C"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 1
+    _class: 1
+    _containingDrinks: []
   _mass: 0
   _float: 0

@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: POMEGRANATE
   m_EditorClassIdentifier: 
   _keyName: POMEGRANATE
-  _sprite: {fileID: 21300000, guid: 475e6be0e0e71374e83781a0518bb2e9, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 475e6be0e0e71374e83781a0518bb2e9, type: 3}
+    _name: "\u0413\u0440\u0430\u043D\u0430\u0442"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 1
+    _class: 1
+    _containingDrinks: []
   _mass: 0
   _float: 0

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -7,8 +8,7 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
     [SerializeField] private string _resourcesDatabase;
     [SerializeField] private T[] _databaseObjects;
     [SerializeField] private TextAsset _dataTable;
-    [SerializeField]
-    private string _spritesFolderPath;
+    [SerializeField] private string _spritesFolderPath;
 
     private readonly Dictionary<string, T> _dataDictionary = new();
 
@@ -24,7 +24,10 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
         foreach (var sprite in Resources.LoadAll<Sprite>(_spritesFolderPath))
         {
             if (TryGetValue(sprite.name, out var obj))
+            {
                 obj.Sprite = sprite;
+                EditorUtility.SetDirty(obj);
+            }
         }
         Debug.Log($"Loaded Sprites for {name} successfully");
     }
@@ -75,5 +78,6 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
         }
 
         _databaseObjects = newList.ToArray();
+        OnValidate();
     }
 }

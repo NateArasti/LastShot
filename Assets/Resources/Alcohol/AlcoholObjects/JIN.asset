@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: JIN
   m_EditorClassIdentifier: 
   _keyName: JIN
-  _sprite: {fileID: 21300000, guid: 3a6fdb18ff1b7b14b8fda9668846a898, type: 3}
-  _buyQuantityStep: 0.5
-  _costPerObject: 500
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 3a6fdb18ff1b7b14b8fda9668846a898, type: 3}
+    _name: "\u0414\u0436\u0438\u043D"
+    _description: 
+    _buyQuantityStep: 0.5
+    _costPerObject: 500
+    _class: 0
+    _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

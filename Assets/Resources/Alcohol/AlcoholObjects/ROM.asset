@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: ROM
   m_EditorClassIdentifier: 
   _keyName: ROM
-  _sprite: {fileID: 21300000, guid: 19aa6272b754a1242be79a7aa2ff47ff, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 2100
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 19aa6272b754a1242be79a7aa2ff47ff, type: 3}
+    _name: "\u0411\u0435\u043B\u044B\u0439 \u0440\u043E\u043C"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 2100
+    _class: 0
+    _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: CRASHEDICE
   m_EditorClassIdentifier: 
   _keyName: CRASHEDICE
-  _sprite: {fileID: 21300000, guid: 8cdc011f17b3cd44694d507503a2cf7a, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 8cdc011f17b3cd44694d507503a2cf7a, type: 3}
+    _name: "\u0414\u0440\u043E\u0431\u043B\u0435\u043D\u044B\u0439 \u043B\u0435\u0434"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 1
+    _class: 1
+    _containingDrinks: []
   _mass: 0
   _float: 0

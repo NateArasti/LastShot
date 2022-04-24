@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: MANHATTEN
   m_EditorClassIdentifier: 
   _keyName: MANHATTEN
-  _name: 
-  _sprite: {fileID: 0}
-  _tags: 
-  _description: 
-  _textReceipt: 
+  _infoData:
+    _sprite: {fileID: 21300000, guid: 45696672bdfd7514d9d45b1e9fec7a20, type: 3}
+    _name: "\u041C\u0430\u043D\u0445\u044D\u0442\u0442\u0435\u043D"
+    _description: "\u0427\u0442\u043E-\u0442\u043E"
+    _tags: 000000000000000000000000
+    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
+      \u0427\u0442\u043E-\u0442\u043E"
   _drinkReceipt:
     _glassPrefab: {fileID: 0}
-    _alcohols: []
-    _additionalIngredients: []
+    _ingredients: []
     _perfectActions: []

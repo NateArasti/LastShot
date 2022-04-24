@@ -33,20 +33,20 @@ public class AlcoholShelfSpawn : MonoBehaviour
         _finishAlcoholCollection.transform.SetAsLastSibling();
     }
 
-    public void SetReceipt(Drink drink)
-    {
-        _currentReceiptAlcohols = drink.DrinkReceipt.Alcohols.ToArray();
-        _chosenAlcohols = new (Button button, Image image, ShelfBottle shelfBottle)[_currentReceiptAlcohols.Length];
-        for(var i = 0; i < _currentReceiptAlcohols.Length; ++i)
-        {
-            var spawnedAlcohol = Instantiate(_chosenAlcoholPrefab, _chosenAlcoholsPivot);
-            _chosenAlcohols[i] = (spawnedAlcohol.GetComponent<Button>(), spawnedAlcohol.transform.GetChild(0).GetComponent<Image>(), null);
-            _chosenAlcohols[i].iconImage.enabled = false;
-            _chosenAlcohols[i].button.interactable = false;
-        }
-        _finishAlcoholCollection.interactable = false;
-        _finishAlcoholCollection.onClick.AddListener(() => GamePartsSwitch.SwitchToWorkSpace(drink));
-    }
+    //public void SetReceipt(Drink drink)
+    //{
+    //    _currentReceiptAlcohols = drink.DrinkReceipt.Alcohols.ToArray();
+    //    _chosenAlcohols = new (Button button, Image image, ShelfBottle shelfBottle)[_currentReceiptAlcohols.Length];
+    //    for(var i = 0; i < _currentReceiptAlcohols.Length; ++i)
+    //    {
+    //        var spawnedAlcohol = Instantiate(_chosenAlcoholPrefab, _chosenAlcoholsPivot);
+    //        _chosenAlcohols[i] = (spawnedAlcohol.GetComponent<Button>(), spawnedAlcohol.transform.GetChild(0).GetComponent<Image>(), null);
+    //        _chosenAlcohols[i].iconImage.enabled = false;
+    //        _chosenAlcohols[i].button.interactable = false;
+    //    }
+    //    _finishAlcoholCollection.interactable = false;
+    //    _finishAlcoholCollection.onClick.AddListener(() => GamePartsSwitch.SwitchToWorkSpace(drink));
+    //}
 
     private void ChooseAlcohol(Ingredient alcohol, ShelfBottle shelfBottle)
     {

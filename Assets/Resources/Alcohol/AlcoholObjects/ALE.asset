@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: ALE
   m_EditorClassIdentifier: 
   _keyName: ALE
-  _sprite: {fileID: 21300000, guid: e0386a659110252418472a59722cb4c2, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 300
+  _infoData:
+    _sprite: {fileID: 21300000, guid: e0386a659110252418472a59722cb4c2, type: 3}
+    _name: "\u042D\u043B\u044C"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 300
+    _class: 0
+    _containingDrinks:
+    - {fileID: 11400000, guid: 39ad55fe9fad96a40bde77d9edb6590f, type: 2}
+    - {fileID: 11400000, guid: 06e5d3489fa8a16408108c2b88a11188, type: 2}
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

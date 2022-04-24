@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _keyName: CAMPARITONIC
   _infoData:
-    _sprite: {fileID: 0}
-    _name: 
-    _description: 
-    _tags: 
-    _textReceipt: 
+    _sprite: {fileID: 21300000, guid: 05fbbd289af98a141b607b86cae521c7, type: 3}
+    _name: "\u041A\u0430\u043C\u043F\u0430\u0440\u0438 \u0442\u043E\u043D\u0438\u043A"
+    _description: "\u0427\u0442\u043E-\u0442\u043E"
+    _tags: 000000000000000000000000
+    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
+      \u0427\u0442\u043E-\u0442\u043E"
   _drinkReceipt:
     _glassPrefab: {fileID: 0}
-    _alcohols: []
-    _additionalIngredients: []
+    _ingredients: []
     _perfectActions: []

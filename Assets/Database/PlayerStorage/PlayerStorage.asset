@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: PlayerStorage
   m_EditorClassIdentifier: 
   _storageItems:
-  - _ingredient: {fileID: 11400000, guid: 598a4f7ff604d59419cb596f99b3bdcf, type: 2}
+  - _ingredient: {fileID: 11400000, guid: 99b082f93e994a244b90c9fa5423ee94, type: 2}
+    _volumes:
+    - 0.7
+  - _ingredient: {fileID: 11400000, guid: 09e65e4b363c73e4a8d7288d4ef6df1d, type: 2}
     _volumes:
     - 1
-  - _ingredient: {fileID: 11400000, guid: 65be3ae5cda734e48aece02a5c3f4e70, type: 2}
-    _volumes:
-    - 0.75
   _moneyManager:
-    _totalMoney: 316
-    _gainedOnCurrentDay: 77
+    _stock: 475
+    _gainedOnCurrentDay: 52
+    _currentMoney: 527

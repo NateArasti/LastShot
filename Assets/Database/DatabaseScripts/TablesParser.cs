@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public static class TablesParser
@@ -10,7 +11,10 @@ public static class TablesParser
         for (var i = 1; i < parsedTable.Count; i++)
         {
             if (database.TryGetValue(parsedTable[i][0], out var databaseObject) && parsedTable[i].Length > 1)
+            {
                 databaseObject.WriteData(parsedTable[i]);
+                EditorUtility.SetDirty(databaseObject);
+            }
         }
     }
 

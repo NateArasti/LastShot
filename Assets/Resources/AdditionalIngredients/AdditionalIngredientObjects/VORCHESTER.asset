@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: VORCHESTER
   m_EditorClassIdentifier: 
   _keyName: VORCHESTER
-  _sprite: {fileID: 21300000, guid: a69e9ad8c573ea345b1a9eacd435ca9d, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1
+  _infoData:
+    _sprite: {fileID: 21300000, guid: a69e9ad8c573ea345b1a9eacd435ca9d, type: 3}
+    _name: "\u0412\u043E\u0440\u0447\u0435\u0441\u0442\u0435\u0440 \u0441\u043E\u0443\u0441"
+    _description: 
+    _buyQuantityStep: 1
+    _costPerObject: 1
+    _class: 1
+    _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05
