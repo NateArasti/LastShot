@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -85,6 +86,17 @@ public static class UnityExtensions
     ///</summary>
     public static T GetRandomObject<T>(this IReadOnlyList<T> list)
     {
+        if (list.Count == 0) throw new UnityException("Can't get random object from empty list");
+        return list[Random.Range(0, list.Count)];
+    }
+
+    ///<summary>
+    /// Gets random object from collection
+    /// WARNING: POSSIBLE ALLOCATION !!!!
+    ///</summary>
+    public static T GetRandomObject<T>(this IReadOnlyCollection<T> collection)
+    {
+        var list = collection.ToList();
         if (list.Count == 0) throw new UnityException("Can't get random object from empty list");
         return list[Random.Range(0, list.Count)];
     }
