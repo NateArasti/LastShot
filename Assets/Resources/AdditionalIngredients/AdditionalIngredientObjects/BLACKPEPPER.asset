@@ -17,8 +17,9 @@ MonoBehaviour:
     _sprite: {fileID: 21300000, guid: ffc3b82736401074590c503e9f090402, type: 3}
     _name: "\u0427\u0435\u0440\u043D\u044B\u0439 \u043F\u0435\u0440\u0435\u0446"
     _description: 
-    _buyQuantityStep: 1
-    _costPerObject: 1
+    _countType: 1
+    _buyQuantityStep: 500
+    _costPerObject: 10
     _class: 1
     _containingDrinks: []
   _mass: 0

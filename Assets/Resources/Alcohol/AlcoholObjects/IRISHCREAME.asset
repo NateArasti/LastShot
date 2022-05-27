@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5539bd80f502d2418e9e619c8028c17, type: 3}
-  m_Name: IRSIHCREAME
+  m_Name: IRISHCREAME
   m_EditorClassIdentifier: 
-  _keyName: IRSIHCREAME
+  _keyName: IRISHCREAME
   _infoData:
     _sprite: {fileID: 21300000, guid: 62398641b067e744893fe7a36f5bec7e, type: 3}
     _name: "\u0410\u0439\u0440\u0438\u0448 \u043A\u0440\u0438\u043C"
-    _description: 
-    _buyQuantityStep: 1
-    _costPerObject: 1300
+    _description: "\u041F\u043B\u043E\u0445\u043E\u0439 \u0438\u0434\u0435\u0435\u0439
+      \u0431\u044B\u043B\u043E \u0441\u043C\u0435\u0448\u0438\u0432\u0430\u0442\u044C
+      \u0435\u0433\u043E \u0441 \u0441\u043E\u043A\u0430\u043C\u0438 \u0438 \u0433\u0430\u0437\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u043C
+      \u2013 \u0441\u043B\u0438\u0432\u043A\u0438 \u0441\u0432\u0435\u0440\u043D\u0443\u043B\u0438\u0441\u044C."
+    _countType: 0
+    _buyQuantityStep: 0.7
+    _costPerObject: 29
     _class: 0
     _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}

@@ -18,8 +18,9 @@ MonoBehaviour:
     _name: "\u0413\u0440\u0435\u0439\u043F\u0444\u0440\u0443\u0442\u043E\u0432\u044B\u0439
       \u0441\u043E\u043A"
     _description: 
+    _countType: 0
     _buyQuantityStep: 1
-    _costPerObject: 1
+    _costPerObject: 6
     _class: 1
     _containingDrinks: []
   _mainColor: {r: 0, g: 0, b: 0, a: 0}

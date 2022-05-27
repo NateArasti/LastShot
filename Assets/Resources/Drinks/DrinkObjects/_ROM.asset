@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c34b070e31d9a0a4588552ad99b268b0, type: 3}
-  m_Name: DARKBEER
+  m_Name: _ROM
   m_EditorClassIdentifier: 
-  _keyName: DARKBEER
+  _keyName: ROM
   _infoData:
-    _sprite: {fileID: 21300000, guid: db82901319edd094181a97f57cf09471, type: 3}
-    _name: "\u0422\u0435\u043C\u043D\u043E\u0435 \u043F\u0438\u0432\u043E"
+    _sprite: {fileID: 21300000, guid: 027c99b103ebd534ea34531500490e26, type: 3}
+    _name: "\u0420\u043E\u043C"
     _description: "\u0427\u0442\u043E-\u0442\u043E"
     _tags: 000000000000000000000000
     _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
       \u0427\u0442\u043E-\u0442\u043E"
-  _drinkReceipt:
-    _glassPrefab: {fileID: 0}
-    _ingredients: []
-    _perfectActions: []
+  _glassPrefab: {fileID: 0}
+  _ingredients: []
+  _perfectActions: []
+  references:
+    version: 2
+    RefIds: []

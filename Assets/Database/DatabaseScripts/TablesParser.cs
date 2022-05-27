@@ -15,6 +15,10 @@ public static class TablesParser
                 databaseObject.WriteData(parsedTable[i]);
                 EditorUtility.SetDirty(databaseObject);
             }
+            else
+            {
+                Debug.LogWarning($"No object with {parsedTable[i][0]}");
+            }
         }
     }
 

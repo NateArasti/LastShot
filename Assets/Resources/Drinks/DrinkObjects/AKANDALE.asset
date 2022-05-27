@@ -20,8 +20,10 @@ MonoBehaviour:
     _tags: 000000000000000000000000
     _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
       \u0427\u0442\u043E-\u0442\u043E"
-  _drinkReceipt:
+  _receipt:
     _glassPrefab: {fileID: 0}
-    _ingredients:
-    - {fileID: 11400000, guid: d6c9597e76e531842b5b9037219492de, type: 2}
+    _ingredients: []
     _perfectActions: []
+  references:
+    version: 2
+    RefIds: []

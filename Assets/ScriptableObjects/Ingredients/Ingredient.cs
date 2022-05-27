@@ -53,6 +53,14 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
             Ingredient
         }
 
+        public enum CountType
+        {
+            Liters,
+            Grams,
+            Pieces
+        }
+
+        [SerializeField] private CountType _countType;
         [SerializeField] private float _buyQuantityStep;
         [SerializeField] private int _costPerObject;
         [SerializeField] private ClassType _class;
@@ -69,6 +77,8 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
             get => _containingDrinks;
             set => _containingDrinks = value;
         }
+
+        public CountType TypeOfCount => _countType;
 
         public void ParseData(string name, int costPerObject, float buyQuantityStep)
         {

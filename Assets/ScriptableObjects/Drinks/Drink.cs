@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
 
@@ -13,20 +14,16 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
         Слабоалкогольный,
         Цитрусовый,
         Сладкий,
-        Горький,
-        Ягодный,
         Кислый,
-        Солёный,
-        Освежающий,
-        Острый,
-        Сливочный,
-        Мятный,
-        Простой
+        Горький,
+        Пикантный
     }
 
     [SerializeField] private string _keyName;
-    [Header("Info Data")] [SerializeField] private DrinkInfoData _infoData;
-    [Header("Receipt")] [SerializeField] private Receipt _drinkReceipt;
+    [Space(10f)]
+    [SerializeField] private DrinkInfoData _infoData;
+    [Space(10f)]
+    [SerializeField] private Receipt _receipt;
 
     public Sprite Sprite
     {
@@ -38,7 +35,7 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
         }
     }
 
-    public Receipt DrinkReceipt => _drinkReceipt;
+    public Receipt DrinkReceipt => _receipt;
 
     public DrinkInfoData InfoData => _infoData;
 
@@ -49,15 +46,12 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
         _infoData.ParseData(paramsLine[1]);
     }
 
-    [System.Serializable]
-    public struct Receipt
+    private void OnValidate()
     {
-        [SerializeField] private GameObject _glassPrefab;
-        [SerializeField] private List<Ingredient> _ingredients;
-        [SerializeField] private OrderAction[] _perfectActions;
-        public IReadOnlyList<OrderAction> PerfectActions => _perfectActions;
-        public GameObject GlassPrefab => _glassPrefab;
-        public IReadOnlyCollection<Ingredient> Ingredients => _ingredients;
+        foreach (var action in _receipt.PerfectActions)
+        {
+            action.SetActionName();
+        }
     }
 
     [System.Serializable]
@@ -65,14 +59,101 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     {
         [SerializeField] private Tag[] _tags;
         [TextArea(5, 20)] [SerializeField] private string _textReceipt;
+        [SerializeField] private bool _locked;
+        [SerializeField, HideInInspector] private float _cost;
+
+        public float Cost => _cost;
 
         public Tag[] Tags => _tags;
 
         public string TextReceipt => _textReceipt;
 
+        public bool Locked => _locked;
+
         public void ParseData(string name)
         {
             _name = name;
+        }
+
+        public void SetCost(float cost)
+        {
+            _cost = cost;
+        }
+    }
+
+    [Serializable]
+    public class Receipt
+    {
+        [SerializeField] private GameObject _glassPrefab;
+        [SerializeField] private List<Ingredient> _ingredients;
+        [SerializeField, SerializeReference] private List<OrderAction> _perfectActions = new();
+
+        public IReadOnlyList<OrderAction> PerfectActions => _perfectActions;
+        public GameObject GlassPrefab => _glassPrefab;
+        public IReadOnlyCollection<Ingredient> Ingredients => _ingredients;
+
+        public void AddAction(Type actionType)
+        {
+            var action = new OrderAction();
+            switch (actionType.Name)
+            {
+                case "IngredientAddAction":
+                    action = new OrderAction.IngredientAddAction();
+                    break;
+                case "IngredientAddToShakerAction":
+                    action = new OrderAction.IngredientAddToShakerAction();
+                    break;
+                case "DecorateAction":
+                    action = new OrderAction.DecorateAction();
+                    break;
+                case "SpoonMixAction":
+                    action = new OrderAction.SpoonMixAction();
+                    break;
+                case "ShakerMixAction":
+                    action = new OrderAction.ShakerMixAction();
+                    break;
+                case "ShakerPourAction":
+                    action = new OrderAction.ShakerPourAction();
+                    break;
+                case "SpoonLayerAction":
+                    action = new OrderAction.SpoonLayerAction();
+                    break;
+                case "FireAction":
+                    action = new OrderAction.FireAction();
+                    break;
+                default:
+                    Debug.LogError($"Not implemented type {actionType.Name}");
+                    break;
+            }
+
+            _perfectActions = new List<OrderAction>(_perfectActions)
+            {
+                action
+            };
+        }
+
+        public void RemoveAction()
+        {
+            if (EditorApplication.isPlaying) return;
+            _perfectActions.RemoveAt(_perfectActions.Count - 1);
+        }
+
+        public float CountPrimeCost()
+        {
+            var count = 0f;
+            foreach (var action in _perfectActions)
+            {
+                if (action is OrderAction.IngredientAddAction addAction && 
+                    addAction.Ingredient != null &&
+                    addAction.Ingredient.Data.BuyQuantityStep != 0)
+                {
+                    count += 
+                        addAction.Quantity *
+                        addAction.Ingredient.Data.CostPerObject / addAction.Ingredient.Data.BuyQuantityStep;
+                }
+            }
+
+            return count;
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "SimpleDatabase", menuName = "Data/DatabaseManager")]
-public class DatabaseManager : ScriptableObject
+public class DatabaseManager : ScriptableSingleton
 {
     private static DatabaseManager _instance;
+
     [Header("Databases")]
     [SerializeField] private IngredientDatabase _alcoholDatabase;
     [SerializeField] private IngredientDatabase _additionalIngredientsDatabase;
@@ -14,6 +15,5 @@ public class DatabaseManager : ScriptableObject
     public static IngredientDatabase AdditionalIngredientDatabase => _instance._additionalIngredientsDatabase;
     public static CharacterDatabase CharacterDatabase => _instance._storyCharacterDatabaseDatabase;
     public static DrinkDatabase DrinkDatabase => _instance._drinkDatabase;
-
-    public void SetAsInstance() => _instance = this;
+    public override void SetAsInstance() => _instance = this;
 }

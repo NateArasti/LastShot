@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStorage", menuName = "Data/PlayerStorage")]
-public class PlayerStorage : ScriptableObject
+public class PlayerStorage : ScriptableSingleton
 {
     private static PlayerStorage _instance;
 
@@ -15,7 +15,7 @@ public class PlayerStorage : ScriptableObject
 
     public void PutRandomNumbers() => _moneyManager.PutRandomNumbers();
 
-    public void SetAsInstance()
+    public override void SetAsInstance()
     {
         _instance = this;
         MoneyData.ResetCurrentMoney();

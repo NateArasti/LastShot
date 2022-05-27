@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c34b070e31d9a0a4588552ad99b268b0, type: 3}
-  m_Name: BURBON
+  m_Name: _LIGHTBEER
   m_EditorClassIdentifier: 
-  _keyName: BURBON
+  _keyName: LIGHTBEER
   _infoData:
-    _sprite: {fileID: 21300000, guid: 8b093a4abc6f5a546961a610ff245f21, type: 3}
-    _name: "\u0411\u0443\u0440\u0431\u043E\u043D"
+    _sprite: {fileID: 21300000, guid: 104dcbd276a2eae4c876aeb302be1f3c, type: 3}
+    _name: "\u0421\u0432\u0435\u0442\u043B\u043E\u0435 \u043F\u0438\u0432\u043E"
     _description: "\u0427\u0442\u043E-\u0442\u043E"
     _tags: 000000000000000000000000
     _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
       \u0427\u0442\u043E-\u0442\u043E"
-  _drinkReceipt:
-    _glassPrefab: {fileID: 0}
-    _ingredients: []
-    _perfectActions: []
+  _glassPrefab: {fileID: 0}
+  _ingredients: []
+  _perfectActions: []
+  references:
+    version: 2
+    RefIds: []

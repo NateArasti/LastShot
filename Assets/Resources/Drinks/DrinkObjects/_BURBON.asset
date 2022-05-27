@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c34b070e31d9a0a4588552ad99b268b0, type: 3}
-  m_Name: ROM
+  m_Name: _BURBON
   m_EditorClassIdentifier: 
-  _keyName: ROM
+  _keyName: BURBON
   _infoData:
-    _sprite: {fileID: 21300000, guid: 027c99b103ebd534ea34531500490e26, type: 3}
-    _name: "\u0420\u043E\u043C"
+    _sprite: {fileID: 21300000, guid: 8b093a4abc6f5a546961a610ff245f21, type: 3}
+    _name: "\u0411\u0443\u0440\u0431\u043E\u043D"
     _description: "\u0427\u0442\u043E-\u0442\u043E"
     _tags: 000000000000000000000000
     _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
       \u0427\u0442\u043E-\u0442\u043E"
-  _drinkReceipt:
-    _glassPrefab: {fileID: 0}
-    _ingredients: []
-    _perfectActions: []
+  _glassPrefab: {fileID: 0}
+  _ingredients: []
+  _perfectActions: []
+  references:
+    version: 2
+    RefIds: []

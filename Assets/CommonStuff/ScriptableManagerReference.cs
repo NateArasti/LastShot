@@ -1,13 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ScriptableManagerReference : MonoBehaviour
 {
-    [SerializeField] private DatabaseManager _databaseManager;
-    [SerializeField] private PlayerStorage _playerStorage;
+    [SerializeField] private List<ScriptableSingleton> _referenceScriptableSingletons;
 
     private void Awake()
     {
-        _databaseManager.SetAsInstance();
-        _playerStorage.SetAsInstance();
+        foreach (var scriptableSingleton in _referenceScriptableSingletons)
+        {
+            scriptableSingleton.SetAsInstance();
+        }
     }
 }

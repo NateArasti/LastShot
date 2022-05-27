@@ -1,45 +1,85 @@
 ﻿using UnityEngine;
+using System;
 
-[System.Serializable]
+[Serializable]
 public class OrderAction
 {
-    public enum ActionType
+    [HideInInspector, SerializeField] private string _actionName;
+    [SerializeField] private float _weight;
+
+    public float Weight => _weight;
+
+    /// <summary>
+    /// Compares action to another action and returns grade(0-1) how close it is
+    /// </summary>
+    /// <param name="comparableAction">Action to compare</param>
+    /// <returns></returns>
+    public virtual float Compare(OrderAction comparableAction)
     {
-        None,
-        Add,
-        Mix
+        return 0;
     }
 
-    [SerializeField] private ActionType _currentActionType;
+    public void SetActionName() => _actionName = ToString();
 
-    public ActionType CurrentActionType => _currentActionType;
-
-    #region Add
-    [SerializeField] private Ingredient _ingredient;
-    [SerializeField] private int _quantity;
-    #endregion
-
-    #region Mix
-    [SerializeField] private float _timeAmout;
-    [SerializeField] private float _intensity;
-    #endregion
-
-    public bool Compare(OrderAction comparableAction)
+    public override string ToString()
     {
-        if(_currentActionType != comparableAction._currentActionType) return false;
+        return GetType().Name;
+    }
 
-        switch (_currentActionType)
-        {
-            case ActionType.Add:
-                return _ingredient == comparableAction._ingredient &&
-                    _quantity == comparableAction._quantity;
-            case ActionType.Mix:
-                return _timeAmout == comparableAction._timeAmout &&
-                    _intensity == comparableAction._intensity;
-            case ActionType.None:
-                return true;
-            default:
-                return false;
-        }
+    //Derives
+
+    [Serializable]
+    public class IngredientAddAction : OrderAction
+    {
+        [SerializeField] private Ingredient _ingredient;
+        [SerializeField] private float _quantity;
+
+        public Ingredient Ingredient => _ingredient;
+        public float Quantity => _quantity;
+    }
+
+    [Serializable]
+    public class IngredientAddToShakerAction : IngredientAddAction
+    {
+    }
+
+    [Serializable]
+    public class DecorateAction : IngredientAddAction
+    {
+    }
+
+    [Serializable]
+    public class SpoonMixAction : OrderAction
+    {
+        [SerializeField, Range(0, 1)] private float _intensity;
+        public float Intensity => _intensity;
+    }
+
+    [Serializable]
+    public class SpoonLayerAction : OrderAction
+    {
+        [SerializeField] private Ingredient _ingredient;
+        [SerializeField] private float _quantity;
+
+        public Ingredient Ingredient => _ingredient;
+        public float Quantity => _quantity;
+    }
+
+    [Serializable]
+    public class ShakerMixAction : OrderAction
+    {
+        [SerializeField, Range(0, 1)] private float _intensity;
+        public float Intensity => _intensity;
+    }
+    [Serializable]
+    public class ShakerPourAction : OrderAction
+    {
+    }
+
+    [Serializable]
+    public class FireAction : OrderAction
+    {
+        [SerializeField] private float _fireTime;
+        public float FireTime => _fireTime;
     }
 }

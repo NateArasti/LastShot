@@ -28,6 +28,10 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
                 obj.Sprite = sprite;
                 EditorUtility.SetDirty(obj);
             }
+            else
+            {
+                Debug.LogWarning($"No object with {sprite.name}");
+            }
         }
         Debug.Log($"Loaded Sprites for {name} successfully");
     }

@@ -17,6 +17,7 @@ MonoBehaviour:
     _sprite: {fileID: 21300000, guid: 60895b4abb15ac642b43d27a225996bd, type: 3}
     _name: "\u0410\u043F\u0435\u043B\u044C\u0441\u0438\u043D"
     _description: 
+    _countType: 2
     _buyQuantityStep: 1
     _costPerObject: 1
     _class: 1
