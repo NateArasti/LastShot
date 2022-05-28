@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: ICECUBE
   m_EditorClassIdentifier: 
   _keyName: ICECUBE
-  _sprite: {fileID: 21300000, guid: a69f01d1d60692d4e956e020e68b141c, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1
-  _mass: 0
-  _float: 0
+  _infoData:
+    _sprite: {fileID: 21300000, guid: a69f01d1d60692d4e956e020e68b141c, type: 3}
+    _name: Kuban
+    _description: 
+    _buyQuantityStep: 0
+    _costPerObject: 0
+  _mass: 0.1
+  _float: 1

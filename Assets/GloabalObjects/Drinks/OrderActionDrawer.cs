@@ -14,7 +14,7 @@ public class OrderActionDrawer : PropertyDrawer
                 ("_quantity", "Quantity")
             },
 
-            [OrderAction.ActionType.Mix] = new (string keyName, string showName)[]
+            [OrderAction.ActionType.Mix] = new (string keyName, string showName)[] 
             {
                 ("_timeAmout", "Time"),
                 ("_intensity", "Intensity")

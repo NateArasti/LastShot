@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject//, IWorkItem
+public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
 {
     [SerializeField] private string _keyName;
     [SerializeField] private IngredientInfoData _infoData;
@@ -24,13 +24,10 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
             float.Parse(paramsLine[3]));
     }
 
-    //public abstract bool CanPlaceInThisSpace(ItemSpace.ItemSpaceType type);
+    public abstract bool CanPlaceInThisSpace(ItemSpace.ItemSpaceType type);
 
-    //public abstract GameObject SpawnWorkItem(Transform container);
-    //public bool TakeMousePosition()
-    //{
-    //    return Type == IngredientTypeData.IngredientType.Drop;
-    //}
+    public abstract GameObject SpawnWorkItem(Transform container);
+    public bool TakeMousePosition() => Type == IngredientTypeData.IngredientType.Drop;
 
     public Sprite Sprite
     {
