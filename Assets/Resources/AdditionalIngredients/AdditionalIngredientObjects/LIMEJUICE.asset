@@ -16,12 +16,24 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: ba582049f6fb4644cba2daf51af8fec3, type: 3}
     _name: "\u041B\u0430\u0439\u043C\u043E\u0432\u044B\u0439 \u0441\u043E\u043A"
-    _description: 
+    _description: "\u041E\u043D \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C
+      \u043D\u0435\u043F\u0440\u0435\u043C\u0435\u043D\u043D\u043E \u0441\u0432\u0435\u0436\u0435\u0432\u044B\u0434\u0430\u0432\u043B\u0435\u043D\u043D\u044B\u043C,
+      \u0442\u0430\u043A \u043A\u0430\u043A \u0442\u0435\u0440\u044F\u0435\u0442
+      \u0441\u0432\u043E\u0438 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u0430 \u0438
+      \u0442\u0435\u043A\u0441\u0442\u0443\u0440\u0443 \u0443\u0436\u0435 \u043F\u043E\u0441\u043B\u0435
+      30 \u043C\u0438\u043D\u0443\u0442 \u043F\u0440\u043E\u0441\u0442\u043E\u044F."
     _countType: 0
     _buyQuantityStep: 0.2
     _costPerObject: 2
     _class: 1
-    _containingDrinks: []
+    _containingDrinks:
+    - {fileID: 11400000, guid: 7d5a68aeac2cfb84ea4e983e395f979d, type: 2}
+    - {fileID: 11400000, guid: 0c1280c7a7caf4b44af31bf597ba7e49, type: 2}
+    - {fileID: 11400000, guid: 11159bdf75a033447a572444ad62de4e, type: 2}
+    - {fileID: 11400000, guid: 7ae8a7c71b40d7e43bb01943b870942f, type: 2}
+    - {fileID: 11400000, guid: 3b926832edaff31498bb98c2a5101177, type: 2}
+    - {fileID: 11400000, guid: 4b5eaaf471398664f80c4540866f5f43, type: 2}
+    - {fileID: 11400000, guid: 3e61887ead1dd404a800905537b47ce7, type: 2}
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

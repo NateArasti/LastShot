@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 867695c1e7107694294d7879c646f4dd
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Dihjauti S
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 26ee7e05b2196054faa991830ebab02a, type: 3}
+  - {fileID: 12800000, guid: 72034911e6cd4cf4eb24279730912326, type: 3}
+  - {fileID: 12800000, guid: 440f3015a1f48144d8fd5ed4dfc3fbb9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

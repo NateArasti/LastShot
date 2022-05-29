@@ -5,7 +5,7 @@ using UnityEditor;
 
 // ReSharper disable IdentifierTypo
 
-[CreateAssetMenu(fileName = "Simple Drink", menuName = "Drink")]
+[CreateAssetMenu(fileName = "Simple Drink", menuName = "Data/DataItem/Drink")]
 public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
 {
     public enum Tag
@@ -85,12 +85,14 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     public class Receipt
     {
         [SerializeField] private GameObject _glassPrefab;
+        [SerializeField] private List<Instrument> _instruments;
         [SerializeField] private List<Ingredient> _ingredients;
         [SerializeField, SerializeReference] private List<OrderAction> _perfectActions = new();
 
         public IReadOnlyList<OrderAction> PerfectActions => _perfectActions;
         public GameObject GlassPrefab => _glassPrefab;
         public IReadOnlyCollection<Ingredient> Ingredients => _ingredients;
+        public IReadOnlyCollection<Instrument> Instruments => _instruments;
 
         public void AddAction(Type actionType)
         {

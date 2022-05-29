@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resourcesDatabase: Alcohol\AlcoholObjects
   _databaseObjects:
-  - {fileID: 11400000, guid: 99b082f93e994a244b90c9fa5423ee94, type: 2}
   - {fileID: 11400000, guid: d6c9597e76e531842b5b9037219492de, type: 2}
   - {fileID: 11400000, guid: 308c1e943b995b04c8a3907fb279f693, type: 2}
   - {fileID: 11400000, guid: 08cda4e7cd6e9274facc80dce02bc517, type: 2}
@@ -31,10 +30,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 14dab4df88bd1624dae88bacd6716f39, type: 2}
   - {fileID: 11400000, guid: 3610d21c208574d40ab11db2c8d5bc13, type: 2}
   - {fileID: 11400000, guid: 1051d09df3875af418d268b002827f13, type: 2}
-  - {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
   - {fileID: 11400000, guid: 1cd0c831217b948409d6a2eb5ee57f1c, type: 2}
   - {fileID: 11400000, guid: ba36ba240e253d44a9726e64c8ec8d6d, type: 2}
   - {fileID: 11400000, guid: 4c81be63e31d7e24ea5ca8fddb5a71ec, type: 2}
   - {fileID: 11400000, guid: ab3715075d28d944fb9e5e4e42f6dee3, type: 2}
+  - {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
   _dataTable: {fileID: 4900000, guid: 5bc9407cf93ba3447b99c6fde4f161cd, type: 3}
   _spritesFolderPath: Alcohol\AlcoholSprites

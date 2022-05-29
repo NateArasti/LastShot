@@ -15,30 +15,99 @@ MonoBehaviour:
   _keyName: PERFECTROBROY
   _infoData:
     _sprite: {fileID: 21300000, guid: 0f5c34734654dbe4d91605a197d4c491, type: 3}
-    _name: 
+    _name: "\u0418\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u0420\u043E\u0431
+      \u0420\u043E\u0439"
     _description: "\u041C\u0430\u043D\u0445\u044D\u0442\u0442\u0435\u043D \u043D\u0430
       \u043C\u0438\u043D\u0438\u043C\u0430\u043B\u043A\u0430\u0445."
-    _tags: 000000000000000000000000
+    _tags: 00000000
     _textReceipt: "1. \u041D\u0430\u043B\u0438\u0442\u044C \u0432 \u0448\u0435\u0439\u043A\u0435\u0440
       \u043A\u0440\u0430\u0441\u043D\u044B\u0439 \u0432\u0435\u0440\u043C\u0443\u0442
       15 \u043C\u043B, \u0441\u0443\u0445\u043E\u0439 \u0432\u0435\u0440\u043C\u0443\u0442
       15 \u043C\u043B \u0438 \u0432\u0438\u0441\u043A\u0438 75 \u043C\u043B\r\n2.
       \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0430\u043D\u0433\u043E\u0441\u0442\u0443\u0440\u0443
       \u0431\u0438\u0442\u0442\u0435\u0440 3- 5 \u043A\u0430\u043F\u0435\u043B\u044C\r\n3.
-      \u041D\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u044C \u0441\u0442\u0430\u043A\u0430\u043D
-      \u043A\u0443\u0431\u0438\u043A\u0430\u043C\u0438 \u043B\u044C\u0434\u0430 \u0438
-      \u0440\u0430\u0437\u043C\u0435\u0448\u0430\u0442\u044C \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C\u043D\u043E\u0439
-      \u043B\u043E\u0436\u043A\u043E\u0439\r\n4. \u041F\u0435\u0440\u0435\u043B\u0438\u0442\u044C
-      \u0447\u0435\u0440\u0435\u0437 \u0444\u0438\u043B\u044C\u0442\u0440 \u0432
-      \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C\u043D\u044B\u0439 \u0431\u043E\u043A\u0430\u043B\r\n5.
-      \u0423\u043A\u0440\u0430\u0441\u0438\u0442\u044C \u0430\u043F\u0435\u043B\u044C\u0441\u0438\u043D\u043E\u0432\u043E\u0439
-      \u0446\u0435\u0434\u0440\u043E\u0439"
+      \u041D\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u044C \u043A\u0443\u0431\u0438\u043A\u0430\u043C\u0438
+      \u043B\u044C\u0434\u0430 \u0438 \u0432\u0437\u0431\u0438\u0442\u044C\r\n4.
+      \u041F\u0435\u0440\u0435\u043B\u0438\u0442\u044C \u0447\u0435\u0440\u0435\u0437
+      \u0444\u0438\u043B\u044C\u0442\u0440 \u0432 \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C\u043D\u044B\u0439
+      \u0431\u043E\u043A\u0430\u043B\r\n5. \u0423\u043A\u0440\u0430\u0441\u0438\u0442\u044C
+      \u0430\u043F\u0435\u043B\u044C\u0441\u0438\u043D\u043E\u0432\u043E\u0439 \u0446\u0435\u0434\u0440\u043E\u0439"
     _locked: 0
-    _cost: 0
+    _cost: 10
   _receipt:
     _glassPrefab: {fileID: 0}
-    _ingredients: []
-    _perfectActions: []
+    _instruments:
+    - {fileID: 11400000, guid: dd3e6d84d0072f347841fbc9a94857aa, type: 2}
+    - {fileID: 11400000, guid: ce2ff6b9ca3f0f74eac833febc28ff1a, type: 2}
+    _ingredients:
+    - {fileID: 11400000, guid: 14dab4df88bd1624dae88bacd6716f39, type: 2}
+    - {fileID: 11400000, guid: 9af86427b82eae742aa77e2665786db3, type: 2}
+    - {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
+    - {fileID: 11400000, guid: 08cda4e7cd6e9274facc80dce02bc517, type: 2}
+    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+    - {fileID: 11400000, guid: eb783953c50cf0c418cd6690f1bdecf3, type: 2}
+    _perfectActions:
+    - rid: 4723403559277691040
+    - rid: 4723403559277691041
+    - rid: 4723403559277691042
+    - rid: 4723403559277691043
+    - rid: 4723403559277691044
+    - rid: 4723403559277691045
+    - rid: 4723403559277691046
+    - rid: 4723403559277691047
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4723403559277691040
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 3
+        _ingredient: {fileID: 11400000, guid: 14dab4df88bd1624dae88bacd6716f39, type: 2}
+        _quantity: 0.015
+    - rid: 4723403559277691041
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 3
+        _ingredient: {fileID: 11400000, guid: 9af86427b82eae742aa77e2665786db3, type: 2}
+        _quantity: 0.015
+    - rid: 4723403559277691042
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 3
+        _ingredient: {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
+        _quantity: 0.075
+    - rid: 4723403559277691043
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 2
+        _ingredient: {fileID: 11400000, guid: 08cda4e7cd6e9274facc80dce02bc517, type: 2}
+        _quantity: 0.001
+    - rid: 4723403559277691044
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 1
+        _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+        _quantity: 4
+    - rid: 4723403559277691045
+      type: {class: OrderAction/ShakerMixAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: ShakerMixAction
+        _weight: 3
+        _intensity: 1
+    - rid: 4723403559277691046
+      type: {class: OrderAction/ShakerPourAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: ShakerPourAction
+        _weight: 1
+    - rid: 4723403559277691047
+      type: {class: OrderAction/DecorateAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: DecorateAction
+        _weight: 2
+        _ingredient: {fileID: 11400000, guid: eb783953c50cf0c418cd6690f1bdecf3, type: 2}
+        _quantity: 0

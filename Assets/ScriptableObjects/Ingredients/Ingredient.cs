@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -63,6 +64,7 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
         [SerializeField] private CountType _countType;
         [SerializeField] private float _buyQuantityStep;
         [SerializeField] private int _costPerObject;
+        [SerializeField] private bool _ignorePurchase;
         [SerializeField] private ClassType _class;
         [SerializeField] private List<Drink> _containingDrinks;
 
@@ -80,11 +82,24 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
 
         public CountType TypeOfCount => _countType;
 
+        public bool IgnorePurchase => _ignorePurchase;
+
         public void ParseData(string name, int costPerObject, float buyQuantityStep)
         {
             _name = name;
             _costPerObject = costPerObject;
             _buyQuantityStep = buyQuantityStep;
+        }
+
+        public string GetPurchaseSuffix()
+        {
+            return TypeOfCount switch
+            {
+                CountType.Liters => "כ",
+                CountType.Grams => "דנ",
+                CountType.Pieces => "רע",
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }

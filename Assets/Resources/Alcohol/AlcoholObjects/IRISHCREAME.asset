@@ -22,9 +22,11 @@ MonoBehaviour:
       \u2013 \u0441\u043B\u0438\u0432\u043A\u0438 \u0441\u0432\u0435\u0440\u043D\u0443\u043B\u0438\u0441\u044C."
     _countType: 0
     _buyQuantityStep: 0.7
-    _costPerObject: 29
+    _costPerObject: 25
     _class: 0
-    _containingDrinks: []
+    _containingDrinks:
+    - {fileID: 11400000, guid: c5988076282950f409db33dbd001c52a, type: 2}
+    - {fileID: 11400000, guid: 68cd2b765128f5c48a02c365ace46740, type: 2}
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

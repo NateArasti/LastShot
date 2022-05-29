@@ -16,12 +16,17 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: 68a80a5259b99d643ba2a1fce327efda, type: 3}
     _name: "\u0422\u0451\u043C\u043D\u043E\u0435 \u043F\u0438\u0432\u043E"
-    _description: 
+    _description: "\u041F\u0438\u0432\u043E \u2014 \u044D\u0442\u043E \u0435\u0449\u0435
+      \u043E\u0434\u043D\u043E \u0434\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E
+      \u0442\u043E\u0433\u043E, \u0447\u0442\u043E \u0413\u043E\u0441\u043F\u043E\u0434\u044C
+      \u043B\u044E\u0431\u0438\u0442 \u043D\u0430\u0441 \u0438 \u0445\u043E\u0447\u0435\u0442,
+      \u0447\u0442\u043E\u0431 \u043C\u044B \u0431\u044B\u043B\u0438 \u0441\u0447\u0430\u0441\u0442\u043B\u0438\u0432\u044B."
     _countType: 0
     _buyQuantityStep: 0.5
-    _costPerObject: 8
+    _costPerObject: 2
     _class: 0
-    _containingDrinks: []
+    _containingDrinks:
+    - {fileID: 11400000, guid: 71108ecb449ae8a41807b48ce403d69c, type: 2}
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

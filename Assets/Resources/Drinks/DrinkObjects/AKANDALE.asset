@@ -16,14 +16,78 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: 485906ba8d7967042b765732709b8ca6, type: 3}
     _name: "\u0410\u043A-\u044D\u043D\u0434-\u044D\u043B\u044C"
-    _description: "\u0427\u0442\u043E-\u0442\u043E"
-    _tags: 000000000000000000000000
-    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
-      \u0427\u0442\u043E-\u0442\u043E"
+    _description: "\u0417\u0430\u043F\u0440\u0435\u0449\u0435\u043D\u043E."
+    _tags: 0300000006000000
+    _textReceipt: "1. \u041D\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u044C \u0440\u043E\u043A\u0441
+      \u043A\u0443\u0431\u0438\u043A\u0430\u043C\u0438 \u043B\u044C\u0434\u0430 \u0434\u043E\u0432\u0435\u0440\u0445\u0443\r\n2.
+      \u041D\u0430\u043B\u0438\u0442\u044C \u0432\u0438\u0441\u043A\u0438 30 \u043C\u043B\r\n3.
+      \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043B\u0438\u043C\u043E\u043D\u043D\u044B\u0439
+      \u0441\u043E\u043A 10 \u043C\u043B \u0438 \u043C\u0435\u0434\u043E\u0432\u044B\u0439
+      \u0441\u0438\u0440\u043E\u043F 15 \u043C\u043B\r\n4. \u0414\u043E\u043B\u0438\u0442\u044C
+      \u044D\u043B\u044C \u0434\u043E\u0432\u0435\u0440\u0445\u0443 \u0438 \u0430\u043A\u043A\u0443\u0440\u0430\u0442\u043D\u043E
+      \u0440\u0430\u0437\u043C\u0435\u0448\u0430\u0442\u044C \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C\u043D\u043E\u0439
+      \u043B\u043E\u0436\u043A\u043E\u0439"
+    _locked: 1
+    _cost: 7
   _receipt:
     _glassPrefab: {fileID: 0}
-    _ingredients: []
-    _perfectActions: []
+    _instruments:
+    - {fileID: 11400000, guid: cb8d8f1d57bd5114885e6b466133098c, type: 2}
+    - {fileID: 11400000, guid: 4f92d05e2304ff14691f689c3c011bb1, type: 2}
+    _ingredients:
+    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+    - {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
+    - {fileID: 11400000, guid: 374d882eaee3743428d732de09341c74, type: 2}
+    - {fileID: 11400000, guid: 204229a7f247b4544917cee769e0e5b4, type: 2}
+    - {fileID: 11400000, guid: d6c9597e76e531842b5b9037219492de, type: 2}
+    _perfectActions:
+    - rid: 4723403559277690935
+    - rid: 4723403559277690936
+    - rid: 4723403559277690937
+    - rid: 4723403559277690938
+    - rid: 4723403559277690942
+    - rid: 4723403559277690941
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4723403559277690935
+      type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddAction
+        _weight: 1
+        _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+        _quantity: 3
+    - rid: 4723403559277690936
+      type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddAction
+        _weight: 2
+        _ingredient: {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
+        _quantity: 0.03
+    - rid: 4723403559277690937
+      type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddAction
+        _weight: 1
+        _ingredient: {fileID: 11400000, guid: 374d882eaee3743428d732de09341c74, type: 2}
+        _quantity: 0.01
+    - rid: 4723403559277690938
+      type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddAction
+        _weight: 1
+        _ingredient: {fileID: 11400000, guid: 204229a7f247b4544917cee769e0e5b4, type: 2}
+        _quantity: 0.015
+    - rid: 4723403559277690941
+      type: {class: OrderAction/SpoonMixAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: SpoonMixAction
+        _weight: 2
+        _intensity: 0
+    - rid: 4723403559277690942
+      type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddAction
+        _weight: 2
+        _ingredient: {fileID: 11400000, guid: d6c9597e76e531842b5b9037219492de, type: 2}
+        _quantity: 0.05

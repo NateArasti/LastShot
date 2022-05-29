@@ -30,7 +30,7 @@ public class CameraScrollRect : MonoBehaviour
         _camera = _params.Camera;
         Debug.Assert(_camera != null, "Camera null");
         _mainCameraTransform = _camera.transform;
-        _cameraWidth = _camera.orthographicSize * _camera.pixelWidth / _camera.pixelHeight;
+        _cameraWidth = _camera.orthographicSize * _camera.aspect;
         _cameraHeight = _camera.orthographicSize;
     }
 
@@ -42,10 +42,8 @@ public class CameraScrollRect : MonoBehaviour
         }
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, 0, Time.deltaTime * _params.Friction);
         
-        var position = _mainCameraTransform.position;
-        position.x += _currentSpeed;
-        position = ClampPosition(position);
-        _mainCameraTransform.position = position;
+        _mainCameraTransform.Translate(Vector3.right * _currentSpeed);
+        _mainCameraTransform.position = ClampPosition(_mainCameraTransform.position);
     }
 
     private bool CheckIfCursorOnEdge()

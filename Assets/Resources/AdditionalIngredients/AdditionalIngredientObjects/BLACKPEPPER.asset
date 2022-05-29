@@ -16,11 +16,13 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: ffc3b82736401074590c503e9f090402, type: 3}
     _name: "\u0427\u0435\u0440\u043D\u044B\u0439 \u043F\u0435\u0440\u0435\u0446"
-    _description: 
+    _description: "\u041F\u0440\u0438\u0432\u0435\u0442 \u0438\u0437 \u0418\u043D\u0434\u0438\u0438"
     _countType: 1
     _buyQuantityStep: 500
-    _costPerObject: 10
+    _costPerObject: 7
     _class: 1
-    _containingDrinks: []
+    _containingDrinks:
+    - {fileID: 11400000, guid: 00ee2f47fb2d3c84584fd895e62690ba, type: 2}
+    - {fileID: 11400000, guid: ff1d4cdedc8bd7845a13b9f6550ab6c5, type: 2}
   _mass: 0
   _float: 0

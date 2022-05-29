@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b76d1ce25c94d4c92b5c4252b35271, type: 3}
+  m_Name: InstrumentDatabase
+  m_EditorClassIdentifier: 
+  _resourcesDatabase: 
+  _databaseObjects:
+  - {fileID: 11400000, guid: ce2ff6b9ca3f0f74eac833febc28ff1a, type: 2}
+  - {fileID: 11400000, guid: 4f92d05e2304ff14691f689c3c011bb1, type: 2}
+  - {fileID: 11400000, guid: 9bcfdd4cb8031cd41a714ba9496f8c20, type: 2}
+  - {fileID: 11400000, guid: 2d34224dcdef8fd4caec437b95468685, type: 2}
+  - {fileID: 11400000, guid: 60f5f9608fb744b4caff7a8ed65e9dcd, type: 2}
+  - {fileID: 11400000, guid: cb8d8f1d57bd5114885e6b466133098c, type: 2}
+  - {fileID: 11400000, guid: dd3e6d84d0072f347841fbc9a94857aa, type: 2}
+  - {fileID: 11400000, guid: c4c2667c30069fd4bb9aee08397ca2c3, type: 2}
+  _dataTable: {fileID: 0}
+  _spritesFolderPath: 

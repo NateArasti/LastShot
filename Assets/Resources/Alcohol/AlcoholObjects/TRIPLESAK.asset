@@ -16,12 +16,17 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: abe8e45a7917fac4789f8a4241af57f1, type: 3}
     _name: "\u0422\u0440\u0438\u043F\u043B \u0441\u0435\u043A"
-    _description: 
+    _description: "\u041D\u0435\u043F\u043B\u043E\u0445\u043E\u0439 \u0434\u0438\u0436\u0435\u0441\u0442\u0438\u0432,
+      \u0434\u043B\u044F \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u044F \u043F\u0438\u0449\u0435\u0432\u0430\u0440\u0435\u043D\u0438\u044F."
     _countType: 0
     _buyQuantityStep: 0.7
-    _costPerObject: 65
+    _costPerObject: 20
     _class: 0
-    _containingDrinks: []
+    _containingDrinks:
+    - {fileID: 11400000, guid: c5988076282950f409db33dbd001c52a, type: 2}
+    - {fileID: 11400000, guid: e1978b66dcd4e0e4886faa1d32558f93, type: 2}
+    - {fileID: 11400000, guid: 7d5a68aeac2cfb84ea4e983e395f979d, type: 2}
+    - {fileID: 11400000, guid: 3b926832edaff31498bb98c2a5101177, type: 2}
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
   _outlineColor: {r: 0, g: 0, b: 0, a: 0}
   _delayBetweenDrops: 0.05

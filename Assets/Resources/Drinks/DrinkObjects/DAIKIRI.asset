@@ -16,13 +16,77 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: ceea326e73ee52d4b8430553b30db32f, type: 3}
     _name: "\u0414\u0430\u0439\u043A\u0438\u0440\u0438"
-    _description: "\u0427\u0442\u043E-\u0442\u043E"
-    _tags: 000000000000000000000000
-    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
-      \u0427\u0442\u043E-\u0442\u043E"
-  _glassPrefab: {fileID: 0}
-  _ingredients: []
-  _perfectActions: []
+    _description: "\u041D\u0443\u0436\u043D\u043E \u0442\u043E\u0436\u0435 \u043F\u043E\u0441\u0435\u0442\u0438\u0442\u044C
+      \u041A\u0443\u0431\u0443. \u041C\u043E\u0436\u0435\u0442 \u0438 \u043D\u043E\u0432\u044B\u0439
+      \u0440\u0435\u0446\u0435\u043F\u0442 \u0432 \u0433\u043E\u043B\u043E\u0432\u0443
+      \u0432\u0437\u0431\u0440\u0435\u0434\u0435\u0442."
+    _tags: 0200000004000000
+    _textReceipt: "1. \u041D\u0430\u043B\u0438\u0442\u044C \u0432 \u0448\u0435\u0439\u043A\u0435\u0440
+      \u043B\u0430\u0439\u043C\u043E\u0432\u044B\u0439 \u0441\u043E\u043A 30 \u043C\u043B,
+      \u0441\u0430\u0445\u0430\u0440\u043D\u044B\u0439 \u0441\u0438\u0440\u043E\u043F
+      15 \u043C\u043B \u0438 \u0440\u043E\u043C 60 \u043C\u043B\r\n2. \u041D\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u044C
+      \u0448\u0435\u0439\u043A\u0435\u0440 \u043A\u0443\u0431\u0438\u043A\u0430\u043C\u0438
+      \u043B\u044C\u0434\u0430 \u0438 \u0432\u0437\u0431\u0435\u0439\r\n3. \u041F\u0435\u0440\u0435\u043B\u0438\u0442\u044C
+      \u0447\u0435\u0440\u0435\u0437 \u0444\u0438\u043B\u044C\u0442\u0440 \u0432\u043E
+      \u0444\u043B\u044E\u0442\u0435"
+    _locked: 0
+    _cost: 7.5
+  _receipt:
+    _glassPrefab: {fileID: 0}
+    _instruments:
+    - {fileID: 11400000, guid: dd3e6d84d0072f347841fbc9a94857aa, type: 2}
+    - {fileID: 11400000, guid: 9bcfdd4cb8031cd41a714ba9496f8c20, type: 2}
+    _ingredients:
+    - {fileID: 11400000, guid: ca04bb24cb61baf4085ff02f3f12d46a, type: 2}
+    - {fileID: 11400000, guid: 316d7109f4bfe7b4aa9301ce8f1a22fa, type: 2}
+    - {fileID: 11400000, guid: 1051d09df3875af418d268b002827f13, type: 2}
+    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+    _perfectActions:
+    - rid: 4723403559277690980
+    - rid: 4723403559277690981
+    - rid: 4723403559277690982
+    - rid: 4723403559277690983
+    - rid: 4723403559277690984
+    - rid: 4723403559277690985
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4723403559277690980
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 3
+        _ingredient: {fileID: 11400000, guid: ca04bb24cb61baf4085ff02f3f12d46a, type: 2}
+        _quantity: 0.03
+    - rid: 4723403559277690981
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 3
+        _ingredient: {fileID: 11400000, guid: 316d7109f4bfe7b4aa9301ce8f1a22fa, type: 2}
+        _quantity: 0.015
+    - rid: 4723403559277690982
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 3
+        _ingredient: {fileID: 11400000, guid: 1051d09df3875af418d268b002827f13, type: 2}
+        _quantity: 0.06
+    - rid: 4723403559277690983
+      type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddToShakerAction
+        _weight: 1
+        _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+        _quantity: 4
+    - rid: 4723403559277690984
+      type: {class: OrderAction/ShakerMixAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: ShakerMixAction
+        _weight: 2
+        _intensity: 0.9
+    - rid: 4723403559277690985
+      type: {class: OrderAction/ShakerPourAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: ShakerPourAction
+        _weight: 2

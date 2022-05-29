@@ -24,6 +24,24 @@ public class DrinkDatabase : Database<Drink>
                         ingredient.Data.ContainingDrinks.Add(drink);
                     });
             });
+        drinksCollection.ForEachAction(
+            drink =>
+            {
+                drink.DrinkReceipt.Instruments.ForEachAction(
+                    instrument =>
+                    {
+                        instrument.ContainingDrinks.Clear();
+                    });
+            });
+        drinksCollection.ForEachAction(
+            drink =>
+            {
+                drink.DrinkReceipt.Instruments.ForEachAction(
+                    instrument =>
+                    {
+                        instrument.ContainingDrinks.Add(drink);
+                    });
+            });
         Debug.Log("Successfully filled ingredients containing lists");
     }
 }

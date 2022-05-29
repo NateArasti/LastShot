@@ -16,14 +16,32 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: db82901319edd094181a97f57cf09471, type: 3}
     _name: "\u0422\u0435\u043C\u043D\u043E\u0435 \u043F\u0438\u0432\u043E"
-    _description: "\u0427\u0442\u043E-\u0442\u043E"
-    _tags: 000000000000000000000000
-    _textReceipt: "1. \u0427\u0442\u043E-\u0442\u043E\n2. \u0427\u0442\u043E-\u0442\u043E\n3.
-      \u0427\u0442\u043E-\u0442\u043E"
-  _glassPrefab: {fileID: 0}
-  _ingredients:
-  - {fileID: 0}
-  _perfectActions: []
+    _description: "\u0425\u043E\u0440\u043E\u0448\u0435\u0435 \u043F\u0438\u0432\u043E
+      \u043C\u043E\u0436\u043D\u043E \u043E\u043F\u043E\u0437\u043D\u0430\u0442\u044C
+      \u0441 \u043E\u0434\u043D\u043E\u0433\u043E \u0433\u043B\u043E\u0442\u043A\u0430,
+      \u043D\u043E \u043B\u0443\u0447\u0448\u0435 \u0443\u0434\u043E\u0441\u0442\u043E\u0432\u0435\u0440\u0438\u0442\u044C\u0441\u044F
+      \u043A\u0430\u043A \u0441\u043B\u0435\u0434\u0443\u0435\u0442."
+    _tags: 0100000005000000
+    _textReceipt: "1. \u041D\u0430\u043B\u0438\u0442\u044C \u0432 \u043F\u0438\u043D\u0442\u0443
+      \u0432\u0441\u044E \u0431\u0443\u0442\u044B\u043B\u043A\u0443 \u0442\u0451\u043C\u043D\u043E\u0433\u043E
+      \u043F\u0438\u0432\u0430"
+    _locked: 0
+    _cost: 4
+  _receipt:
+    _glassPrefab: {fileID: 0}
+    _instruments:
+    - {fileID: 11400000, guid: 60f5f9608fb744b4caff7a8ed65e9dcd, type: 2}
+    _ingredients:
+    - {fileID: 11400000, guid: 5e8ad23690c24e94881bdf5b1d919927, type: 2}
+    _perfectActions:
+    - rid: 4723403559277690924
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4723403559277690924
+      type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
+      data:
+        _actionName: IngredientAddAction
+        _weight: 1
+        _ingredient: {fileID: 11400000, guid: 5e8ad23690c24e94881bdf5b1d919927, type: 2}
+        _quantity: 0.5

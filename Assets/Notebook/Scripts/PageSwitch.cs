@@ -7,6 +7,10 @@ public class PageSwitch : MonoBehaviour
 
     private void Start()
     {
+        foreach (var page in _pages)
+        {
+            page.SetActive(true);
+        }
         OpenPage(_startIndex);
     }
 
