@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DrinkDatabase", menuName = "Data/Database/DrinkDatabase")]
@@ -23,6 +24,9 @@ public class DrinkDatabase : Database<Drink>
                     {
                         ingredient.Data.ContainingDrinks.Add(drink);
                     });
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(drink);
+#endif
             });
         drinksCollection.ForEachAction(
             drink =>
@@ -41,6 +45,9 @@ public class DrinkDatabase : Database<Drink>
                     {
                         instrument.ContainingDrinks.Add(drink);
                     });
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(drink);
+#endif
             });
         Debug.Log("Successfully filled ingredients containing lists");
     }

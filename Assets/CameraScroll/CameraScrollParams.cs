@@ -6,6 +6,7 @@ public class CameraScrollParams : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _leftBorder;
     [SerializeField] private Transform _rightBorder;
+    [SerializeField] private CameraScrollUI _cameraScrollUIPrefab;
     [Space(20f)]
     [Header("Params")]
     [SerializeField] private float _scrollSpeed = 0.25f;
@@ -20,4 +21,5 @@ public class CameraScrollParams : MonoBehaviour
     public float HeightPercent => _heightPercent;
     public Transform LeftBorder => _leftBorder;
     public Transform RightBorder => _rightBorder;
+    public CameraScrollUI CameraScrollUIPrefab => _cameraScrollUIPrefab;
 }

@@ -13,7 +13,9 @@ public static class TablesParser
             if (database.TryGetValue(parsedTable[i][0], out var databaseObject) && parsedTable[i].Length > 1)
             {
                 databaseObject.WriteData(parsedTable[i]);
+#if UNITY_EDITOR
                 EditorUtility.SetDirty(databaseObject);
+#endif
             }
             else
             {

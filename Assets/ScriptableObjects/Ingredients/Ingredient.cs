@@ -37,11 +37,7 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
     public Sprite Sprite
     {
         get => _infoData.ObjectSprite;
-        set
-        {
-            if (EditorApplication.isPlaying) return;
-            _infoData.ObjectSprite = value;
-        }
+        set => _infoData.ObjectSprite = value;
     }
 
 

@@ -20,4 +20,16 @@ MonoBehaviour:
       \u043E\u043B\u0434 \u0444\u0435\u0448\u0435\u043D\u0430. \u041D\u0430\u0432\u0435\u0440\u043D\u043E\u0435,
       \u043F\u043E\u044D\u0442\u043E\u043C\u0443 \u044D\u0442\u043E \u0435\u0433\u043E
       \u0432\u0442\u043E\u0440\u043E\u0435 \u0438\u043C\u044F."
-  _containingDrinks: []
+  _containingDrinks:
+  - {fileID: 11400000, guid: a0fcb691885e1784caebbdcd5bb9e6d8, type: 2}
+  - {fileID: 11400000, guid: 5e4a5b804f4b0ec499d05445ee89a015, type: 2}
+  - {fileID: 11400000, guid: 61984f71461510e4bbebbadea42715ef, type: 2}
+  - {fileID: 11400000, guid: 06e5d3489fa8a16408108c2b88a11188, type: 2}
+  - {fileID: 11400000, guid: cf5c8b1cb3aae8046ae77408a0b1f4cb, type: 2}
+  - {fileID: 11400000, guid: 11159bdf75a033447a572444ad62de4e, type: 2}
+  - {fileID: 11400000, guid: f5820806a7ad5844da9a3caa14bd4bf7, type: 2}
+  - {fileID: 11400000, guid: addcbcc65ef0e2a4196f47a4f1f4a9ad, type: 2}
+  - {fileID: 11400000, guid: 79c23dc0bfadfb34bba97494ad98f854, type: 2}
+  - {fileID: 11400000, guid: 5998f05c9e8578243a1d6d05710716d0, type: 2}
+  - {fileID: 11400000, guid: 4ff47f0e6bbba5e468dd9fcbd3c3e628, type: 2}
+  - {fileID: 11400000, guid: 59dfc75aac5738e41b5b7c6f8c4e83e9, type: 2}

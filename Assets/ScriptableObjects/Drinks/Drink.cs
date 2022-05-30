@@ -28,11 +28,7 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     public Sprite Sprite
     {
         get => _infoData.ObjectSprite;
-        set
-        {
-            if (EditorApplication.isPlaying) return;
-            _infoData.ObjectSprite = value;
-        }
+        set => _infoData.ObjectSprite = value;
     }
 
     public Receipt DrinkReceipt => _receipt;
@@ -136,7 +132,6 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
 
         public void RemoveAction()
         {
-            if (EditorApplication.isPlaying) return;
             _perfectActions.RemoveAt(_perfectActions.Count - 1);
         }
 

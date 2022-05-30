@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class LightController : MonoBehaviour
+public class UILightController : MonoBehaviour
 {
     public enum DayState
     {
@@ -21,15 +21,15 @@ public class LightController : MonoBehaviour
         {
             case DayState.Day:
                 _lights.ForEachAction(l => l.enabled = false);
-                _globalLight.intensity = 0.9f;
+                _globalLight.intensity = 1.2f;
                 break;
             case DayState.Evening:
                 _lights.ForEachAction(l => l.enabled = true);
-                _globalLight.intensity = 0.5f;
+                _globalLight.intensity = 0.6f;
                 break;
             case DayState.Night:
                 _lights.ForEachAction(l => l.enabled = true);
-                _globalLight.intensity = 0.1f;
+                _globalLight.intensity = 0;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(dayState), dayState, null);

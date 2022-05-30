@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CameraScrollParams))]
 public class CameraScrollRect : MonoBehaviour
@@ -18,6 +19,8 @@ public class CameraScrollRect : MonoBehaviour
     private float _cameraHeight;
     private Direction _currentDirection;
 
+    private readonly UnityEvent<float> _onMousePositionChanged = new();
+
     private float LeftEdge => _mainCameraTransform.position.x - _params.WidthPercent * _cameraWidth;
     private float RightEdge => _mainCameraTransform.position.x + _params.WidthPercent * _cameraWidth;
     private float TopEdge => _mainCameraTransform.position.y + _params.HeightPercent * _cameraHeight;
@@ -32,6 +35,12 @@ public class CameraScrollRect : MonoBehaviour
         _mainCameraTransform = _camera.transform;
         _cameraWidth = _camera.orthographicSize * _camera.aspect;
         _cameraHeight = _camera.orthographicSize;
+        Instantiate(_params.CameraScrollUIPrefab).SetUI(
+            (1 - _params.WidthPercent) * _camera.pixelWidth,
+            _params.HeightPercent * _camera.pixelHeight,
+            _onMousePositionChanged,
+            _camera
+        );
     }
 
     private void LateUpdate()
@@ -49,7 +58,7 @@ public class CameraScrollRect : MonoBehaviour
     private bool CheckIfCursorOnEdge()
     {
         var mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-
+        _onMousePositionChanged.Invoke((Mathf.Clamp01((mousePosition.x - LeftEdge) / (RightEdge - LeftEdge)) - 0.5f) * 2);
         if (TopEdge < mousePosition.y || mousePosition.y < BottomEdge)
             return false;
 

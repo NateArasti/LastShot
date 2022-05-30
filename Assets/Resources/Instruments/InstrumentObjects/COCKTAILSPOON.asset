@@ -23,4 +23,24 @@ MonoBehaviour:
       \u0440\u0430\u0437\u043C\u0435\u0448\u0430\u0435\u0448\u044C \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C
       \u0438\u043B\u0438 \u043D\u0430\u043B\u043E\u0436\u0438\u0448\u044C \u0441\u043B\u043E\u0438
       \u0432 \u0448\u043E\u0442. \u0423\u0436\u0435 \u043F\u0440\u043E\u0431\u043E\u0432\u0430\u043B."
-  _containingDrinks: []
+  _containingDrinks:
+  - {fileID: 11400000, guid: 06e5d3489fa8a16408108c2b88a11188, type: 2}
+  - {fileID: 11400000, guid: c5988076282950f409db33dbd001c52a, type: 2}
+  - {fileID: 11400000, guid: 527d8bc49905dbe418f4c93aa1d0cf07, type: 2}
+  - {fileID: 11400000, guid: cf4be5783f3549b4eb2ad76cde475c44, type: 2}
+  - {fileID: 11400000, guid: e1978b66dcd4e0e4886faa1d32558f93, type: 2}
+  - {fileID: 11400000, guid: 68cd2b765128f5c48a02c365ace46740, type: 2}
+  - {fileID: 11400000, guid: fcfd1f00fc9d2bc48b5b09c2b7b43ee4, type: 2}
+  - {fileID: 11400000, guid: 11159bdf75a033447a572444ad62de4e, type: 2}
+  - {fileID: 11400000, guid: f5820806a7ad5844da9a3caa14bd4bf7, type: 2}
+  - {fileID: 11400000, guid: e359abee0d4e4ec4cacd38ef8ff775ac, type: 2}
+  - {fileID: 11400000, guid: 21e5e969ca385884ca61cda74dc41d68, type: 2}
+  - {fileID: 11400000, guid: addcbcc65ef0e2a4196f47a4f1f4a9ad, type: 2}
+  - {fileID: 11400000, guid: ff1d4cdedc8bd7845a13b9f6550ab6c5, type: 2}
+  - {fileID: 11400000, guid: 79c23dc0bfadfb34bba97494ad98f854, type: 2}
+  - {fileID: 11400000, guid: 4b5eaaf471398664f80c4540866f5f43, type: 2}
+  - {fileID: 11400000, guid: 5998f05c9e8578243a1d6d05710716d0, type: 2}
+  - {fileID: 11400000, guid: 4ff47f0e6bbba5e468dd9fcbd3c3e628, type: 2}
+  - {fileID: 11400000, guid: 99c9092fca59b0d4e8bb2b89b3f16978, type: 2}
+  - {fileID: 11400000, guid: 86c35810b0f27114c8b7bcf3e09bcdc3, type: 2}
+  - {fileID: 11400000, guid: bdd40a13d531d914d95b382b2a54911f, type: 2}

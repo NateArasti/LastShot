@@ -26,7 +26,9 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
             if (TryGetValue(sprite.name, out var obj))
             {
                 obj.Sprite = sprite;
+#if UNITY_EDITOR
                 EditorUtility.SetDirty(obj);
+#endif
             }
             else
             {

@@ -12,7 +12,9 @@ public class ChangeTMPAsset : MonoBehaviour
         foreach (var text in GetComponentsInChildren<TMP_Text>(includeInactive:true))
         {
             text.font = _asset;
+#if UNITY_EDITOR
             EditorUtility.SetDirty(text);
+#endif
         }
     }
 }

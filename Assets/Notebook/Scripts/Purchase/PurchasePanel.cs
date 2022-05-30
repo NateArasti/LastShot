@@ -54,7 +54,7 @@ public class PurchasePanel : MonoBehaviour
         _name.text = ingredient.Data.Name;
         if (PlayerStorage.TryGetIngredientSumQuantity(ingredient, out var quantity))
         {
-            _inStorageText.text = $"В наличии {quantity} {ingredient.Data.GetPurchaseSuffix()}";
+            _inStorageText.text = $"В салуне {quantity} {ingredient.Data.GetPurchaseSuffix()}";
         }
 
         _buySlider.maxValue =

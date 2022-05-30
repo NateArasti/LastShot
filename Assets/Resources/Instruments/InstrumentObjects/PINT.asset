@@ -20,4 +20,7 @@ MonoBehaviour:
       \u043F\u0438\u043D\u0442\u0430 \u0434\u043B\u044F \u043F\u0438\u0432\u0430.
       \u0418 \u0436\u0438\u043B\u0438 \u043E\u043D\u0438 \u0434\u043E\u043B\u0433\u043E
       \u0438 \u0441\u0447\u0430\u0441\u0442\u043B\u0438\u0432\u043E."
-  _containingDrinks: []
+  _containingDrinks:
+  - {fileID: 11400000, guid: 62eb0a984ce4c214dbe6a5fef4f1ff88, type: 2}
+  - {fileID: 11400000, guid: 71108ecb449ae8a41807b48ce403d69c, type: 2}
+  - {fileID: 11400000, guid: adcca6676ebf8ec4ca89bd003c61ef68, type: 2}
