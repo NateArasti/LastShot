@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,7 +8,9 @@ public class LiquidTrigger : MonoBehaviour
 {
     //public static BoxCollider2D _Box;
 
-    public readonly UnityEvent<float, float> OnHit = new();
+    public readonly UnityEvent<float, float, float> OnHit = new();
+    private bool _smthLies;
+    private float _dropItemMass;
 
     private BoxCollider2D _boxCollider;
 
@@ -19,16 +22,35 @@ public class LiquidTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        //print(123);
         var x = col.transform.position.x;
         if(col.TryGetComponent<DropItem>(out var mass))
         {
-            OnHit.Invoke(x, mass.Mass);
-            print("WQESADQWEQW");
+            OnHit.Invoke(x, _dropItemMass / 2, _dropItemMass);
+        }
+        else if (_smthLies)
+        {
+            OnHit.Invoke(x, 0.1f,WaterDrop.Mass + 0.3f); 
         }
         else
         {
-            OnHit.Invoke(x, WaterDrop.Mass);
+            OnHit.Invoke(x, 0.1f, WaterDrop.Mass);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        _smthLies = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent<DropItem>(out var mass))
+        {
+            _smthLies = false;
+            print("!@#@!#!@#!@#");
+        }
+        //print(321);
     }
 
     public void SetTriggerBounds(float width, float topPosition, float xOffset = 0)

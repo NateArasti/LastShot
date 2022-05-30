@@ -19,5 +19,5 @@ MonoBehaviour:
     _description: 
     _buyQuantityStep: 0
     _costPerObject: 0
-  _mass: 0.1
+  _mass: 2
   _float: 1

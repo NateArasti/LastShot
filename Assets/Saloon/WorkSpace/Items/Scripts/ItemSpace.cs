@@ -39,25 +39,21 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void PlaceItem(DragItem item)
     {
-
-    
-
         if (_canPlace && item.Item.CanPlaceInThisSpace(_type))
         {
             var spawnWorkItem = item.Item.SpawnWorkItem(_itemSpawnPivot);
-
+     
+            if (item.Item.TakeMousePosition())
+            {
+                spawnWorkItem.transform.position = item.transform.position;
+                return;
+            }
 
             spawnWorkItem.GetComponent<PourItem>().SetPosition(_number);
             spawnWorkItem.GetComponent<Returner>().OnReturn.AddListener(DeleteItem);
             _canPlace = false;
         }
 
-        //if (item.Item.TakeMousePosition())
-        //{
-        //    spawnWorkItem.transform.position = item.transform.position;
-
-        //    return;
-        //}
     }
 
     private void Awake()

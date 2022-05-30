@@ -20,7 +20,8 @@ MonoBehaviour:
     _tags: 
     _textReceipt: 
   _drinkReceipt:
-    _glassPrefab: {fileID: 0}
-    _alcohols: []
+    _glassPrefab: {fileID: 899954872950476208, guid: 77f8c99921adc77478275b5800db6300, type: 3}
+    _alcohols:
+    - {fileID: 11400000, guid: 99b082f93e994a244b90c9fa5423ee94, type: 2}
     _additionalIngredients: []
     _perfectActions: []

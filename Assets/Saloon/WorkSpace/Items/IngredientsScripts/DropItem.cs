@@ -58,7 +58,7 @@ public class DropItem : MonoBehaviour
         _mass = mass;
         _image.sprite = icon;
         _image.SetNativeSize();
-        //_mass = _rectTransform.rect.width * _rectTransform.rect.height / 1000;
+        _mass = _rectTransform.rect.width * _rectTransform.rect.height / 2000;
         _collider.size = new Vector2(_rectTransform.rect.width, _rectTransform.rect.height);
         transform.SetAsFirstSibling();
     }
@@ -88,10 +88,10 @@ public class DropItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _triggerCount++;
-        var s = collision.offset;
-        _triggerBounds = s.y;
-
+        //_triggerCount++;
+        //var s = collision.offset;
+        //_triggerBounds = s.y;
+        _rigidbody2D.gravityScale = 0.8f;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

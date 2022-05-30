@@ -71,15 +71,14 @@ public class StaticLiquid : MonoBehaviour
         GetComponent<MeshFilter>().mesh = _mesh;
 
 
-        _trigger.OnHit.AddListener((x, mass) =>
-        {
-            print(mass);
-            Splash(x, volume: mass);
-        });
+        _trigger.OnHit.AddListener(Splash);
+
+        StopAllCoroutines();
     }
 
     private void Splash(float x, float force = 0.3f, float volume = 0.001f)
     {
+        //print(volume);
         if (_rect.height <= _fixedTopGlassEdge)
         {
             var a = Mathf.RoundToInt((x - _rect.x) / _distanceBetweenVertices);
@@ -96,6 +95,7 @@ public class StaticLiquid : MonoBehaviour
         {
             for (var i = 1; i < _velocities.Length; i += 2)
                 _vertices[i].y += delta;
+            //print("!@#!@#@#@!");
             _rect.height += delta;
             yield return null;
         }
