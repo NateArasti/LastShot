@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7304598434163984701}
   - component: {fileID: 7304598434163984702}
   - component: {fileID: 6331991550191128568}
+  - component: {fileID: -3636751638556928357}
+  - component: {fileID: 1681385458207340436}
   m_Layer: 3
   m_Name: _GuestExample
   m_TagString: Untagged
@@ -146,9 +148,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _secondsPerUnit: 0.3
-  _sitTime: 10
+  _sitTime: 20
   _delayBeforeGoingOutChair: 1.1
   _delayBeforeGoingOutTable: 1.4
   _normalLayer: 24
   _chairSitLayer: 18
   _tableSitLayer: 27
+  _chairRandomAnimations: {fileID: -3636751638556928357}
+  _tableRandomAnimations: {fileID: 1681385458207340436}
+--- !u!114 &-3636751638556928357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7304598434163984688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1677a75439346c4d8e198fc2f15db0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfRandomAnimations: 2
+  _animationPrefix: ChairRandom
+  _delayBeforeRandomAnimation: 15
+  _chanceOfRandomAnimation: 1
+--- !u!114 &1681385458207340436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7304598434163984688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1677a75439346c4d8e198fc2f15db0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfRandomAnimations: 3
+  _animationPrefix: TableRandom
+  _delayBeforeRandomAnimation: 15
+  _chanceOfRandomAnimation: 1

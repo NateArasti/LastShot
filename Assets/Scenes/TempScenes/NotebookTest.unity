@@ -923,7 +923,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -30, y: -30}
+  m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &71018643
 CanvasRenderer:
@@ -955,7 +955,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -27798,7 +27798,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1563982784}
   m_HandleRect: {fileID: 1563982783}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -32566,10 +32566,11 @@ MonoBehaviour:
   _leftBorder: {fileID: 1967214494}
   _rightBorder: {fileID: 374230377}
   _cameraScrollUIPrefab: {fileID: 5924491705080385937, guid: d7bda2cfd9af8894daf977664830da1c, type: 3}
-  _scrollSpeed: 0.15
-  _friction: 0.1
-  _widthPercent: 0.9
-  _heightPercent: 0.7
+  _scrollSpeedAdd: 0.0005
+  _scrollSpeedMax: 0.0005
+  _friction: 0.00075
+  _widthPercent: 0.95
+  _heightPercent: 0.6
 --- !u!114 &6824666633474061091
 MonoBehaviour:
   m_ObjectHideFlags: 0

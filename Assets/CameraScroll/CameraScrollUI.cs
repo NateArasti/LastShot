@@ -3,24 +3,25 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Canvas))]
+[RequireComponent(typeof(Canvas), typeof(CanvasScaler))]
 public class CameraScrollUI : MonoBehaviour
 {
     [SerializeField] private float _maxAlpha = 0.5f;
     [SerializeField] private Image _leftImage;
     [SerializeField] private Image _rightImage;
     private Canvas _canvas;
+    private CanvasScaler _canvasScaler;
 
     private void Awake()
     {
         _canvas = GetComponent<Canvas>();
+        _canvasScaler = GetComponent<CanvasScaler>();
     }
 
     public void SetUI(float width, float height, UnityEvent<float> mousePositionChanged, Camera refCamera)
     {
         _canvas.worldCamera = refCamera;
-        var newSizeDelta = new Vector2(width, -height) * 0.5f;
-        print(newSizeDelta);
+        var newSizeDelta = new Vector2(width * _canvasScaler.referenceResolution.x, height * _canvasScaler.referenceResolution.y);
         _leftImage.rectTransform.sizeDelta = newSizeDelta;
         _rightImage.rectTransform.sizeDelta = newSizeDelta;
         mousePositionChanged.AddListener(HandleMousePosition);

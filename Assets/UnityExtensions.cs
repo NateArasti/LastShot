@@ -92,13 +92,20 @@ public static class UnityExtensions
 
     ///<summary>
     /// Gets random object from collection
-    /// WARNING: POSSIBLE ALLOCATION !!!!
+    /// O(rand_index)
     ///</summary>
     public static T GetRandomObject<T>(this IReadOnlyCollection<T> collection)
     {
-        var list = collection.ToList();
-        if (list.Count == 0) throw new UnityException("Can't get random object from empty list");
-        return list[Random.Range(0, list.Count)];
+        if (collection.Count == 0) throw new UnityException("Can't get random object from empty list");
+        var returnIndex = Random.Range(0, collection.Count);
+        var count = 0;
+        foreach (var obj in collection)
+        {
+            if (count == returnIndex) return obj;
+            count += 1;
+        }
+
+        return default;
     }
 
     ///<summary>

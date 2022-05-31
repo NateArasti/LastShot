@@ -36,8 +36,8 @@ public class CameraScrollRect : MonoBehaviour
         _cameraWidth = _camera.orthographicSize * _camera.aspect;
         _cameraHeight = _camera.orthographicSize;
         Instantiate(_params.CameraScrollUIPrefab).SetUI(
-            (1 - _params.WidthPercent) * _camera.pixelWidth,
-            _params.HeightPercent * _camera.pixelHeight,
+            1 - _params.WidthPercent,
+            _params.HeightPercent,
             _onMousePositionChanged,
             _camera
         );
@@ -47,9 +47,15 @@ public class CameraScrollRect : MonoBehaviour
     {
         if (CheckIfCursorOnEdge())
         {
-            _currentSpeed += (int) _currentDirection * _params.ScrollSpeed * Time.deltaTime;
+            _currentSpeed = Mathf.Clamp(_currentSpeed + (int)_currentDirection * _params.ScrollSpeedAdd * Time.deltaTime, 
+                -_params.ScrollSpeedMax, _params.ScrollSpeedMax);
         }
-        _currentSpeed = Mathf.MoveTowards(_currentSpeed, 0, Time.deltaTime * _params.Friction);
+        else
+        {
+            _currentSpeed = Mathf.Clamp(_currentSpeed - (int)_currentDirection * _params.Friction * Time.deltaTime,
+                _currentDirection == Direction.Right ? 0 : -_params.ScrollSpeedMax,
+                _currentDirection == Direction.Left ? 0 : _params.ScrollSpeedMax);
+        }
         
         _mainCameraTransform.Translate(Vector3.right * _currentSpeed);
         _mainCameraTransform.position = ClampPosition(_mainCameraTransform.position);
