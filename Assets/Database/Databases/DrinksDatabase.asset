@@ -57,3 +57,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59dfc75aac5738e41b5b7c6f8c4e83e9, type: 2}
   _dataTable: {fileID: 4900000, guid: 138e906be0514134191b7a32dc5d9876, type: 3}
   _spritesFolderPath: Drinks\DrinkIcons
+  _anythingDrink: {fileID: 11400000, guid: e7913f09de5e18e45a3138fae7116b5d, type: 2}

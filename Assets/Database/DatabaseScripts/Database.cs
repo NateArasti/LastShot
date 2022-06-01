@@ -49,7 +49,7 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
         Debug.Log($"Loaded Table Data for {name} successfully");
     }
 
-    public bool TryGetValue(string keyName, out T value)
+    public virtual bool TryGetValue(string keyName, out T value)
     {
         if (_dataDictionary.ContainsKey(keyName))
         {

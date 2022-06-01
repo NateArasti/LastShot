@@ -3,7 +3,10 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(Animator), typeof(RandomAnimations))]
+[RequireComponent(
+    typeof(SpriteRenderer), 
+    typeof(Animator), 
+    typeof(RandomAnimations))]
 public class Guest : MonoBehaviour
 {
     private static readonly int SitOnChair = Animator.StringToHash("SitOnChair");
@@ -45,6 +48,8 @@ public class Guest : MonoBehaviour
 
     private Coroutine _moveCoroutine;
 
+    private Dialogue _guestDialogue;
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -54,6 +59,12 @@ public class Guest : MonoBehaviour
     private void Update()
     {
         CheckRandomAnimation();
+    }
+
+    public void SetData(Dialogue dialogue)
+    {
+        _guestDialogue = dialogue;
+        _guestDialogue.OnEnd.AddListener(EndVisit);
     }
 
     private void CheckRandomAnimation()
@@ -101,6 +112,11 @@ public class Guest : MonoBehaviour
         }
     }
 
+    public void EndVisit()
+    {
+        StartCoroutine(Exit());
+    }
+
     private IEnumerator Exit()
     {
         Sitting = false;
@@ -129,6 +145,7 @@ public class Guest : MonoBehaviour
 
     private void OnDestroy()
     {
+        _guestDialogue.OnEnd.RemoveListener(EndVisit);
         OnDestroyEvent.Invoke(_spotTransform, this);
     }
 
@@ -148,7 +165,8 @@ public class Guest : MonoBehaviour
     {
         if (!MouseEnabled) return;
         if(_moveCoroutine != null) StopCoroutine(_moveCoroutine);
-        StartCoroutine(Exit());
         _spriteRenderer.material.SetFloat(OutlineEnabledProperty, 0);
+        DialogueSystem.CurrentDialogue = _guestDialogue;
+        GameStateManager.SwitchToDialogue();
     }
 }

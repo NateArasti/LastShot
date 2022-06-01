@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Ink.Runtime;
 using TMPro;
@@ -15,8 +14,7 @@ public class DialogueUI : MonoBehaviour
     private TypeWriter _typeWriter;
     #endregion
     #region CharactersUI
-    [SerializeField] private Image _npcPortrait;
-    [SerializeField] private Image _mcPortrait;
+    [SerializeField] private Image _portrait;
     [SerializeField] private TMP_Text _characterNameLabel;
     #endregion
 
@@ -41,19 +39,16 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowChoices(List<Choice> choices, UnityAction<int> chooseAction)
     {
-        _dialogueTextLabel.enabled = false;
         for (var i = 0; i < choices.Count; i++)
         {
             _dialogueChoices[i].gameObject.SetActive(true);
             _dialogueChoices[i].SetChoice(
                 i,
-                //InkyParser.ParsePhrase(choices[i].text).ColoredPhrase,
                 choices[i].text,
                 index =>
                 {
                     chooseAction.Invoke(index);
                     _dialogueChoices.ForEachAction(choice => choice.gameObject.SetActive(false));
-                    _dialogueTextLabel.enabled = true;
                 });
         }
     }
@@ -62,26 +57,10 @@ public class DialogueUI : MonoBehaviour
 
     #region CharactersUI
 
-    public void SetCharacterUI(Sprite portrait, CharacterType characterType, string characterName)
+    public void SetCharacterUI(Sprite portrait, string characterName)
     {
         _characterNameLabel.text = characterName;
-        _npcPortrait.Fade(0);
-        _mcPortrait.Fade(0);
-        switch (characterType)
-        {
-            case CharacterType.MainCharacter:
-                _mcPortrait.sprite = portrait;
-                _mcPortrait.Fade(1);
-                break;
-            case CharacterType.NPC:
-                _npcPortrait.sprite = portrait;
-                _npcPortrait.Fade(1);
-                break;
-            case CharacterType.None:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(characterType), characterType, null);
-        }
+        _portrait.sprite = portrait;
     }
 
     #endregion

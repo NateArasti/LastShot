@@ -1,27 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GuestsManager : MonoBehaviour
 {
+    [SerializeField] private Dialogue[] _dialogues;
     [Header("Pivots")]
     [SerializeField] private Transform _leftSpawnPoint;
     [SerializeField] private Transform _rightSpawnPoint;
     [SerializeField] private TableTransform[] _tableTransforms;
     [SerializeField] private Transform[] _chairTransforms;
     [Header("Params")]
-    [SerializeField] private Guest[] _guestsPrefabs;
     [SerializeField] private int _maxGuestAmount = 7;
     [SerializeField] private float _delayBetweenSpawnTry = 3f;
 
     private readonly HashSet<Guest> _guests = new();
     private HashSet<Transform> _currentlyAvailableChairs;
     private HashSet<TableTransform> _currentlyAvailableTables;
+    private HashSet<Dialogue> _availableDialogues = new();
 
     private void Start()
     {
         _currentlyAvailableChairs = new HashSet<Transform>(_chairTransforms);
         _currentlyAvailableTables = new HashSet<TableTransform>(_tableTransforms);
+        _availableDialogues = _dialogues.ToHashSet();
         StartCoroutine(SpawnGuests());
     }
 
@@ -29,23 +32,43 @@ public class GuestsManager : MonoBehaviour
     {
         while (true)
         {
-            if(_guests.Count < _maxGuestAmount && 
-               (_currentlyAvailableChairs.Count > 0 || _currentlyAvailableTables.Count > 0)) 
-                SpawnGuest();
+            if (_guests.Count < _maxGuestAmount &&
+                (_currentlyAvailableChairs.Count > 0 || _currentlyAvailableTables.Count > 0))
+            {
+                if (_availableDialogues.Count == 0)
+                {
+                    EndDay();
+                    yield break;
+                }
+
+                var dialogue = _availableDialogues.GetRandomObject();
+                _availableDialogues.Remove(dialogue);
+                SpawnGuestsForDialogue(dialogue);
+            }
             yield return UnityExtensions.Wait(_delayBetweenSpawnTry);
         }
     }
 
-    private void SpawnGuest()
+    private void EndDay()
     {
-        var guest = Instantiate(_guestsPrefabs.GetRandomObject(), transform);
-        _guests.Add(guest);
-        var right = Random.value > 0.5f;
-        guest.transform.position += Vector3.right * (right ? _leftSpawnPoint.position.x : _rightSpawnPoint.position.x);
-        guest.OnDestroyEvent.AddListener(ReleaseGuest);
-        if (Random.value > 0.5f && _currentlyAvailableChairs.Count > 0) SpawnToChair(guest, right);
-        else if (_currentlyAvailableTables.Count > 0) SpawnToTable(guest, right);
-        else Destroy(guest.gameObject);
+        Debug.Log("END OF THE DAY");
+    }
+
+    private void SpawnGuestsForDialogue(Dialogue dialogue)
+    {
+        foreach (var character in dialogue.Participants)
+        {
+            if(character.Prefab == null) continue;
+            var guest = Instantiate(character.Prefab, transform);
+            guest.SetData(dialogue);
+            _guests.Add(guest);
+            var right = Random.value > 0.5f;
+            guest.transform.position += Vector3.right * (right ? _leftSpawnPoint.position.x : _rightSpawnPoint.position.x);
+            guest.OnDestroyEvent.AddListener(ReleaseGuest);
+            if (Random.value > 0.5f && _currentlyAvailableChairs.Count > 0) SpawnToChair(guest, right);
+            else if (_currentlyAvailableTables.Count > 0) SpawnToTable(guest, right);
+            else Destroy(guest.gameObject);
+        }
     }
 
     private void SpawnToChair(Guest spawnedGuest, bool moveRight)

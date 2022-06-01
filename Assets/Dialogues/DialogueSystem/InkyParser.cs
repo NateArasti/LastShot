@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class InkyParser
 {
-    public static PhraseData ParsePhrase(string line, IReadOnlyCollection<Character> participants)
+    public static PhraseData ParsePhrase(string line, IReadOnlyCollection<Character> participants, Drink overrideDrink = null)
     {
         var characterEndIndex = line.IndexOf(':');
         if (characterEndIndex == -1)
@@ -14,24 +14,35 @@ public static class InkyParser
         var character = ParseCharacter(characterName, participants);
 
         var phrase = line.Substring(characterEndIndex + 1, line.Length - characterEndIndex - 1);
-        var orderTag = Regex.Match(phrase, @"<.*>.*</.*>");
+        var orderTag = Regex.Match(phrase, @"<.*>(.*)</.*>");
         var coloredPhrase = "";
+        var simplePhrase = "";
         Drink drink = null;
 
         if (orderTag != Match.Empty)
         {
             var orderTagValue = orderTag.Value;
+            var orderText = orderTag.Groups[1].Value;
             var orderKeyName = Regex.Match(orderTagValue, @"_(.*?)>").Groups[1].Value;
+            Debug.Log(orderKeyName);
             if (DatabaseManager.DrinkDatabase.TryGetValue(orderKeyName, out drink))
-                coloredPhrase = phrase.Replace(orderTagValue, 
-                    $"<color=#ffa500ff>{drink.InfoData.Name}</color>");
+            {
+                if (orderKeyName == DatabaseManager.DrinkDatabase.AnythingKeyName && overrideDrink != null)
+                    orderText = overrideDrink.InfoData.Name.ToLower();
+                simplePhrase = phrase.Clone().ToString().Replace(orderTagValue, orderText);
+                coloredPhrase = phrase.Clone().ToString().Replace(orderTagValue,
+                    $"<color=#ffa500ff>{orderText}</color>");
+            }
             else 
                 throw new UnityException($"No such drink {orderKeyName}");
         }
-        if (coloredPhrase == string.Empty)
-            coloredPhrase = phrase;
 
-        return new PhraseData(character, drink, coloredPhrase, phrase);
+        if (simplePhrase == string.Empty)
+        {
+            simplePhrase = coloredPhrase = phrase;
+        }
+
+        return new PhraseData(character, drink, coloredPhrase, simplePhrase);
     }
 
     private static Character ParseCharacter(string characterName, IReadOnlyCollection<Character> participants)

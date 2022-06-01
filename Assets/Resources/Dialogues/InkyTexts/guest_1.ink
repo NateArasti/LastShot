@@ -3,12 +3,12 @@
 === Guest_1
 GUEST_MAN: Ну и дыра...
 * THOMAS: И вам добрый день.
-  GUEST_MAN: Добрый... Дружище, налейка мне <alc_A_WHISKEY>виски</alc>.
+  GUEST_MAN: Добрый... Дружище, налейка мне <alc_WHISKEY>виски</alc>.
 * THOMAS: И что ты в этой дыре забыл?
-  GUEST_MAN: <alc_A_WHISKEY>Виски</alc>. В этом захолустье кроме салуна ничего нет...
+  GUEST_MAN: <alc_WHISKEY>Виски</alc>. В этом захолустье кроме салуна ничего нет...
 * THOMAS: Мы здесь насильно никого не держим.
-  GUEST_MAN: Зато тебя это скверное место удерживает... Налей мне стакан <alc_A_WHISKEY>Виски</alc>.
-- -> Order
+  GUEST_MAN: Зато тебя это скверное место удерживает... Налей мне стакан <alc_WHISKEY>Виски</alc>.
+- ->Order
 
 ===Order
 #check
@@ -16,7 +16,7 @@ GUEST_MAN: Ну и дыра...
     #order
     THOMAS: Держи. 
     -> Grade
-* THOMAS: Может для разнообразия попробуешь <alc_ANYTHING></alc>?
+* THOMAS: Может для разнообразия попробуешь <alc_ANYTHING>...</alc>?
     #guestchoice
     ** GUEST_MAN: А давай!
         #order
@@ -28,7 +28,7 @@ GUEST_MAN: Ну и дыра...
        THOMAS: Держи. 
        -> Grade
 * THOMAS: Извини, закончилось.
-  THOMAS: Могу предложить тебе <alc_ANYTHING></alc>. Будешь?
+  THOMAS: Могу предложить тебе <alc_ANYTHING>...</alc>. Будешь?
     #guestchoice
     ** GUEST_MAN: А давай!
         #order

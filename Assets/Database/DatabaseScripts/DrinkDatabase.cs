@@ -4,6 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DrinkDatabase", menuName = "Data/Database/DrinkDatabase")]
 public class DrinkDatabase : Database<Drink>
 {
+    [SerializeField] private Drink _anythingDrink;
+
+    public string AnythingKeyName => _anythingDrink.KeyName;
+
     public void FillIngredientContainingLists()
     {
         var drinksCollection = GetObjectsCollection();
@@ -50,5 +54,15 @@ public class DrinkDatabase : Database<Drink>
 #endif
             });
         Debug.Log("Successfully filled ingredients containing lists");
+    }
+
+    public override bool TryGetValue(string keyName, out Drink value)
+    {
+        if (keyName == _anythingDrink.KeyName)
+        {
+            value = _anythingDrink;
+            return true;
+        }
+        return base.TryGetValue(keyName, out value);
     }
 }

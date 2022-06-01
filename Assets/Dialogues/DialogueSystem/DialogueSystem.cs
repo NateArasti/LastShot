@@ -36,7 +36,20 @@ public class DialogueSystem : MonoBehaviour
         KeyCode.Return
     };
 
-    [SerializeField] private Dialogue _dialogue;
+    private static Dialogue _currentDialogue;
+
+    /// <summary>
+    /// If not null, can't set new
+    /// </summary>
+    public static Dialogue CurrentDialogue
+    {
+        get => _currentDialogue;
+        set
+        {
+            if(_currentDialogue != null) return;
+            _currentDialogue = value;
+        }
+    }
 
     private readonly UnityEvent<EventType> _dialogueEventInvoker = new();
 
@@ -52,9 +65,7 @@ public class DialogueSystem : MonoBehaviour
             [EventType.Grade] = new()
         };
 
-    private Dialogue _currentDialogue;
-
-    private Dialogue.OrderData _currentOrderData;
+    [SerializeField] private UnityEvent _playerSuggestEvent;
     private DialogueState _currentState;
     private Story _currentStory;
     private DialogueUI _dialogueUI;
@@ -66,16 +77,23 @@ public class DialogueSystem : MonoBehaviour
 
         _dialogueEvents[EventType.PlayerSuggest].AddListener(() =>
         {
-            _currentOrderData.Drink = DatabaseManager.DrinkDatabase.GetObjectsCollection().ToList().GetRandomObject();
-            print(_currentOrderData.Drink);
-            print(_currentOrderData.Character.KeyName);
+            _playerSuggestEvent.Invoke();
+        });
+        _dialogueEvents[EventType.End].AddListener(() =>
+        {
+            CurrentDialogue.OnEnd.Invoke();
+            _currentDialogue = null;
+            _currentStory = null;
+            _currentState = DialogueState.None;
+            GameStateManager.SwitchToSaloon();
         });
         CreateTagEvents();
     }
 
-    private void Start()
+    public void SuggestDrink(Drink drink)
     {
-        StartDialogue(_dialogue);
+        _currentState = DialogueState.SimplePhrase;
+        ShowNewPhrase(drink);
     }
 
     private void Update()
@@ -87,19 +105,17 @@ public class DialogueSystem : MonoBehaviour
             UpdateDialogueState();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue()
     {
-        if (_currentState != DialogueState.None) throw new UnityException("Dialogue is already going!!!");
-        _currentDialogue = dialogue;
-        _currentStory = new Story(_currentDialogue.Text.text);
+        if(CurrentDialogue == null || _currentState != DialogueState.None)
+            throw new UnityException("Dialogue is already going!!!");
+        CurrentDialogue.CurrentOrderData = new Dialogue.OrderData();
+        _currentStory = new Story(CurrentDialogue.Text.text);
         UpdateDialogueState();
     }
 
     private void EndDialogue()
     {
-        _currentDialogue = null;
-        _currentStory = null;
-        _currentState = DialogueState.None;
         _dialogueEventInvoker.Invoke(EventType.End);
     }
 
@@ -156,13 +172,12 @@ public class DialogueSystem : MonoBehaviour
         _dialogueEventInvoker.Invoke(EventType.PlayerSuggest);
     }
 
-    private void ParsePlayerChoices()
-    {
-        _dialogueUI.ShowChoices(_currentStory.currentChoices, MakeDecision);
-    }
+    private void ParsePlayerChoices() => ParsePlayerChoices(_currentStory.currentChoices, MakeDecision);
 
     private void ParsePlayerChoices(List<Choice> choices, UnityAction<int> chooseAction)
     {
+        _currentStory.currentChoices.ForEach(choice => 
+            choice.text = InkyParser.ParsePhrase(choice.text, _currentDialogue.Participants).ColoredPhrase);
         _dialogueUI.ShowChoices(choices, chooseAction);
     }
 
@@ -177,13 +192,13 @@ public class DialogueSystem : MonoBehaviour
     {
         if (_dialogueUI.IsTypingPhrase)
             throw new UnityException("Trying to update dialogue while typing phrase");
-        if (_currentDialogue == null)
+        if (CurrentDialogue == null)
             throw new UnityException("No dialogue");
         if (_currentStory == null)
             throw new UnityException("No story");
     }
 
-    private void ShowNewPhrase()
+    private void ShowNewPhrase(Drink overrideDrink = null)
     {
         var text = _currentStory.Continue();
         if (text == string.Empty)
@@ -191,13 +206,12 @@ public class DialogueSystem : MonoBehaviour
             UpdateDialogueState();
             return;
         }
-        var data = InkyParser.ParsePhrase(text, _currentDialogue.Participants);
+        var data = InkyParser.ParsePhrase(text, CurrentDialogue.Participants, overrideDrink);
 
         ParseOrderData(data);
 
         _dialogueUI.SetCharacterUI(
             data.PhraseCharacter.Portrait,
-            data.PhraseCharacter.CharacterType,
             data.PhraseCharacter.CharacterName);
 
         _dialogueUI.ShowSimplePhrase(data.SimplePhrase, data.ColoredPhrase);
@@ -208,19 +222,15 @@ public class DialogueSystem : MonoBehaviour
 
         if (data.Drink != null)
         {
-            if (data.Drink.KeyName == "ANYTHING")
-            {
-                _currentState = DialogueState.PlayerSuggest;
-                return;
-            }
-            _currentOrderData.Drink = data.Drink;
-            _currentOrderData.Character = null;
-            if (data.PhraseCharacter.CharacterType != CharacterType.MainCharacter)
-                _currentOrderData.Character = data.PhraseCharacter;
+            CurrentDialogue.CurrentOrderData.Character = data.PhraseCharacter;
+            CurrentDialogue.CurrentOrderData.Drink = data.Drink;
+            //_currentOrderData.Character = null;
+            //if (data.PhraseCharacter.CharacterType != CharacterType.MainCharacter)
+            //    _currentOrderData.Character = data.PhraseCharacter;
         }
 
-        if(_currentOrderData.Character == null)
-            _currentOrderData.Character = data.PhraseCharacter;
+        if(CurrentDialogue.CurrentOrderData.Character == null)
+            CurrentDialogue.CurrentOrderData.Character = data.PhraseCharacter;
     }
 
     private void MakeDecision(int choiceIndex)
@@ -234,8 +244,7 @@ public class DialogueSystem : MonoBehaviour
     {
         _dialogueEvents[EventType.Order].AddListener(() =>
         {
-            _currentOrderData.Grade = _currentOrderData.Character.GetCharacterGrade();
-            //_currentOrderData.Grade = CharacterGuestGrade.Excellent;
+            CurrentDialogue.CurrentOrderData.Grade = CurrentDialogue.CurrentOrderData.Character.GetCharacterGrade();
             UpdateDialogueState(true);
         });
 
@@ -250,7 +259,12 @@ public class DialogueSystem : MonoBehaviour
                     index =>
                     {
                         _currentStory.ChooseChoiceIndex(index);
-                        _currentStory.Continue();
+                        if (index == 1)
+                        {
+                            _dialogueEventInvoker.Invoke(EventType.PlayerSuggest);
+                            return;
+                        }
+                        //_currentStory.Continue();
                         UpdateDialogueState(true);
                     });
             }
@@ -263,7 +277,7 @@ public class DialogueSystem : MonoBehaviour
 
         _dialogueEvents[EventType.Grade].AddListener(() =>
         {
-            _currentStory.ChooseChoiceIndex((int) _currentOrderData.Grade);
+            _currentStory.ChooseChoiceIndex((int)CurrentDialogue.CurrentOrderData.Grade);
             UpdateDialogueState(true);
         });
 
@@ -275,7 +289,7 @@ public class DialogueSystem : MonoBehaviour
 
         _dialogueEvents[EventType.Wait].AddListener(() =>
         {
-
+            Debug.Log("Not implemented WAIT");
         });
     }
 }

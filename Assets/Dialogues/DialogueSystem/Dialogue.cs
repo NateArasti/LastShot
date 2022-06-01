@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Dialogue 0", menuName = "Characters/Dialogue")]
 public class Dialogue : ScriptableObject
@@ -7,6 +8,9 @@ public class Dialogue : ScriptableObject
     [SerializeField] private TextAsset _inkyDialogue;
     [SerializeField] private Character[] _participants;
 
+    public OrderData CurrentOrderData;
+
+    public readonly UnityEvent OnEnd = new();
     public TextAsset Text => _inkyDialogue;
     public IReadOnlyCollection<Character> Participants => _participants;
 

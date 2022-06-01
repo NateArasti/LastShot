@@ -6,27 +6,15 @@ public class Character : ScriptableObject, IDatabaseObject
 {
     [SerializeField] private string _keyName;
     [SerializeField] private Sprite _portrait;
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private CharacterType _characterType = CharacterType.None;
-    [SerializeField] private TextAsset _coefficientsTable;
+    [SerializeField] private Guest _prefab;
 
     private bool _nameWritten;
     private Dictionary<string, float> _coefficientsDictionary;
 
     public string CharacterName { get; set; }
     public Sprite Portrait => _portrait;
-    public CharacterType CharacterType => _characterType;
     public string KeyName => _keyName;
-    public GameObject Prefab => _prefab;
-
-    public float GetCoefficient(string drinkKeyName)
-    {
-        if (_coefficientsDictionary.ContainsKey(drinkKeyName))
-            return _coefficientsDictionary[drinkKeyName];
-        throw new UnityException($"{drinkKeyName} no such drink in {name} character coefficients table");
-    }
-
-    public bool GetGuestChoice() => true;
+    public Guest Prefab => _prefab;
 
     public CharacterGuestGrade GetCharacterGrade()
     {
@@ -36,8 +24,6 @@ public class Character : ScriptableObject, IDatabaseObject
     public void WriteData(string[] paramsLine)
     {
         WriteName(paramsLine[1]);
-        if(_coefficientsTable != null)
-            _coefficientsDictionary = TablesParser.GetParsedCoefficientsTable(_coefficientsTable);
     }
 
     private void WriteName(string nameToWrite)
