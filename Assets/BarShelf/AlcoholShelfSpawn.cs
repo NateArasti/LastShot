@@ -33,7 +33,7 @@ public class AlcoholShelfSpawn : MonoBehaviour
         _finishAlcoholCollection.transform.SetAsLastSibling();
     }
 
-    //public void SetReceipt(Drink drink)
+    //public void SetReceipt(CurrentDrink drink)
     //{
     //    _currentReceiptAlcohols = drink.DrinkReceipt.Alcohols.ToArray();
     //    _chosenAlcohols = new (Button button, Image image, ShelfBottle shelfBottle)[_currentReceiptAlcohols.Length];

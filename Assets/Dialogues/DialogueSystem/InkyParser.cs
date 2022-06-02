@@ -50,10 +50,10 @@ public static class InkyParser
         var name = DatabaseManager.CharacterDatabase.TryGetName(characterName);
         if(! participants.TryGetObject(
                characterName, 
-               (ch, s) => ch.KeyName == s,
+               (ch, s) => ch.DialogueKeyName == s,
                out var character))
         {
-            throw new UnityException($"No character in line, parsed name - {characterName},{name}");
+            throw new UnityException($"No character in line, parsed name - {characterName}, {name}");
         }
 
         character.CharacterName = name;

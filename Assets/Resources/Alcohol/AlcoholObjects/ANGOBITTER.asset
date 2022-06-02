@@ -25,6 +25,7 @@ MonoBehaviour:
     _countType: 0
     _buyQuantityStep: 0.2
     _costPerObject: 39
+    _ignorePurchase: 0
     _class: 0
     _containingDrinks:
     - {fileID: 11400000, guid: edc618ffe5f519742842e4ca11f48621, type: 2}

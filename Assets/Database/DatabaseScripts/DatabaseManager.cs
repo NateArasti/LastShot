@@ -15,5 +15,12 @@ public class DatabaseManager : ScriptableSingleton
     public static IngredientDatabase AdditionalIngredientDatabase => _instance._additionalIngredientsDatabase;
     public static CharacterDatabase CharacterDatabase => _instance._storyCharacterDatabaseDatabase;
     public static DrinkDatabase DrinkDatabase => _instance._drinkDatabase;
-    public override void SetAsInstance() => _instance = this;
+    public override void SetAsInstance()
+    {
+        _instance = this;
+        AlcoholDatabase.LoadTableData();
+        AdditionalIngredientDatabase.LoadTableData();
+        CharacterDatabase.LoadTableData();
+        DrinkDatabase.LoadTableData();
+    }
 }

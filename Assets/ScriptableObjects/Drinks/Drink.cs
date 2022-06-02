@@ -5,7 +5,7 @@ using UnityEditor;
 
 // ReSharper disable IdentifierTypo
 
-[CreateAssetMenu(fileName = "Simple Drink", menuName = "Data/DataItem/Drink")]
+[CreateAssetMenu(fileName = "Simple CurrentDrink", menuName = "Data/DataItem/CurrentDrink")]
 public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
 {
     public enum Tag
@@ -37,6 +37,8 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     public DrinkInfoData InfoData => _infoData;
 
     public string KeyName => _keyName;
+
+    public DrinksDescriptionCoefficients Coefficients => _coefficients;
 
     public void WriteData(string[] paramsLine)
     {

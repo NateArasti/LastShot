@@ -18,6 +18,7 @@ public class Dialogue : ScriptableObject
     {
         public Character Character;
         public Drink Drink;
+        public Drink SuggestedDrink;
         public CharacterGuestGrade Grade;
 
         public OrderData(Character character, Drink drink, CharacterGuestGrade grade = CharacterGuestGrade.Good)
@@ -25,6 +26,7 @@ public class Dialogue : ScriptableObject
             Character = character;
             Drink = drink;
             Grade = grade;
+            SuggestedDrink = null;
         }
     }
 }

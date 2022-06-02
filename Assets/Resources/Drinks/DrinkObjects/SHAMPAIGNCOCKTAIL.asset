@@ -33,6 +33,21 @@ MonoBehaviour:
       \u043B\u043E\u0436\u043A\u043E\u0439"
     _locked: 0
     _cost: 7.5
+  _coefficients:
+    _coefsString: 'Strong: 0,7
+
+      Bitter: 0
+
+      Sour: 0,3
+
+      Sweet: 0,5
+
+      Spicy:
+      0,1
+
+      Citrus: 0
+
+'
   _receipt:
     _glassPrefab: {fileID: 0}
     _instruments:

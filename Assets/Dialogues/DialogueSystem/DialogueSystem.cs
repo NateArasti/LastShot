@@ -93,6 +93,7 @@ public class DialogueSystem : MonoBehaviour
     public void SuggestDrink(Drink drink)
     {
         _currentState = DialogueState.SimplePhrase;
+        CurrentDialogue.CurrentOrderData.SuggestedDrink = drink;
         ShowNewPhrase(drink);
     }
 
@@ -219,18 +220,15 @@ public class DialogueSystem : MonoBehaviour
 
     private void ParseOrderData(InkyParser.PhraseData data)
     {
-
-        if (data.Drink != null)
+        if (data.Drink != null && CurrentDialogue.CurrentOrderData.SuggestedDrink == null)
         {
             CurrentDialogue.CurrentOrderData.Character = data.PhraseCharacter;
             CurrentDialogue.CurrentOrderData.Drink = data.Drink;
-            //_currentOrderData.Character = null;
-            //if (data.PhraseCharacter.CharacterType != CharacterType.MainCharacter)
-            //    _currentOrderData.Character = data.PhraseCharacter;
         }
 
         if(CurrentDialogue.CurrentOrderData.Character == null)
             CurrentDialogue.CurrentOrderData.Character = data.PhraseCharacter;
+        print(CurrentDialogue.CurrentOrderData.Character);
     }
 
     private void MakeDecision(int choiceIndex)
@@ -244,7 +242,11 @@ public class DialogueSystem : MonoBehaviour
     {
         _dialogueEvents[EventType.Order].AddListener(() =>
         {
-            CurrentDialogue.CurrentOrderData.Grade = CurrentDialogue.CurrentOrderData.Character.GetCharacterGrade();
+            CurrentDialogue.CurrentOrderData.Grade = 
+                CurrentDialogue.CurrentOrderData.Character
+                    .GetCharacterGrade(CurrentDialogue.CurrentOrderData.Drink, null);
+            CurrentDialogue.CurrentOrderData.Character = null;
+            CurrentDialogue.CurrentOrderData.Drink = null;
             UpdateDialogueState(true);
         });
 
@@ -283,7 +285,19 @@ public class DialogueSystem : MonoBehaviour
 
         _dialogueEvents[EventType.GuestChoice].AddListener(() =>
         {
-            _currentStory.ChooseChoiceIndex(0);
+            var check = CurrentDialogue.CurrentOrderData.Character
+                .CheckSuggestedDrink(CurrentDialogue.CurrentOrderData.SuggestedDrink);
+            if (check)
+            {
+                CurrentDialogue.CurrentOrderData.Drink = CurrentDialogue.CurrentOrderData.SuggestedDrink;
+                _currentStory.ChooseChoiceIndex(0);
+            }
+            else
+            {
+                _currentStory.ChooseChoiceIndex(1);
+            }
+
+            CurrentDialogue.CurrentOrderData.SuggestedDrink = null;
             UpdateDialogueState(true);
         });
 

@@ -10,8 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c22ca7ad2c00504fb6245be6250963f, type: 3}
-  m_Name: guest_1
+  m_Name: 1-GUEST_MAN
   m_EditorClassIdentifier: 
-  _keyName: GUEST_MAN
+  _keyName: 1-GUEST_MAN
+  _dialogueKeyName: GUEST_MAN
   _portrait: {fileID: 21300000, guid: 9b76b2308c3b2064298098b582325ec9, type: 3}
   _prefab: {fileID: 6085820410353451414, guid: 920418bc023d25e4cb6775ddc7235811, type: 3}
+  _coefficients:
+    _coefsString: 'Strong: 0,5
+
+      Bitter: 0,6
+
+      Sour: 0,3
+
+      Sweet:
+      0
+
+      Spicy: 0
+
+      Citrus: 0
+
+'

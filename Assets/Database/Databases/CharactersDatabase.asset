@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6988e206f53484eb1226d749136486, type: 3}
   m_Name: CharactersDatabase
   m_EditorClassIdentifier: 
+  _resourcesDatabase: Characters
+  _databaseObjects:
+  - {fileID: 11400000, guid: 2ccc32e2203bfdf499705c8a90e4e8f1, type: 2}
+  - {fileID: 11400000, guid: b7717736f18ee0048aa8f308b41cbee0, type: 2}
+  _dataTable: {fileID: 4900000, guid: 522e628e57c56aa48b096338c193ede9, type: 3}
   _storyCharactersNameDatas:
   - KeyName: NONE
     Name: "NONE\r"
@@ -56,8 +61,8 @@ MonoBehaviour:
   - KeyName: ANJELLO
     Name: "\u0410\u043D\u0434\u0436\u0435\u043B\u043B\u043E\r"
   _randomCharactersNameDatas:
-  - KeyName: GUEST_MAN
-    Name: "\u041D\u0435\u0437\u043D\u0430\u043A\u043E\u043C\u0435\u0446\r"
   - KeyName: GUEST_WOMAN
     Name: "\u041D\u0435\u0437\u043D\u0430\u043A\u043E\u043C\u043A\u0430\r"
-  _table: {fileID: 4900000, guid: c9fe1b3ed39671f4db9b260ac125523a, type: 3}
+  - KeyName: GUEST_MAN
+    Name: "\u041D\u0435\u0437\u043D\u0430\u043A\u043E\u043C\u0435\u0446\r"
+  _nameTable: {fileID: 4900000, guid: c9fe1b3ed39671f4db9b260ac125523a, type: 3}

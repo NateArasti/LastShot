@@ -35,6 +35,10 @@ public class GameStateManager : MonoBehaviour
         OnStateChanged.AddListener(InvokeLocalStateEvent);
         _stateEvents.ForEachAction(stateEvent => 
             _stateEventsDictionary.Add(stateEvent.State, (stateEvent.TurnOnEvent, stateEvent.TurnOffEvent)));
+        _stateEventsDictionary[State.Pause].turnOn.AddListener(() => Time.timeScale = 0);
+        _stateEventsDictionary[State.Pause].turnOff.AddListener(() => Time.timeScale = 1);
+        _stateEventsDictionary[State.Saloon].turnOn.AddListener(() => GameTimeController.Paused = false);
+        _stateEventsDictionary[State.Saloon].turnOff.AddListener(() => GameTimeController.Paused = true);
         SwitchToSaloon();
     }
 

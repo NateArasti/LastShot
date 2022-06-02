@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 public  abstract class Database<T> : ScriptableObject where T : Object, IDatabaseObject
 {
     [SerializeField] private string _resourcesDatabase;
-    [SerializeField] private T[] _databaseObjects;
+    [SerializeField] protected T[] _databaseObjects;
     [SerializeField] private TextAsset _dataTable;
 
     private readonly Dictionary<string, T> _dataDictionary = new();
@@ -18,7 +17,7 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
         Debug.Log($"Loaded Objects for {name} successfully");
     }
 
-    public void LoadTableData()
+    public virtual void LoadTableData()
     {
         if (_dataTable == null)
         {

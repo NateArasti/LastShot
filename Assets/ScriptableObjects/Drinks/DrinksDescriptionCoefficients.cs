@@ -14,33 +14,44 @@ public class DrinksDescriptionCoefficients
         Citrus
     }
 
-    [ReadOnly, SerializeField, TextArea(5, 10)] private string coefsString = "";
+    [ReadOnly, SerializeField, TextArea(5, 10)] private string _coefsString;
 
-    private readonly Dictionary<Coefficients, float> _cofficients;
-    public IReadOnlyDictionary<Coefficients, float> Cofficients => _cofficients;
+    private readonly Dictionary<Coefficients, float> _coefficients;
+    public IReadOnlyDictionary<Coefficients, float> CoefficientsDictionary => _coefficients;
 
-    public DrinksDescriptionCoefficients(float[] cofficients)
+    public DrinksDescriptionCoefficients(float[] coefficients)
     {
-        coefsString = "";
-        _cofficients = new Dictionary<Coefficients, float>();
+        _coefsString = "";
+        _coefficients = new Dictionary<Coefficients, float>();
         var i = 0;
-        for (; i < cofficients.Length; ++i)
+        for (; i < coefficients.Length; ++i)
         {
             var coefName = (Coefficients)i;
-            _cofficients.Add(coefName, cofficients[i]);
-            coefsString += $"{coefName}: {_cofficients[coefName]}\n";
+            _coefficients.Add(coefName, coefficients[i]);
+            _coefsString += $"{coefName}: {_coefficients[coefName]}\n";
         }
         for(; i < 6; ++i)
         {
             var coefName = (Coefficients)i;
-            _cofficients.Add(coefName, 0.5f);
-            coefsString += $"{coefName}: {_cofficients[coefName]}\n";
+            _coefficients.Add(coefName, 0.5f);
+            _coefsString += $"{coefName}: {_coefficients[coefName]}\n";
         }
-        Debug.Log($"Successfully created coefficients:\n {coefsString}");
+        Debug.Log($"Successfully created coefficients:\n {_coefsString}");
     }
 
     public float GetAverageDifference(DrinksDescriptionCoefficients anotherCoefficients)
     {
-        return 0;
+        var average = 0f;
+        for (var i = 0; i < _coefficients.Count; i++)
+        {
+            average += Mathf.Abs(
+                _coefficients[(Coefficients) i] - 
+                anotherCoefficients.CoefficientsDictionary[(Coefficients) i]
+                );
+        }
+
+        average /= _coefficients.Count;
+        Debug.Log(average);
+        return average;
     }
 }

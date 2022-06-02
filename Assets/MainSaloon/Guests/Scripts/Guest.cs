@@ -27,7 +27,7 @@ public class Guest : MonoBehaviour
 
     [Header("Move Params")]
     [SerializeField] private float _secondsPerUnit = 5f;
-    [SerializeField] private float _sitTime;
+    [SerializeField, Tooltip("Count in real seconds")] private float _sitTime;
     [SerializeField] private float _delayBeforeGoingOutChair = 1f;
     [SerializeField] private float _delayBeforeGoingOutTable = 1.4f;
 
@@ -39,6 +39,11 @@ public class Guest : MonoBehaviour
     [Header("Animations")]
     [SerializeField] private RandomAnimations _chairRandomAnimations;
     [SerializeField] private RandomAnimations _tableRandomAnimations;
+
+    [Header("Dialogue Events")]
+    [SerializeField] private UnityEvent _onSit;
+    [SerializeField] private UnityEvent _onDialogueStart;
+    [SerializeField] private UnityEvent _onDialogueEnd;
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
@@ -107,13 +112,16 @@ public class Guest : MonoBehaviour
 
             _animator.SetBool(spotType == SpotType.Table ? SitToTable : SitOnChair, true);
             Sitting = true;
-            yield return UnityExtensions.Wait(_sitTime);
+            _onSit.Invoke();
+            var timer = GameTimeController.SetTimer(_sitTime / 3600);
+            yield return new WaitUntil(() => !timer.Ended);
             yield return StartCoroutine(Exit());
         }
     }
 
     public void EndVisit()
     {
+        _onDialogueEnd.Invoke();
         StartCoroutine(Exit());
     }
 
@@ -166,6 +174,7 @@ public class Guest : MonoBehaviour
         if (!MouseEnabled) return;
         if(_moveCoroutine != null) StopCoroutine(_moveCoroutine);
         _spriteRenderer.material.SetFloat(OutlineEnabledProperty, 0);
+        _onDialogueStart.Invoke();
         DialogueSystem.CurrentDialogue = _guestDialogue;
         GameStateManager.SwitchToDialogue();
     }
