@@ -1,14 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [CreateAssetMenu(fileName = "CharacterDatabase", menuName = "Data/Database/CharacterDatabase")]
-public class CharacterDatabase : ScriptableObject
+public class CharacterDatabase : Database<Character>
 {
     [SerializeField] private List<CharacterNameData> _storyCharactersNameDatas;
     [SerializeField] private List<CharacterNameData> _randomCharactersNameDatas;
     private Dictionary<string, string> _storyCharactersDictionary;
     private Dictionary<string, string> _randomCharactersDictionary;
+
+    [Space(10f)]
+    [SerializeField] private TextAsset _nameTable;
+    [SerializeField] private TextAsset _coefficientsTable;
+
+    public void LoadNameTableData()
+    {
+        _storyCharactersDictionary.Clear();
+        var data = TablesParser.GetParsedTable(_nameTable);
+        data.ForEachAction(names =>
+            _storyCharactersNameDatas.Add(new CharacterNameData(names[0], names[1])));
+    }
 
     public string TryGetName(string keyName)
     {
@@ -34,9 +45,6 @@ public class CharacterDatabase : ScriptableObject
         _storyCharactersNameDatas.ForEachAction(data => _storyCharactersDictionary.Add(data.KeyName, data.Name));
         _randomCharactersNameDatas.ForEachAction(data => _randomCharactersDictionary.Add(data.KeyName, data.Name));
 
-#if UNITY_EDITOR
-        EditorUtility.SetDirty(this);
-#endif
         Debug.Log($"Successfully filled: \nStory characters dictionary - {_storyCharactersDictionary.Count}\nRandom characters dictionary - {_randomCharactersDictionary.Count}");
     }
 
@@ -47,15 +55,6 @@ public class CharacterDatabase : ScriptableObject
         Debug.Log($"Successfully cleared: \nStory characters dictionary - {_storyCharactersDictionary.Count}\nRandom characters dictionary - {_randomCharactersDictionary.Count}");
     }
 
-    [Space(10f)]
-    [SerializeField] private TextAsset _table;
-    public void LoadTableData()
-    {
-        _storyCharactersDictionary.Clear();
-        var data = TablesParser.GetParsedTable(_table);
-        data.ForEachAction(names =>
-            _storyCharactersNameDatas.Add(new CharacterNameData(names[0], names[1])));
-    }
 
     [System.Serializable]
     private struct CharacterNameData

@@ -3,12 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public  abstract class Database<T> : ScriptableObject where T : Object, IDatabaseObject, ISpriteDatabaseObject
+public  abstract class Database<T> : ScriptableObject where T : Object, IDatabaseObject
 {
     [SerializeField] private string _resourcesDatabase;
     [SerializeField] private T[] _databaseObjects;
     [SerializeField] private TextAsset _dataTable;
-    [SerializeField] private string _spritesFolderPath;
 
     private readonly Dictionary<string, T> _dataDictionary = new();
 
@@ -17,25 +16,6 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
         _databaseObjects = Resources.LoadAll<T>(_resourcesDatabase);
         OnValidate();
         Debug.Log($"Loaded Objects for {name} successfully");
-    }
-
-    public void LoadSpritesFromResources()
-    {
-        foreach (var sprite in Resources.LoadAll<Sprite>(_spritesFolderPath))
-        {
-            if (TryGetValue(sprite.name, out var obj))
-            {
-                obj.Sprite = sprite;
-#if UNITY_EDITOR
-                EditorUtility.SetDirty(obj);
-#endif
-            }
-            else
-            {
-                Debug.LogWarning($"No object with {sprite.name}");
-            }
-        }
-        Debug.Log($"Loaded Sprites for {name} successfully");
     }
 
     public void LoadTableData()

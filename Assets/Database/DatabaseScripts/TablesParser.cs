@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class TablesParser
 {
-    public static void WriteParsedTableData<T>(this Database<T> database, TextAsset objectsTable) where T : Object, IDatabaseObject, ISpriteDatabaseObject
+    public static void WriteParsedTableData<T>(this Database<T> database, TextAsset objectsTable) where T : Object, IDatabaseObject
     {
         var parsedTable = GetParsedTable(objectsTable);
         for (var i = 1; i < parsedTable.Count; i++)

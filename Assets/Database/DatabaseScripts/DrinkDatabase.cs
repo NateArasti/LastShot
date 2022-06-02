@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DrinkDatabase", menuName = "Data/Database/DrinkDatabase")]
-public class DrinkDatabase : Database<Drink>
+public class DrinkDatabase : SpriteDatabase<Drink>
 {
     [SerializeField] private Drink _anythingDrink;
 

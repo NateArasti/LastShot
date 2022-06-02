@@ -22,6 +22,7 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     [SerializeField] private string _keyName;
     [Space(10f)]
     [SerializeField] private DrinkInfoData _infoData;
+    [SerializeField] private DrinksDescriptionCoefficients _coefficients;
     [Space(10f)]
     [SerializeField] private Receipt _receipt;
 
@@ -40,6 +41,12 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     public void WriteData(string[] paramsLine)
     {
         _infoData.ParseData(paramsLine[1]);
+        var coefficients = new List<float>();
+        for(var i = 2; i < paramsLine.Length; ++i)
+        {
+            coefficients.Add(float.Parse(paramsLine[i]));
+        }
+        _coefficients = new DrinksDescriptionCoefficients(coefficients.ToArray());
     }
 
     private void OnValidate()

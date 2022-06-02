@@ -10,7 +10,7 @@ class CharacterDatabaseEditor : Editor
         var database = (CharacterDatabase)target;
         GUILayout.Space(20);
 
-        if (GUILayout.Button("Load Table Data")) database.LoadTableData();
+        if (GUILayout.Button("Load Name Table Data")) database.LoadNameTableData();
         GUILayout.Space(40f);
         if (GUILayout.Button("Fill Dictionaries")) database.FillDictionaries();
         if (GUILayout.Button("Clear Dictionaries")) database.ClearDictionaries();

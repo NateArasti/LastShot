@@ -7,6 +7,7 @@ public class Character : ScriptableObject, IDatabaseObject
     [SerializeField] private string _keyName;
     [SerializeField] private Sprite _portrait;
     [SerializeField] private Guest _prefab;
+    [SerializeField] private DrinksDescriptionCoefficients _coefficients;
 
     private bool _nameWritten;
     private Dictionary<string, float> _coefficientsDictionary;
@@ -23,13 +24,11 @@ public class Character : ScriptableObject, IDatabaseObject
 
     public void WriteData(string[] paramsLine)
     {
-        WriteName(paramsLine[1]);
-    }
-
-    private void WriteName(string nameToWrite)
-    {
-        if(_nameWritten) return;
-        CharacterName = nameToWrite;
-        _nameWritten = true;
+        var coefficients = new List<float>();
+        for (var i = 1; i < paramsLine.Length; ++i)
+        {
+            coefficients.Add(float.Parse(paramsLine[i]));
+        }
+        _coefficients = new DrinksDescriptionCoefficients(coefficients.ToArray());
     }
 }
