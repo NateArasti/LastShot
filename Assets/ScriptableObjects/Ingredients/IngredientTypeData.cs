@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Drawing.Printing;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "IngredientTypeData", menuName = "Data/IngredientTypeData")]
 public class IngredientTypeData : ScriptableObject
@@ -14,6 +16,11 @@ public class IngredientTypeData : ScriptableObject
     [Tooltip("When toggled, makes this variant a main instance")]
     [SerializeField] private bool _isInstance;
     [SerializeField] private TypePrefabData[] _datas;
+
+    public void SetInstance()
+    {
+        _instance = this;
+    }
 
     public static GameObject GetPrefab(IngredientType type)
     {

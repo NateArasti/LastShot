@@ -23,14 +23,14 @@ namespace DG.Tweening
             return tweener;
         }
 
-        public static TweenerCore<Color, Color, ColorOptions> DOFade(this SerializedPass target, string propertyName, float endValue, float duration)
+        public static TweenerCore<DropColor, DropColor, ColorOptions> DOFade(this SerializedPass target, string propertyName, float endValue, float duration)
         {
             var tweener = DOTween.ToAlpha(() => target.GetColor(propertyName), x => target.SetColor(propertyName, x), endValue, duration);
             tweener.SetOptions(true).SetTarget(target);
             return tweener;
         }
 
-        public static TweenerCore<Color, Color, ColorOptions> DOColor(this SerializedPass target, string propertyName, Color endValue, float duration)
+        public static TweenerCore<DropColor, DropColor, ColorOptions> DOColor(this SerializedPass target, string propertyName, DropColor endValue, float duration)
         {
             var tweener = DOTween.To(() => target.GetColor(propertyName), x => target.SetColor(propertyName, x), endValue, duration);
             tweener.SetOptions(false).SetTarget(target);
@@ -51,14 +51,14 @@ namespace DG.Tweening
             return tweener;
         }
 
-        public static TweenerCore<Color, Color, ColorOptions> DOFade(this SerializedPass target, int propertyId, float endValue, float duration)
+        public static TweenerCore<DropColor, DropColor, ColorOptions> DOFade(this SerializedPass target, int propertyId, float endValue, float duration)
         {
             var tweener = DOTween.ToAlpha(() => target.GetColor(propertyId), x => target.SetColor(propertyId, x), endValue, duration);
             tweener.SetOptions(true).SetTarget(target);
             return tweener;
         }
 
-        public static TweenerCore<Color, Color, ColorOptions> DOColor(this SerializedPass target, int propertyId, Color endValue, float duration)
+        public static TweenerCore<DropColor, DropColor, ColorOptions> DOColor(this SerializedPass target, int propertyId, DropColor endValue, float duration)
         {
             var tweener = DOTween.To(() => target.GetColor(propertyId), x => target.SetColor(propertyId, x), endValue, duration);
             tweener.SetOptions(false).SetTarget(target);
@@ -82,16 +82,16 @@ namespace DG.Tweening
             return DOTween.Kill(target, complete);
         }
 
-        public static TweenerCore<Color, Color, ColorOptions> DOFade(this Outlinable.OutlineProperties target, float endValue, float duration)
+        public static TweenerCore<DropColor, DropColor, ColorOptions> DOFade(this Outlinable.OutlineProperties target, float endValue, float duration)
         {
-            var tweener = DOTween.ToAlpha(() => target.Color, x => target.Color = x, endValue, duration);
+            var tweener = DOTween.ToAlpha(() => target.DropColor, x => target.DropColor = x, endValue, duration);
             tweener.SetOptions(true).SetTarget(target);
             return tweener;
         }
 
-        public static TweenerCore<Color, Color, ColorOptions> DOColor(this Outlinable.OutlineProperties target, Color endValue, float duration)
+        public static TweenerCore<DropColor, DropColor, ColorOptions> DOColor(this Outlinable.OutlineProperties target, DropColor endValue, float duration)
         {
-            var tweener = DOTween.To(() => target.Color, x => target.Color = x, endValue, duration);
+            var tweener = DOTween.To(() => target.DropColor, x => target.DropColor = x, endValue, duration);
             tweener.SetOptions(false).SetTarget(target);
             return tweener;
         }
