@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3098133277002394572}
   - component: {fileID: 3098133277002394574}
   - component: {fileID: 3098133277002394575}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GlassImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3098133277197967762}
   - component: {fileID: 3098133277197967764}
   - component: {fileID: 3098133277197967765}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 3098133278082450102}
   - component: {fileID: 3098133278082450103}
   - component: {fileID: 3098133278082450105}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,9 +254,8 @@ GameObject:
   - component: {fileID: 2471280567729050500}
   - component: {fileID: 3871618285292731549}
   - component: {fileID: 6843574084429815491}
-  - component: {fileID: 6959749167614013139}
-  - component: {fileID: 6789316018573239217}
-  m_Layer: 5
+  - component: {fileID: -283080928408511986}
+  m_Layer: 8
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offSet: {x: 0, y: -120}
   _xClamp: 50
---- !u!50 &6959749167614013139
+--- !u!50 &-283080928408511986
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -416,32 +415,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6789316018573239217
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098133278672876437}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 250}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 200, y: 450}
-  m_EdgeRadius: 0
 --- !u!1 &6460779441994684277
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8095549064008969000}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GarnishTriggers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +465,7 @@ GameObject:
   - component: {fileID: 2288261486104718868}
   - component: {fileID: 1827166569062601312}
   - component: {fileID: 5038838611661455778}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +554,7 @@ GameObject:
   - component: {fileID: 849651574627025580}
   - component: {fileID: 4834371174426583393}
   - component: {fileID: 7749753987692330062}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}

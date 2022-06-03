@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: VODKA
   m_EditorClassIdentifier: 
   _keyName: VODKA
-  _sprite: {fileID: 21300000, guid: b5b80a3bcbbae6647802ac4be41a3312, type: 3}
-  _buyQuantityStep: 1
-  _costPerObject: 1400
-  _mainColor: {r: 0, g: 0, b: 0, a: 0}
-  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
-  _delayBetweenDrops: 0.05
+  _infoData:
+    _sprite: {fileID: 21300000, guid: b5b80a3bcbbae6647802ac4be41a3312, type: 3}
+    _name: 
+    _description: 
+    _buyQuantityStep: 0
+    _costPerObject: 0
+  _mainColor: {r: 0, g: 1, b: 0.8366351, a: 1}

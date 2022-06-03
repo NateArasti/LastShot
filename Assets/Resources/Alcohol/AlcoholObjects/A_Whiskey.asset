@@ -19,6 +19,4 @@ MonoBehaviour:
     _description: 
     _buyQuantityStep: 0
     _costPerObject: 0
-  _mainColor: {r: 0, g: 0, b: 0, a: 0}
-  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
-  _delayBetweenDrops: 0.05
+  _mainColor: {r: 1, g: 0.4111758, b: 0.0039215684, a: 1}

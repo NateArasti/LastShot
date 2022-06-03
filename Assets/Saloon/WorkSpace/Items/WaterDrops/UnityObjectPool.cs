@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnityObjectPool<T> where T: MonoBehaviour
+public class UnityObjectPool<T> where T : MonoBehaviour
 {
-    private readonly T _prefab;
-    private readonly Queue<T> _pool;
     private readonly Transform _container;
     private readonly bool _expansible;
     private readonly bool _isContainerNotNull;
+    private readonly Queue<T> _pool;
+    private readonly T _prefab;
 
-    public UnityObjectPool (T prefab, Transform container = null, int capacity = 50, bool expand = true)
+    public UnityObjectPool(T prefab, Transform container = null, int capacity = 50, bool expand = true)
     {
         _prefab = prefab;
         _pool = new Queue<T>(capacity);
@@ -31,7 +31,6 @@ public class UnityObjectPool<T> where T: MonoBehaviour
 
     public T GetInstance()
     {
-
         if (_pool.Count == 0)
         {
             if (_expansible)
@@ -39,16 +38,15 @@ public class UnityObjectPool<T> where T: MonoBehaviour
             else
                 return null;
         }
+
         var instance = _pool.Dequeue();
         instance.gameObject.SetActive(true);
         return instance;
     }
 
-    public void ReleaseInstance(T instance)   
+    public void ReleaseInstance(T instance)
     {
         instance.gameObject.SetActive(false);
         _pool.Enqueue(instance);
     }
-
 }
-

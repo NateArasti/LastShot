@@ -13314,7 +13314,7 @@ PrefabInstance:
     - target: {fileID: 1531874527390776683, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4439382478330910191, guid: 0ee729c391b434f468c75f05e1f26a16, type: 3}
+      objectReference: {fileID: 8840704448778083115, guid: f176407ffa08e4046a8a6014379e8df0, type: 3}
     - target: {fileID: 1531874527851521328, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13406,19 +13406,27 @@ PrefabInstance:
     - target: {fileID: 1531874527851521331, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4439382478330910191, guid: 0ee729c391b434f468c75f05e1f26a16, type: 3}
+      objectReference: {fileID: 8840704448778083115, guid: f176407ffa08e4046a8a6014379e8df0, type: 3}
     - target: {fileID: 1531874528470766608, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
       propertyPath: m_SizeDelta.y
       value: 208
       objectReference: {fileID: 0}
     - target: {fileID: 1531874528470766608, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531874528470766608, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1531874528470766611, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3030978801096622726, guid: 0ee729c391b434f468c75f05e1f26a16, type: 3}
+      objectReference: {fileID: 1806532445102859187, guid: f176407ffa08e4046a8a6014379e8df0, type: 3}
+    - target: {fileID: 1531874528470766621, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
+      propertyPath: m_ShowMaskGraphic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2159274381413647648, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
       propertyPath: m_Points.Array.size
       value: 12

@@ -3,37 +3,33 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Quaternion = UnityEngine.Quaternion;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
 public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
-    [SerializeField] private Vector2 _minMaxAngles = new Vector2(0, 45);
+    [SerializeField] private Vector2 _minMaxAngles = new(0, 45);
     [SerializeField] private float _rotationSpeed = 1f;
     [SerializeField] private bool _right;
     [SerializeField] private RectTransform _spawnPivot;
+   
+    private bool _isDragging;
+    private bool _isRotating;
+    private bool _canSpawnDrops;
+    private bool _needPauseInRotation;
 
+    private Color _color;
+    private float _flowForce; // сила отклонения струи
+    private float _rotationAngle;
 
-    private RectTransform _rectTransform;
-    private Returner _returner; 
+    private Image _image;
     private Canvas _canvas;
+    private RectTransform _rectTransform;
+    private Returner _returner;
+    private Coroutine _rotationCoroutine;
+    private DropSpawner _spawner;
     private Vector2 _startPivot;
     private Vector2 _startPosition;
     private Vector2 _jetDirection;
-    private Image _image;
-    private Coroutine _rotationCoroutine;
-   
-    private DropSpawner _spawner;
 
-    private float _rotationAngle;
-
-    private float _flowForce; // сила отклонения струи
-    private float _timeDelay; // время между дропами
-
-    private bool _canSpawnDrops;
-    private bool _isDragging;
-    private bool _isRotating;
 
     private float ZAngle
     {
@@ -45,10 +41,6 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
 
         get => _rotationAngle;
     }
-
-    private (Color mainColor, Color outlineColor) _colors;
-
-    private bool _needPauseInRotation;
 
 
     private void Awake()
@@ -64,26 +56,12 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         _flowForce = 10f;
     }
 
-    public void SetItem(Sprite icon)//, (Color mainColor, Color outlineColor) colors)
-    {
-        _image.sprite = icon;
-        _image.SetNativeSize();
-        //_colors = colors;
-    }
-
-    public void SetPosition(ItemSpace.ItemSpaceNumber number)
-    {
-        _right = number != ItemSpace.ItemSpaceNumber.First;
-    }
-
     private void Update()
     {
-
         if (_isDragging)
         {
-            //print(_jetDirection.ToString());
             _spawner.DropData = (_spawnPivot.position, _jetDirection);
-
+            _spawner.DropColor = _color;
             if (Input.GetMouseButtonUp(0))
                 OnEndDrag(null);
 
@@ -95,50 +73,34 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
                 _isRotating = true;
             }
 
-            if (_isRotating && Input.GetMouseButtonUp(1))
-            {
-                _isRotating = false;
-            }
-            
+            if (_isRotating && Input.GetMouseButtonUp(1)) _isRotating = false;
         }
     }
 
-    private IEnumerator Rotation()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        while (true)
-        {
-            yield return null;
+        _canSpawnDrops = false;
+    }
 
-            if (_canSpawnDrops && Math.Abs(ZAngle) >1)
-            {
-                _spawner.IsDropping = Math.Abs(ZAngle) > 40;
-                _spawner.DropDelay = Math.Abs(ZAngle / (ZAngle * ZAngle));
-            }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _canSpawnDrops = true;
+    }
 
-            if (_needPauseInRotation)
-                yield return UnityExtensions.Wait(1);
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (_rotationCoroutine != null)
+            StopCoroutine(_rotationCoroutine);
+        _rotationCoroutine = StartCoroutine(Rotation());
 
-
-            if (!_isRotating)
-                continue;
-
-            if (_right)
-            {
-                ZAngle = Mathf.Clamp(ZAngle + _rotationSpeed * Time.deltaTime, _minMaxAngles.x, _minMaxAngles.y);
-                _jetDirection = ZAngle < _minMaxAngles.y / 2 ? new Vector2(Mathf.Lerp(0, -_flowForce, ZAngle * 2 /_minMaxAngles.y  ), 0) : new Vector2(Mathf.Lerp(-_flowForce, 0, ZAngle / _minMaxAngles.y), 0);
-            }
-            else
-            {
-                ZAngle = Mathf.Clamp(ZAngle - _rotationSpeed * Time.deltaTime, -_minMaxAngles.y, _minMaxAngles.x);
-                _jetDirection = -ZAngle < _minMaxAngles.y / 2 ? new Vector2(Mathf.Lerp(0, _flowForce, -ZAngle*2 / _minMaxAngles.y), 0) : new Vector2(Mathf.Lerp(_flowForce, 0, -ZAngle / _minMaxAngles.y), 0);
-            }
-        }
+        _returner.enabled = false;
+        _isDragging = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Left)
-            return; 
+            return;
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
     }
 
@@ -159,35 +121,51 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         _rectTransform.eulerAngles = Vector3.zero;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void SetItem(Sprite icon, Color color)
     {
-        if (_rotationCoroutine != null)
-            StopCoroutine(_rotationCoroutine);
-        _rotationCoroutine = StartCoroutine(Rotation());
-
-        _returner.enabled = false;
-        _isDragging = true;
-
-        //var previosPivot = _rectTransform.pivot;
-        //_rectTransform.pivot = new Vector2(0.5f, 0.5f);
-        //_rectTransform.anchoredPosition += new Vector2(
-        //    0.5f * Mathf.Abs(_rectTransform.pivot.x - previosPivot.x) * _rectTransform.rect.width,
-        //    Mathf.Abs(_rectTransform.pivot.y - previosPivot.y) * _rectTransform.rect.height);
-        //_endedDragging = false;
-
+        _image.sprite = icon;
+        _image.SetNativeSize();
+        _color = color;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    public void SetPosition(ItemSpace.ItemSpaceNumber number)
     {
-        _canSpawnDrops = false;
-        _spawner.IsDropping = false;
-
-        
+        _right = number != ItemSpace.ItemSpaceNumber.First;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private IEnumerator Rotation()
     {
-        _canSpawnDrops = true;
-        //_spawner.IsDropping = true;
+        while (true)
+        {
+            yield return null;
+
+            if (_canSpawnDrops && Math.Abs(ZAngle) > 1)
+            {
+                _spawner.IsDropping = Math.Abs(ZAngle) > 40;
+                _spawner.DropDelay = Math.Abs(ZAngle / (ZAngle * ZAngle) * 2);
+            }
+
+            if (_needPauseInRotation)
+                yield return UnityExtensions.Wait(1);
+
+
+            if (!_isRotating)
+                continue;
+
+            if (_right)
+            {
+                ZAngle = Mathf.Clamp(ZAngle + _rotationSpeed * Time.deltaTime, _minMaxAngles.x, _minMaxAngles.y);
+                _jetDirection = ZAngle < _minMaxAngles.y / 2
+                    ? new Vector2(Mathf.Lerp(0, -_flowForce, ZAngle * 2 / _minMaxAngles.y), 0)
+                    : new Vector2(Mathf.Lerp(-_flowForce, 0, ZAngle / _minMaxAngles.y), 0);
+            }
+            else
+            {
+                ZAngle = Mathf.Clamp(ZAngle - _rotationSpeed * Time.deltaTime, -_minMaxAngles.y, _minMaxAngles.x);
+                _jetDirection = -ZAngle < _minMaxAngles.y / 2
+                    ? new Vector2(Mathf.Lerp(0, _flowForce, -ZAngle * 2 / _minMaxAngles.y), 0)
+                    : new Vector2(Mathf.Lerp(_flowForce, 0, -ZAngle / _minMaxAngles.y), 0);
+            }
+        }
     }
 }

@@ -8,55 +8,55 @@ public class StaticLiquid : MonoBehaviour
     private const float Spring = 0.02f; // скорость волны
     private const float Damping = 0.04f; // чем меньше тем выше волна
     private const float Spread = 0.05f;
-    
+
     [SerializeField] private int _edgeCount;
     [SerializeField] private LiquidTrigger _trigger;
     [SerializeField] private int _density;
     [SerializeField] private float _relaxation;
-    [SerializeField] private float _topOffset = 2f;
+    [SerializeField] private float _topOffset = 5f; // для отступа воды сверху
     private readonly List<Vector2> _uvs = new();
     private float[] _accelerations;
     private float _baseHeight = 0.1f;
+    private float _currentWidth;
     private float _distanceBetweenVertices;
     private float _fixedTopGlassEdge;
     private LiquidRenderer _liquidRenderer;
+    private float _maxLiquidHeight;
     private Mesh _mesh;
     private Rect _rect;
     private List<int> _triangles;
     private float[] _velocities;
     private Vector3[] _vertices;
     private AnimationCurve _widthCurve;
-    
 
-    public void SpawnStartLiquid(RectTransform maskRect, AnimationCurve curve)
-    {
-        _widthCurve = curve;
-        var corners = new Vector3[4];
-        maskRect.GetWorldCorners(corners);
-        var newRect = new Rect(corners[0], corners[2] - corners[0]);
-
-        CreateMesh(newRect);
-    }
     private void Awake()
     {
         _liquidRenderer = GetComponent<LiquidRenderer>();
     }
 
-    private void Start()
-    {
-        UpdateTexture();
-    }
-    
     private void FixedUpdate()
     {
         CalculateTriggerBounds();
         CalculateVertices();
     }
 
+
+    public void SpawnStartLiquid(RectTransform maskRect, AnimationCurve curve)
+    {
+        _widthCurve = curve;
+        var corners = new Vector3[4];
+        maskRect.GetWorldCorners(corners);
+
+        var newRect = new Rect(corners[0], corners[2] - corners[0]);
+        _maxLiquidHeight = newRect.height;
+        CreateMesh(newRect);
+    }
+
     private void CreateMesh(Rect rect)
     {
         _triangles = new List<int>();
         _rect = rect;
+
         _fixedTopGlassEdge = rect.yMax - _topOffset;
         _mesh = new Mesh();
         _vertices = new Vector3[_edgeCount * 2 + 2];
@@ -72,30 +72,29 @@ public class StaticLiquid : MonoBehaviour
 
 
         _trigger.OnHit.AddListener(Splash);
-
-        StopAllCoroutines();
+        _trigger.ReColor.AddListener(UpdateColor);
     }
 
-    private void Splash(float x, float force = 0.3f, float volume = 0.001f)
+    private void Splash(float x, float force = 0.3f, float volume = 0f)
     {
-        //print(volume);
         if (_rect.height <= _fixedTopGlassEdge)
         {
             var a = Mathf.RoundToInt((x - _rect.x) / _distanceBetweenVertices);
             _velocities[2 * a + 1] -= force;
 
-            StartCoroutine(FadeVolumeIncrease(_rect.height + volume * _baseHeight / _rect.width));
+            StartCoroutine(FadeVolumeIncrease(_rect.height + volume * _currentWidth / _rect.width));
         }
+
+        StopAllCoroutines();
     }
 
     private IEnumerator FadeVolumeIncrease(float targetHeight)
     {
-        var delta = Mathf.Lerp(_rect.height, targetHeight, Time.deltaTime * 2.5f) - _rect.height;
+        var delta = Mathf.Lerp(_rect.height, targetHeight, Time.deltaTime) - _rect.height;
         while (targetHeight > _rect.height)
         {
             for (var i = 1; i < _velocities.Length; i += 2)
                 _vertices[i].y += delta;
-            //print("!@#!@#@#@!");
             _rect.height += delta;
             yield return null;
         }
@@ -107,6 +106,8 @@ public class StaticLiquid : MonoBehaviour
         _vertices[0] = new Vector3(_rect.x, _rect.y, 0);
         _uvs.Add(Vector2.zero);
         _rect.height = _rect.y + _baseHeight;
+
+
         var a = 1 / (float) edgeCount;
 
         for (var i = 1; i < edgeCount * 2 + 2; i++)
@@ -186,13 +187,13 @@ public class StaticLiquid : MonoBehaviour
     private void CalculateTriggerBounds()
     {
         _baseHeight = _rect.height - _rect.y;
-        _trigger.SetTriggerBounds(_widthCurve.Evaluate(_baseHeight)* _rect.width, _rect.height, _vertices[_vertices.Length / 2].x);
+        _currentWidth = _widthCurve.Evaluate(_baseHeight / _maxLiquidHeight) * _rect.width;
+        _trigger.SetTriggerBounds(_currentWidth, _rect.height, _vertices[_vertices.Length / 2].x);
     }
 
-    private void UpdateTexture()
+    private void UpdateColor(Color color)
     {
+        _liquidRenderer.UpdateGradient(color, _baseHeight);
         _liquidRenderer.UpdateTexture();
     }
-
-
 }

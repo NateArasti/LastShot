@@ -1,4 +1,3 @@
-using System.IO;
 using UnityEngine;
 
 public class GradientRendere : MonoBehaviour
@@ -6,9 +5,7 @@ public class GradientRendere : MonoBehaviour
     [SerializeField] private float _GradientResolution;
     [SerializeField] private Gradient _Gradient;
 
-    private void Awake()
-    {
-    }
+    // не нужный скрипт, но пусть будет на всякий)
 
     public Texture2D GenerateTexture(bool makeNoLongerReadable = false)
     {

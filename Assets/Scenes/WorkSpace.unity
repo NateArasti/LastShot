@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c5411d0b5a8c34fa3d29bfd3e0929b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dropMaterial: {fileID: 2100000, guid: 5b2975dde7684db44a442a4cb67d2ee7, type: 2}
   _dropPrefab: {fileID: -1002268405185767646, guid: fa290193b232aed439db565a054611f3, type: 3}
   _startDropsCount: 100
 --- !u!1 &120751372
@@ -752,7 +753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -6.1539917, y: 581.565}
+  m_AnchoredPosition: {x: -6.1540527, y: 581.565}
   m_SizeDelta: {x: -1192.308, y: 498.435}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &356943112

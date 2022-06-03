@@ -7,15 +7,16 @@ using UnityEngine.UI;
 public class Glass : MonoBehaviour
 {
     [SerializeField] private float _v;
-    [Space(20)]
-    [SerializeField] private RectTransform _textureTransform;
+
+    [Space(20)] [SerializeField] private RectTransform _textureTransform;
+
     [SerializeField] private Image _glassImage;
     [SerializeField] private Image _glassMask;
     [SerializeField] private GarnishSpace[] _garnishSpaces;
     [SerializeField] private GameObject _liquidPrefab;
 
-    [Space(50)] 
-    [SerializeField] private Sprite _sprite;
+    [Space(50)] [SerializeField] private Sprite _sprite;
+
     [SerializeField] private AnimationCurve _widthHeight;
 
     public float V => _v;
@@ -51,29 +52,25 @@ public class Glass : MonoBehaviour
             var pixelCount = 0;
 
             for (var j = 0; j < width; j++)
-            {
                 if (texture.GetPixel(j, i) == Color.white)
                 {
                     print(texture.GetPixel(j, i));
                     pixelCount++;
-
                 }
-            }
 
             if (pixelCount == 0)
             {
                 offset++;
                 continue;
             }
-            pointsList.Add(((i - offset), pixelCount));
+
+            pointsList.Add((i - offset, pixelCount));
         }
 
         var maxHeight = pointsList.Max(x => x.height);
         var maxWidth = pointsList.Max(x => x.width);
         foreach (var valueTuple in pointsList)
-        {
             _widthHeight.AddKey(valueTuple.height / maxHeight, valueTuple.width / maxWidth);
-        }
     }
 
     private Texture2D DuplicateTexture(Texture2D source)

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2471280567729050500, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3098133277002394572, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 208
@@ -2133,3 +2137,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
+--- !u!1 &1531874527851521329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3098133278672876437, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
+  m_PrefabInstance: {fileID: 4592695293171193508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!68 &-9139894516185951301
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531874527851521329}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 3
+  m_Points:
+  - {x: -94.260826, y: 454.93524}
+  - {x: -87.31986, y: 319.13107}
+  - {x: -78.92447, y: 231.39923}
+  - {x: -62.75441, y: 135.30527}
+  - {x: -62.01374, y: 25.159447}
+  - {x: 64.79742, y: 24.63517}
+  - {x: 63.970055, y: 133.8907}
+  - {x: 79.35868, y: 231.07338}
+  - {x: 88.0823, y: 319.3625}
+  - {x: 94.149635, y: 456.3125}
+  m_AdjacentStartPoint: {x: 94.14964, y: 456.3125}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 1
+  m_UseAdjacentEndPoint: 0

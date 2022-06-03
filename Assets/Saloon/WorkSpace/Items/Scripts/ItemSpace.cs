@@ -1,11 +1,16 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public enum ItemSpaceNumber
+    {
+        First,
+        Second
+    }
+
     public enum ItemSpaceType
     {
         List,
@@ -14,23 +19,35 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Garnish
     }
 
-    public enum ItemSpaceNumber
-    {
-        First,
-        Second
-    }
-
     [SerializeField] private ItemSpaceType _type;
     [SerializeField] private ItemSpaceNumber _number;
     [SerializeField] private RectTransform _itemSpawnPivot;
 
-    private Color _simpleColor;
-    private Color _highlightedColor;
+    [SerializeField] private bool _canPlace = true;
     private Color _errorColor;
+    private Color _highlightedColor;
 
     private Image _image;
 
-    [SerializeField]private bool _canPlace = true;
+    private Color _simpleColor;
+
+    private void Awake()
+    {
+        _image = GetComponent<Image>();
+        (_simpleColor, _highlightedColor, _errorColor) = ItemSpacesStorage.GetColors();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        DragItem.OnDragDrop.AddListener(PlaceItem);
+        _image.color = _highlightedColor;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _image.color = _simpleColor;
+        DragItem.OnDragDrop.RemoveListener(PlaceItem);
+    }
 
     public void DeleteItem()
     {
@@ -42,7 +59,7 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (_canPlace && item.Item.CanPlaceInThisSpace(_type))
         {
             var spawnWorkItem = item.Item.SpawnWorkItem(_itemSpawnPivot);
-     
+
             if (item.Item.TakeMousePosition())
             {
                 spawnWorkItem.transform.position = item.transform.position;
@@ -53,27 +70,5 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             spawnWorkItem.GetComponent<Returner>().OnReturn.AddListener(DeleteItem);
             _canPlace = false;
         }
-
-    }
-
-    private void Awake()
-    {
-        _image = GetComponent<Image>();
-        (_simpleColor, _highlightedColor, _errorColor) = ItemSpacesStorage.GetColors();
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _image.color = _simpleColor;
-        DragItem.OnDragDrop.RemoveListener(PlaceItem);
-        //_canPlace = false;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        DragItem.OnDragDrop.AddListener(PlaceItem);
-
-        //_canPlace = true;
-        _image.color = _highlightedColor;
     }
 }

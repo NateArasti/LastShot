@@ -1,17 +1,17 @@
-using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform), typeof(CanvasGroup), typeof(Image))]
 public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     public static UnityEvent<DragItem> OnDragDrop = new();
     private Canvas _canvas;
-    private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
 
     private ListItem _parentListItem;
+    private RectTransform _rectTransform;
     public Ingredient Item => _parentListItem.Item;
 
     private void Awake()
@@ -20,6 +20,15 @@ public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         _canvas = GameObject.FindGameObjectWithTag("WorkSpaceCanvas").GetComponent<Canvas>();
         _canvasGroup = GetComponent<CanvasGroup>();
         _parentListItem = transform.parent.GetComponent<ListItem>();
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        Instantiate(gameObject, transform.parent);
+        GetComponent<Image>().SetNativeSize();
+        transform.SetParent(_canvas.transform);
+        _canvasGroup.blocksRaycasts = false;
+        ItemSpacesStorage.SetSpacesActive(true);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -34,13 +43,4 @@ public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         ItemSpacesStorage.SetSpacesActive(false);
         Destroy(gameObject);
     }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        Instantiate(gameObject, transform.parent);
-        transform.SetParent(_canvas.transform);
-        _canvasGroup.blocksRaycasts = false;
-        ItemSpacesStorage.SetSpacesActive(true);
-    }
-
 }

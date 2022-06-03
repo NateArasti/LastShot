@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "DropIngredient", menuName = "Data/DataItem/DropIngredient")]
 public class DropIngredient : Ingredient
@@ -11,13 +12,15 @@ public class DropIngredient : Ingredient
 
     public override bool CanPlaceInThisSpace(ItemSpace.ItemSpaceType type)
     {
-        return type is ItemSpace.ItemSpaceType.Glass or ItemSpace.ItemSpaceType.Garnish or ItemSpace.ItemSpaceType.List;
+        return type is ItemSpace.ItemSpaceType.Glass or ItemSpace.ItemSpaceType.Garnish;
     }
 
     public override GameObject SpawnWorkItem(Transform container)
     {
         var item = Instantiate(IngredientTypeData.GetPrefab(Type), container);
         item.GetComponent<DropItem>().SetItem(Sprite, _mass, _float);
+        item.GetComponent<Image>().SetNativeSize();
+        item.GetComponent<BoxCollider2D>().size = item.GetComponent<RectTransform>().sizeDelta;
         return item;
     }
 }

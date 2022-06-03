@@ -4,9 +4,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "PourIngredient", menuName = "Data/DataItem/PourIngredient")]
 public class PourIngredient : Ingredient
 {
-    //[Space(20f)]
-    //[SerializeField] private Color _mainColor;
-    //[SerializeField] private Color _outlineColor;
+    [Space(20f)]
+    [SerializeField] private Color _mainColor;
+    //[SerializeField] private DropColor _outlineColor;
 
     protected override IngredientTypeData.IngredientType Type => IngredientTypeData.IngredientType.Pour;
 
@@ -16,8 +16,7 @@ public class PourIngredient : Ingredient
     public override GameObject SpawnWorkItem(Transform container)
     {
         var item = Instantiate(IngredientTypeData.GetPrefab(Type), container);
-        item.GetComponent<PourItem>().SetItem(Sprite);//, (_mainColor, _outlineColor));
-        //item.GetComponent<Image>().SetNativeSize();
+        item.GetComponent<PourItem>().SetItem(Sprite, _mainColor );
 
         return item;
     }

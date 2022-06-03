@@ -20,11 +20,11 @@ MonoBehaviour:
     _tags: 
     _textReceipt: 
   _drinkReceipt:
-    _glassPrefab: {fileID: 1531874527851521329, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
+    _glassPrefab: {fileID: 3845340031205017563, guid: 66d95b287dc7a2a41b218a344af90b2b, type: 3}
     _alcohols:
     - {fileID: 11400000, guid: 99b082f93e994a244b90c9fa5423ee94, type: 2}
     - {fileID: 11400000, guid: 5e8ad23690c24e94881bdf5b1d919927, type: 2}
-    - {fileID: 11400000, guid: 73eda3233604e574caf408cf8faac456, type: 2}
+    - {fileID: 11400000, guid: ab3715075d28d944fb9e5e4e42f6dee3, type: 2}
     _additionalIngredients:
     - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
     _perfectActions: []
