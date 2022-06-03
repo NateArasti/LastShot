@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -253,7 +253,6 @@ GameObject:
   - component: {fileID: 3098133278672876439}
   - component: {fileID: 2471280567729050500}
   - component: {fileID: 3871618285292731549}
-  - component: {fileID: 6843574084429815491}
   - component: {fileID: -283080928408511986}
   m_Layer: 8
   m_Name: Glass
@@ -380,20 +379,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6843574084429815491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098133278672876437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc28a6f305cc4f40aa2a106038dd130, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _offSet: {x: 0, y: -120}
-  _xClamp: 50
 --- !u!50 &-283080928408511986
 Rigidbody2D:
   serializedVersion: 4

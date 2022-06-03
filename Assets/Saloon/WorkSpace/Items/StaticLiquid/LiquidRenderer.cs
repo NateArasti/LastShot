@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(MeshRenderer))]
 public class LiquidRenderer : MonoBehaviour
 {
     private static readonly int GradientTexture = Shader.PropertyToID("_GradientTexture");
@@ -7,7 +8,14 @@ public class LiquidRenderer : MonoBehaviour
     [SerializeField] private Gradient _previousGradient;
     private float[] _colorHeight = new float[2];
     private GradientColorKey[] _colorKeys;
-    private bool _firstGradUpdt = true;
+    private GradientAlphaKey[] _alphaKeys;
+    private bool _firstGradientUpdate = true;
+    private MeshRenderer _renderer;
+
+    private void Awake()
+    {
+        _renderer = GetComponent<MeshRenderer>();
+    }
 
     private Texture2D GenerateTexture(bool makeNoLongerReadable = false)
     {
@@ -36,57 +44,75 @@ public class LiquidRenderer : MonoBehaviour
     public void UpdateTexture()
     {
         var gradientTexture = GenerateTexture();
-        var material = GetComponent<MeshRenderer>().material;
+        var material = _renderer.sharedMaterial;
         material.SetTexture(GradientTexture, gradientTexture);
     }
 
     public void UpdateGradient(Color color, float liquidHeight)
     {
-        var gck = new GradientColorKey[_previousGradient.colorKeys.Length];
-        var gak = new GradientAlphaKey[_previousGradient.alphaKeys.Length];
+        var gck = new GradientColorKey[2];
+        var gak = new GradientAlphaKey[2];
 
-        if (_firstGradUpdt)
+        if (_firstGradientUpdate)
         {
             for (var i = 0; i < gck.Length; i++)
             {
                 gck[i].color = color;
                 gck[i].time = _previousGradient.colorKeys[i].time;
-                gak[i].alpha = _previousGradient.alphaKeys[i].alpha;
+                gak[i].alpha = color.a;
                 gak[i].time = _previousGradient.alphaKeys[i].time;
             }
 
             _colorHeight[0] = 0f;
             _previousGradient.SetKeys(gck, gak);
-            _firstGradUpdt = false;
+            _firstGradientUpdate = false;
             return;
         }
 
-        if (_previousGradient.colorKeys[^1].color == color)
+        if (_previousGradient.colorKeys[^1].color.GetRGB() == color.GetRGB())
         {
-            _colorHeight[_previousGradient.colorKeys.Length - 1] = liquidHeight;
-            var sameColors = new GradientColorKey[_previousGradient.colorKeys.Length];
-            for (var i = 0; i < sameColors.Length; i++) sameColors[i] = _previousGradient.colorKeys[i];
-            for (var i = 0; i < _colorHeight.Length; i++) sameColors[i].time = _colorHeight[i] / liquidHeight;
-            _previousGradient.SetKeys(sameColors, _previousGradient.alphaKeys);
+            var length = _previousGradient.colorKeys.Length;
+            _colorHeight[length - 1] = liquidHeight;
+            var sameColors = new GradientColorKey[length];
+            var sameAlphas = new GradientAlphaKey[length];
+            for (var i = 0; i < length; i++)
+            {
+                sameColors[i] = _previousGradient.colorKeys[i];
+                sameAlphas[i] = _previousGradient.alphaKeys[i];
+            }
+            for (var i = 0; i < _colorHeight.Length; i++)
+            {
+                var position = _colorHeight[i] / liquidHeight;
+                sameColors[i].time = position;
+                sameAlphas[i].time = position;
+            }
+            _previousGradient.SetKeys(sameColors, sameAlphas);
             return;
         }
 
-        _colorKeys = new GradientColorKey[_previousGradient.colorKeys.Length + 1];
+        var keyLength = _previousGradient.colorKeys.Length + 1;
+        _colorKeys = new GradientColorKey[keyLength];
+        _alphaKeys = new GradientAlphaKey[keyLength];
 
-        var newColorHeight = new float[_previousGradient.colorKeys.Length + 1];
-        for (var i = 0; i < _colorHeight.Length; i++)
+        var newColorHeight = new float[keyLength];
+        for (var i = 0; i < keyLength - 1; i++)
             newColorHeight[i] = _colorHeight[i];
         newColorHeight[^1] = liquidHeight;
 
-        for (var i = 0; i < _colorKeys.Length; i++)
+        for (var i = 0; i < keyLength; i++)
         {
-            _colorKeys[i].color = i == _colorKeys.Length - 1 ? color : _previousGradient.colorKeys[i].color;
-            _colorKeys[i].time = newColorHeight[i] / liquidHeight;
+            var position = newColorHeight[i] / liquidHeight;
+
+            _colorKeys[i].color = i == _colorKeys.Length - 1 ? color.GetRGB() : _previousGradient.colorKeys[i].color;
+            _colorKeys[i].time = position;
+
+            _alphaKeys[i].alpha = i == _colorKeys.Length - 1 ? color.a : _previousGradient.alphaKeys[i].alpha;
+            _alphaKeys[i].time = position;
         }
 
-        _colorHeight = new float[newColorHeight.Length];
-        for (var i = 0; i < newColorHeight.Length; i++) _colorHeight[i] = newColorHeight[i];
+        _colorHeight = new float[keyLength];
+        for (var i = 0; i < keyLength; i++) _colorHeight[i] = newColorHeight[i];
 
-        _previousGradient.SetKeys(_colorKeys, _previousGradient.alphaKeys);
+        _previousGradient.SetKeys(_colorKeys, _alphaKeys);
     }
 }

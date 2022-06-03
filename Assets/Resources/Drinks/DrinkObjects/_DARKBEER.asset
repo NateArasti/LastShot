@@ -43,11 +43,12 @@ MonoBehaviour:
 
 '
   _receipt:
-    _glassPrefab: {fileID: 0}
+    _glassPrefab: {fileID: 1531874527851521329, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
     _instruments:
     - {fileID: 11400000, guid: 60f5f9608fb744b4caff7a8ed65e9dcd, type: 2}
     _ingredients:
     - {fileID: 11400000, guid: 5e8ad23690c24e94881bdf5b1d919927, type: 2}
+    - {fileID: 11400000, guid: cd44193e02f969f48a00f3bb8887a692, type: 2}
     _perfectActions:
     - rid: 4723403559277690924
   references:

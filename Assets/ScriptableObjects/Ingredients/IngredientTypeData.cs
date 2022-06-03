@@ -1,9 +1,7 @@
-﻿using System.Drawing.Printing;
-using System.Runtime.CompilerServices;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "IngredientTypeData", menuName = "Data/IngredientTypeData")]
-public class IngredientTypeData : ScriptableObject
+public class IngredientTypeData : ScriptableSingleton
 {
     public enum IngredientType
     {
@@ -12,12 +10,10 @@ public class IngredientTypeData : ScriptableObject
     }
 
     private static IngredientTypeData _instance;
-
-    [Tooltip("When toggled, makes this variant a main instance")]
-    [SerializeField] private bool _isInstance;
+    
     [SerializeField] private TypePrefabData[] _datas;
 
-    public void SetInstance()
+    public override void SetAsInstance()
     {
         _instance = this;
     }
@@ -31,17 +27,6 @@ public class IngredientTypeData : ScriptableObject
         }
         Debug.LogError($"No such type {type} implemented");
         return null;
-    }
-
-    private void OnEnable()
-    {
-        _instance = this;
-    }
-
-    private void OnValidate()
-    {
-        if (_isInstance)
-            _instance = this;
     }
 
     [System.Serializable]

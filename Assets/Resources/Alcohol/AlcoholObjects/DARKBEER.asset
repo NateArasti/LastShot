@@ -28,6 +28,4 @@ MonoBehaviour:
     _class: 0
     _containingDrinks:
     - {fileID: 11400000, guid: 71108ecb449ae8a41807b48ce403d69c, type: 2}
-  _mainColor: {r: 0, g: 0, b: 0, a: 0}
-  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
-  _delayBetweenDrops: 0.05
+  _mainColor: {r: 0, g: 0, b: 0, a: 0.38431373}

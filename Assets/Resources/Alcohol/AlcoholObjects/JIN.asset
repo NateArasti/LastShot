@@ -32,5 +32,3 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e359abee0d4e4ec4cacd38ef8ff775ac, type: 2}
     - {fileID: 11400000, guid: addcbcc65ef0e2a4196f47a4f1f4a9ad, type: 2}
   _mainColor: {r: 0, g: 0, b: 0, a: 0}
-  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
-  _delayBetweenDrops: 0.05

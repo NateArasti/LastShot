@@ -142,7 +142,7 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
             if (_canSpawnDrops && Math.Abs(ZAngle) > 1)
             {
                 _spawner.IsDropping = Math.Abs(ZAngle) > 40;
-                _spawner.DropDelay = Math.Abs(ZAngle / (ZAngle * ZAngle) * 2);
+                _spawner.DropDelay = Math.Abs(ZAngle / (ZAngle * ZAngle));
             }
 
             if (_needPauseInRotation)

@@ -13,7 +13,6 @@ public class StaticLiquid : MonoBehaviour
     [SerializeField] private LiquidTrigger _trigger;
     [SerializeField] private int _density;
     [SerializeField] private float _relaxation;
-    [SerializeField] private float _topOffset = 5f; // для отступа воды сверху
     private readonly List<Vector2> _uvs = new();
     private float[] _accelerations;
     private float _baseHeight = 0.1f;
@@ -57,7 +56,7 @@ public class StaticLiquid : MonoBehaviour
         _triangles = new List<int>();
         _rect = rect;
 
-        _fixedTopGlassEdge = rect.yMax - _topOffset;
+        _fixedTopGlassEdge = rect.yMax;
         _mesh = new Mesh();
         _vertices = new Vector3[_edgeCount * 2 + 2];
         _velocities = new float[_edgeCount * 2 + 2];

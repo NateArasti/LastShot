@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class GarnishSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private ItemSpace.ItemSpaceType _type = ItemSpace.ItemSpaceType.Garnish;
+    //private ItemSpace.ItemSpaceType _type = ItemSpace.ItemSpaceType.Garnish;
     public bool Garnished { get; private set; }
 
     private Color _simpleColor;

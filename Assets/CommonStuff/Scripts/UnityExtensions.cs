@@ -146,4 +146,6 @@ public static class UnityExtensions
         result = default;
         return false;
     }
+
+    public static Color GetRGB(this Color color) => new(color.r, color.g, color.b, 1);
 }

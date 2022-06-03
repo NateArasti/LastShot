@@ -21,8 +21,6 @@ public class OrderCreationEvents : MonoBehaviour
     {
         Instantiate(drink.DrinkReceipt.GlassPrefab, _glassPivot).transform.SetAsFirstSibling();
         var receipt = drink.DrinkReceipt;
-        _itemContent.FillContent(ItemContent.ItemType.Alcohol, receipt.Alcohols);
         _itemContent.FillContent(ItemContent.ItemType.Alcohol, receipt.Ingredients);
-        //_itemContent.FillContent(ItemContent.ItemType.Instrument, receipt.instruments);
     }
 }

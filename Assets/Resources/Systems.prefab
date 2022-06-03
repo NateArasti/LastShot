@@ -216,6 +216,7 @@ MonoBehaviour:
   _referenceScriptableSingletons:
   - {fileID: 11400000, guid: 4abbf83cecaa04d4b81fcc3eca854d9b, type: 2}
   - {fileID: 11400000, guid: 6002950b0bf018c499dfdd13d741a96c, type: 2}
+  - {fileID: 11400000, guid: f5ca9f05f80718340ad408e4e240bb89, type: 2}
 --- !u!1 &4092291926020760306
 GameObject:
   m_ObjectHideFlags: 0
