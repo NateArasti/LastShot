@@ -41,8 +41,10 @@ public class Guest : MonoBehaviour
     [SerializeField] private RandomAnimations _tableRandomAnimations;
 
     [Header("Dialogue Events")]
-    [SerializeField] private UnityEvent _onSit;
-    [SerializeField] private UnityEvent _onDialogueStart;
+    [SerializeField] private UnityEvent _onSitChair;
+    [SerializeField] private UnityEvent _onChairDialogueStart;
+    [SerializeField] private UnityEvent _onSitTable;
+    [SerializeField] private UnityEvent _onTableDialogueStart;
     [SerializeField] private UnityEvent _onDialogueEnd;
 
     private SpriteRenderer _spriteRenderer;
@@ -91,7 +93,7 @@ public class Guest : MonoBehaviour
         }
     }
 
-    public void MoveToSpot(Transform spotTransform, SpotType spotType, bool moveRight)
+    public void MoveToSpot(Transform spotTransform, SpotType spotType, bool moveRight, bool exitAfterTime = true)
     {
         _startPosition = transform.position;
         _spriteRenderer.flipX = moveRight;
@@ -112,9 +114,11 @@ public class Guest : MonoBehaviour
 
             _animator.SetBool(spotType == SpotType.Table ? SitToTable : SitOnChair, true);
             Sitting = true;
-            _onSit.Invoke();
+            if (_currentSpotType == SpotType.Chair) _onSitChair.Invoke();
+            else if (_currentSpotType == SpotType.Table) _onSitTable.Invoke();
+            if (!exitAfterTime) yield break;
             var timer = GameTimeController.SetTimer(_sitTime / 3600);
-            yield return new WaitUntil(() => !timer.Ended);
+            yield return new WaitUntil(() => timer.Ended);
             yield return StartCoroutine(Exit());
         }
     }
@@ -153,7 +157,8 @@ public class Guest : MonoBehaviour
 
     private void OnDestroy()
     {
-        _guestDialogue.OnEnd.RemoveListener(EndVisit);
+        if(_guestDialogue != null)
+            _guestDialogue.OnEnd.RemoveListener(EndVisit);
         OnDestroyEvent.Invoke(_spotTransform, this);
     }
 
@@ -174,7 +179,8 @@ public class Guest : MonoBehaviour
         if (!MouseEnabled) return;
         if(_moveCoroutine != null) StopCoroutine(_moveCoroutine);
         _spriteRenderer.material.SetFloat(OutlineEnabledProperty, 0);
-        _onDialogueStart.Invoke();
+        if (_currentSpotType == SpotType.Chair) _onChairDialogueStart.Invoke();
+        else if (_currentSpotType == SpotType.Table) _onTableDialogueStart.Invoke();
         DialogueSystem.CurrentDialogue = _guestDialogue;
         GameStateManager.SwitchToDialogue();
     }

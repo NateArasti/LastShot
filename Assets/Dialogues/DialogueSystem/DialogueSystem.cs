@@ -97,9 +97,9 @@ public class DialogueSystem : MonoBehaviour
         ShowNewPhrase(drink);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (_currentState != DialogueState.SimplePhrase || !KeyCodesToSkip.Any(Input.GetKeyDown)) return;
+        if (GameStateManager.CurrentState != GameStateManager.State.Dialogue || _currentState != DialogueState.SimplePhrase || !KeyCodesToSkip.Any(Input.GetKeyDown)) return;
         if (_dialogueUI.IsTypingPhrase)
             _dialogueUI.EndTyping();
         else

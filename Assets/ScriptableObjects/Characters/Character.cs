@@ -42,6 +42,5 @@ public class Character : ScriptableObject, IDatabaseObject
             coefficients.Add(float.Parse(paramsLine[i]));
         }
         _coefficients = new DrinksDescriptionCoefficients(coefficients.ToArray());
-        Debug.LogError(_coefficients.CoefficientsDictionary);
     }
 }

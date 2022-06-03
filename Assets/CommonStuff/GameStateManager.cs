@@ -17,9 +17,12 @@ public class GameStateManager : MonoBehaviour
     private static GameStateManager _instance;
 
     public static State CurrentState { get; private set; } = State.Saloon;
-    public static readonly UnityEvent<State> OnStateChanged = new(); 
+    private static State _lastNormalState;
+    public static readonly UnityEvent<State> OnStateChanged = new();
 
-    [SerializeField] private StateEvent[] _stateEvents = new StateEvent[6];
+    [SerializeField] private StateEvent _pauseStateEvent;
+    [SerializeField] private StateEvent _notebookStateEvent;
+    [SerializeField] private StateEvent[] _stateEvents;
     private readonly Dictionary<State, (UnityEvent turnOn, UnityEvent turnOff)> _stateEventsDictionary = new();
 
     private void Awake()
@@ -35,8 +38,6 @@ public class GameStateManager : MonoBehaviour
         OnStateChanged.AddListener(InvokeLocalStateEvent);
         _stateEvents.ForEachAction(stateEvent => 
             _stateEventsDictionary.Add(stateEvent.State, (stateEvent.TurnOnEvent, stateEvent.TurnOffEvent)));
-        _stateEventsDictionary[State.Pause].turnOn.AddListener(() => Time.timeScale = 0);
-        _stateEventsDictionary[State.Pause].turnOff.AddListener(() => Time.timeScale = 1);
         _stateEventsDictionary[State.Saloon].turnOn.AddListener(() => GameTimeController.Paused = false);
         _stateEventsDictionary[State.Saloon].turnOff.AddListener(() => GameTimeController.Paused = true);
         SwitchToSaloon();
@@ -47,23 +48,46 @@ public class GameStateManager : MonoBehaviour
     private void InvokeLocalStateEvent(State state)
     {
         _stateEventsDictionary[CurrentState].turnOff.Invoke();
+        _lastNormalState = state;
         CurrentState = state;
         _stateEventsDictionary[CurrentState].turnOn.Invoke();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) Pause();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (CurrentState == State.Pause) UnPause();
+            else Pause();
+        }
     }
 
     public static void Pause()
     {
-        OnStateChanged.Invoke(State.Pause);
+        Time.timeScale = 0;
+        _instance._pauseStateEvent.TurnOnEvent.Invoke();
+        if (CurrentState == State.Notebook) _lastNormalState = CurrentState;
+        CurrentState = State.Pause;
     }
 
-    public static void SwitchToNotebook()
+    public static void UnPause()
     {
-        OnStateChanged.Invoke(State.Notebook);
+        Time.timeScale = 1;
+        _instance._pauseStateEvent.TurnOffEvent.Invoke();
+        CurrentState = _lastNormalState;
+        Debug.LogError(CurrentState);
+    }
+
+    public static void NotebookOn()
+    {
+        _instance._notebookStateEvent.TurnOnEvent.Invoke();
+        CurrentState = State.Notebook;
+    }
+
+    public static void NotebookOff()
+    {
+        _instance._notebookStateEvent.TurnOffEvent.Invoke();
+        CurrentState = _lastNormalState;
     }
 
     public static void SwitchToSaloon()
