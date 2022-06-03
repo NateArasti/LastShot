@@ -2076,7 +2076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _glassPivot: {fileID: 1571939343}
   _itemContent: {fileID: 2022315110}
-  _drink: {fileID: 11400000, guid: 71108ecb449ae8a41807b48ce403d69c, type: 2}
+  _drink: {fileID: 11400000, guid: 62eb0a984ce4c214dbe6a5fef4f1ff88, type: 2}
 --- !u!1 &1485634976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,7 +2490,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698390765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

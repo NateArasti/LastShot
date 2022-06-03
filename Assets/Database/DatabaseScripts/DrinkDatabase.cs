@@ -27,10 +27,10 @@ public class DrinkDatabase : SpriteDatabase<Drink>
                     ingredient =>
                     {
                         ingredient.Data.ContainingDrinks.Add(drink);
-                    });
 #if UNITY_EDITOR
-                EditorUtility.SetDirty(drink);
+                        EditorUtility.SetDirty(ingredient);
 #endif
+                    });
             });
         drinksCollection.ForEachAction(
             drink =>
@@ -48,10 +48,10 @@ public class DrinkDatabase : SpriteDatabase<Drink>
                     instrument =>
                     {
                         instrument.ContainingDrinks.Add(drink);
-                    });
 #if UNITY_EDITOR
-                EditorUtility.SetDirty(drink);
+                        EditorUtility.SetDirty(instrument);
 #endif
+                    });
             });
         Debug.Log("Successfully filled ingredients containing lists");
     }

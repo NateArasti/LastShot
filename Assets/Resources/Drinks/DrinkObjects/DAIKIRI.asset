@@ -47,7 +47,7 @@ MonoBehaviour:
 
 '
   _receipt:
-    _glassPrefab: {fileID: 0}
+    _glassPrefab: {fileID: 4688351758044794544, guid: 94a3800494f0f6d488db2446ccb790c6, type: 3}
     _instruments:
     - {fileID: 11400000, guid: dd3e6d84d0072f347841fbc9a94857aa, type: 2}
     - {fileID: 11400000, guid: 9bcfdd4cb8031cd41a714ba9496f8c20, type: 2}

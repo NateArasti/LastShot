@@ -75,7 +75,6 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1;
         _instance._pauseStateEvent.TurnOffEvent.Invoke();
         CurrentState = _lastNormalState;
-        Debug.LogError(CurrentState);
     }
 
     public static void NotebookOn()
