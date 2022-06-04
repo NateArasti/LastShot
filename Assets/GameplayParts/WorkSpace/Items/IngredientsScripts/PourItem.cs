@@ -8,17 +8,20 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
 {
     [SerializeField] private Vector2 _minMaxAngles = new(0, 45);
     [SerializeField] private float _rotationSpeed = 1f;
-    [SerializeField] private bool _right;
+    [SerializeField] private float _dropSpawnStartAngle = 70f;
+    [SerializeField] private float _delayBeforeRepeatRotation = .1f;
     [SerializeField] private RectTransform _spawnPivot;
    
     private bool _isDragging;
     private bool _isRotating;
-    private bool _canSpawnDrops;
+    public bool CanSpawnDrops { get; set; } = false;
     private bool _needPauseInRotation;
 
     private Color _color;
+    private float _maxDelayBetweenDrops;
     private float _flowForce; // сила отклонения струи
     private float _rotationAngle;
+    private bool _right;
 
     private Image _image;
     private Canvas _canvas;
@@ -26,7 +29,6 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     private Returner _returner;
     private Coroutine _rotationCoroutine;
     private DropSpawner _spawner;
-    private Vector2 _startPivot;
     private Vector2 _startPosition;
     private Vector2 _jetDirection;
 
@@ -47,12 +49,9 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     {
         _spawner = GameObject.FindGameObjectWithTag("DropSpawner").GetComponent<DropSpawner>();
         _rectTransform = GetComponent<RectTransform>();
-        _startPosition = _rectTransform.anchoredPosition;
-        _startPivot = _rectTransform.pivot;
         _canvas = ItemSpacesStorage.Canvas;
         _returner = GetComponent<Returner>();
         _image = GetComponent<Image>();
-        _canSpawnDrops = true;
         _flowForce = 10f;
     }
 
@@ -77,22 +76,11 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        _canSpawnDrops = false;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        _canSpawnDrops = true;
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (_rotationCoroutine != null)
             StopCoroutine(_rotationCoroutine);
         _rotationCoroutine = StartCoroutine(Rotation());
-
         _returner.enabled = false;
         _isDragging = true;
     }
@@ -116,16 +104,20 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         _isRotating = false;
         if (_rotationCoroutine != null)
             StopCoroutine(_rotationCoroutine);
-        _rectTransform.pivot = _startPivot;
         _rectTransform.anchoredPosition = _startPosition;
         _rectTransform.eulerAngles = Vector3.zero;
     }
 
-    public void SetItem(Sprite icon, Color color)
+    public void SetItem(Sprite icon, Color color, float maxDelayBetweenDrops)
     {
+        _color = color;
+        _maxDelayBetweenDrops = maxDelayBetweenDrops;
+
         _image.sprite = icon;
         _image.SetNativeSize();
-        _color = color;
+        _rectTransform.anchoredPosition += _rectTransform.rect.height * 0.5f * Vector2.up;
+        _rectTransform.pivot = Vector2.one * 0.5f;
+        _startPosition = _rectTransform.anchoredPosition;
     }
 
     public void SetPosition(ItemSpace.ItemSpaceNumber number)
@@ -138,15 +130,20 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         while (true)
         {
             yield return null;
-
-            if (_canSpawnDrops && Math.Abs(ZAngle) > 1)
+            if (CanSpawnDrops && Mathf.Abs(ZAngle) > 1)
             {
-                _spawner.IsDropping = Math.Abs(ZAngle) > 40;
-                _spawner.DropDelay = Math.Abs(ZAngle / (ZAngle * ZAngle));
+                _spawner.IsDropping = Mathf.Abs(ZAngle) > _dropSpawnStartAngle;
+                _spawner.DropDelay = _maxDelayBetweenDrops * (1 - Mathf.Abs(ZAngle) / _minMaxAngles.y);
+            }
+            else
+            {
+                _spawner.IsDropping = false;
+                _spawner.DropDelay = 0;
             }
 
             if (_needPauseInRotation)
-                yield return UnityExtensions.Wait(1);
+                yield return UnityExtensions.Wait(_delayBeforeRepeatRotation);
+            _needPauseInRotation = false;
 
 
             if (!_isRotating)

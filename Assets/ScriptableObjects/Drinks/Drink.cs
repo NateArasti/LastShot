@@ -26,7 +26,7 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     [Space(10f)]
     [SerializeField] private Receipt _receipt;
 
-    public Sprite Sprite
+    public Sprite Icon
     {
         get => _infoData.ObjectSprite;
         set => _infoData.ObjectSprite = value;
@@ -89,6 +89,7 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
     [Serializable]
     public class Receipt
     {
+        [SerializeField] private float _approximateTimeOfMaking = 1f;
         [SerializeField] private GameObject _glassPrefab;
         [SerializeField] private List<Instrument> _instruments;
         [SerializeField] private List<Ingredient> _ingredients;
@@ -98,6 +99,7 @@ public class Drink : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
         public GameObject GlassPrefab => _glassPrefab;
         public IReadOnlyCollection<Ingredient> Ingredients => _ingredients;
         public IReadOnlyCollection<Instrument> Instruments => _instruments;
+        public float ApproximateTimeOfMaking => _approximateTimeOfMaking;
 
         public void AddAction(Type actionType)
         {

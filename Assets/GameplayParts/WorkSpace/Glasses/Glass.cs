@@ -12,7 +12,7 @@ public class Glass : MonoBehaviour
 
     [SerializeField] private Image _glassImage;
     [SerializeField] private Image _glassMask;
-    [SerializeField] private GarnishSpace[] _garnishSpaces;
+    [SerializeField] private ItemSpace[] _garnishSpaces;
     [SerializeField] private GameObject _liquidPrefab;
 
     [Space(50)] [SerializeField] private Sprite _sprite;
@@ -32,11 +32,13 @@ public class Glass : MonoBehaviour
         startLiquid.gameObject.SetActive(true);
         startLiquid.GetComponent<StaticLiquid>().SpawnStartLiquid(_glassMask.rectTransform, _widthHeight);
 
-        ItemSpacesStorage.ConnectGarnsihSpaces(_garnishSpaces);
+        ItemSpacesStorage.ConnectGarnishSpaces(_garnishSpaces);
         var garnishSpacesParent = _garnishSpaces[0].transform.parent;
         garnishSpacesParent.SetParent(transform.parent);
         garnishSpacesParent.SetAsLastSibling();
     }
+
+    public float GetTopPosition() => GetComponent<RectTransform>().rect.yMax;
 
     [ContextMenu("CalculateCurve")]
     private void CalculateCurve()

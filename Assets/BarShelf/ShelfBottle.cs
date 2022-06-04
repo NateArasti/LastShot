@@ -50,7 +50,7 @@ public class ShelfBottle : MonoBehaviour
 
     public void SetAlcohol(Ingredient alcohol, System.Func<Ingredient, ShelfBottle, bool> isCorrectChoose)
     {
-        _image.sprite = alcohol.Sprite;
+        _image.sprite = alcohol.Icon;
         _image.enabled = true;
         var data = alcohol.Data;
         _name.text = data.Name;

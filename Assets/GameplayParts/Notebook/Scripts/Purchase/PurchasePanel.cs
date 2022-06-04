@@ -50,7 +50,7 @@ public class PurchasePanel : MonoBehaviour
         _cost.text = $"{_costPerObject}$";
         _discountCost.text = $"{_costPerObject}$";
 
-        _icon.sprite = ingredient.Sprite;
+        _icon.sprite = ingredient.Icon;
         _name.text = ingredient.Data.Name;
         if (PlayerStorage.TryGetIngredientSumQuantity(ingredient, out var quantity))
         {

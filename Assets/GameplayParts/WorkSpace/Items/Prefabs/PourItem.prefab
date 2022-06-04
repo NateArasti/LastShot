@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 6222663483342751038}
   - component: {fileID: 6222663483342751039}
   - component: {fileID: -2506192611054738130}
-  - component: {fileID: -8705161408889777726}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: PourItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,9 +38,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 492}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 368, y: 980}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6222663483342751009
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -70,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e0386a659110252418472a59722cb4c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -94,7 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minMaxAngles: {x: 0, y: 180}
   _rotationSpeed: 100
-  _right: 0
+  _dropSpawnStartAngle: 70
+  _delayBeforeRepeatRotation: 0.5
   _spawnPivot: {fileID: 6222663484390935136}
 --- !u!114 &-2506192611054738130
 MonoBehaviour:
@@ -108,22 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2ebbdff9f53524d8681caff4115d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &-8705161408889777726
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6222663483342751037}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -3, y: 220}
-  serializedVersion: 2
-  m_Radius: 40
 --- !u!1 &6222663484390935137
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +117,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6222663484390935136}
-  m_Layer: 5
+  - component: {fileID: 5909419759497181077}
+  - component: {fileID: 9047503373025179663}
+  m_Layer: 7
   m_Name: pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,3 +146,71 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &5909419759497181077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222663484390935137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590489a644cdcc84c8a198ddd9e0b2b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6222663483342751039}
+        m_TargetAssemblyTypeName: PourItem, Assembly-CSharp
+        m_MethodName: set_CanSpawnDrops
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  _triggerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6222663483342751039}
+        m_TargetAssemblyTypeName: PourItem, Assembly-CSharp
+        m_MethodName: set_CanSpawnDrops
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!61 &9047503373025179663
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222663484390935137}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 50, y: 50}
+  m_EdgeRadius: 0

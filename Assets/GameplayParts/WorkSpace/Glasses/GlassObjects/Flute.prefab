@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 3098133277002394575, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -7467826278396169865, guid: ea8d3bdd2f7b69c4c95b38346e3a90d5, type: 3}
+      objectReference: {fileID: 7816626053372825801, guid: ea8d3bdd2f7b69c4c95b38346e3a90d5, type: 3}
     - target: {fileID: 3098133278082450100, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 88
@@ -87,10 +87,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 248
       objectReference: {fileID: 0}
+    - target: {fileID: 3098133278082450100, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 3098133278082450103, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4833366927670385732, guid: ea8d3bdd2f7b69c4c95b38346e3a90d5, type: 3}
+    - target: {fileID: 3098133278082450105, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
+      propertyPath: m_ShowMaskGraphic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3098133278672876436, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -161,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3098133278672876436, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3098133278672876436, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -182,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 3098133278672876439, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -7467826278396169865, guid: ea8d3bdd2f7b69c4c95b38346e3a90d5, type: 3}
+      objectReference: {fileID: 7816626053372825801, guid: ea8d3bdd2f7b69c4c95b38346e3a90d5, type: 3}
     - target: {fileID: 3871618285292731549, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: _sprite
       value: 

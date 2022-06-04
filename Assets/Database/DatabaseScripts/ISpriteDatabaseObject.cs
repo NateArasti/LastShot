@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface ISpriteDatabaseObject
 {
-    Sprite Sprite { get; set; }
+    Sprite Icon { get; set; }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
 {
+    [Space(10f)]
     [SerializeField] private string _keyName;
     [SerializeField] private IngredientInfoData _infoData;
 
@@ -29,16 +30,19 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
     public abstract bool CanPlaceInThisSpace(ItemSpace.ItemSpaceType type);
 
     public abstract GameObject SpawnWorkItem(Transform container);
-    public bool TakeMousePosition() => Type == IngredientTypeData.IngredientType.Drop;
+    public bool TakeMousePosition() => Type != IngredientTypeData.IngredientType.Pour;
+    public virtual Sprite GarnishSprite => null;
 
-    public Sprite Sprite
+    public Sprite Icon
     {
         get => _infoData.ObjectSprite;
         set => _infoData.ObjectSprite = value;
     }
 
+    public Sprite WorkSprite => Data.SpriteInWork == null ? Icon : Data.SpriteInWork;
 
-    [System.Serializable]
+
+    [Serializable]
     public class IngredientInfoData : InfoData
     {
         public enum ClassType
@@ -54,10 +58,12 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
             Pieces
         }
 
+        [SerializeField, Tooltip("If not set, simple sprite will be used")] private Sprite _workSprite;
         [SerializeField] private CountType _countType;
         [SerializeField] private float _buyQuantityStep;
         [SerializeField] private int _costPerObject;
         [SerializeField] private bool _ignorePurchase;
+        [SerializeField] private bool _garnishable;
         [SerializeField] private ClassType _class;
         [SerializeField] private List<Drink> _containingDrinks;
 
@@ -76,6 +82,10 @@ public abstract class Ingredient : ScriptableObject, IDatabaseObject, ISpriteDat
         public CountType TypeOfCount => _countType;
 
         public bool IgnorePurchase => _ignorePurchase;
+
+        public Sprite SpriteInWork => _workSprite;
+
+        public bool Garnishable => _garnishable;
 
         public void ParseData(string name, int costPerObject, float buyQuantityStep)
         {

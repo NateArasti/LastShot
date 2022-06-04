@@ -20,12 +20,15 @@ MonoBehaviour:
       \u0435\u0433\u043E \u0440\u0435\u0446\u0435\u043F\u0442\u043E\u043C \u0440\u0430\u0431\u043E\u0442\u0430\u043B\u0438
       10 \u043B\u0435\u0442\u2026 \u041D\u0435 \u0437\u0440\u044F \u0440\u0430\u0431\u043E\u0442\u0430\u043B\u0438,
       \u043E\u0445 \u043A\u0430\u043A \u043D\u0435 \u0437\u0440\u044F."
+    _workSprite: {fileID: 0}
     _countType: 0
     _buyQuantityStep: 1
     _costPerObject: 17
     _ignorePurchase: 0
+    _garnishable: 0
     _class: 0
     _containingDrinks:
     - {fileID: 11400000, guid: a0d5dc2684cbe3c42ae2649302544a4b, type: 2}
     - {fileID: 11400000, guid: 3e25b20a18a378a479c680611ed94d2e, type: 2}
-  _mainColor: {r: 0, g: 0, b: 0, a: 0}
+  _mainColor: {r: 0.7145215, g: 0.7830189, b: 0.6825561, a: 0.2509804}
+  _maxDelayBetweenDrops: 0.05

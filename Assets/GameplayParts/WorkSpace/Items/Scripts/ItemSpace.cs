@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
+[RequireComponent(typeof(Image), typeof(CanvasGroup))]
 public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public enum ItemSpaceNumber
@@ -22,29 +22,31 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] private ItemSpaceType _type;
     [SerializeField] private ItemSpaceNumber _number;
     [SerializeField] private RectTransform _itemSpawnPivot;
-
-    [SerializeField] private bool _canPlace = true;
+    private bool _canPlace = true;
+    private Color _simpleColor;
     private Color _errorColor;
     private Color _highlightedColor;
-
     private Image _image;
+    private CanvasGroup _canvasGroup;
 
-    private Color _simpleColor;
-
-    private void Awake()
+    private void Start()
     {
         _image = GetComponent<Image>();
+        _canvasGroup = GetComponent<CanvasGroup>();
         (_simpleColor, _highlightedColor, _errorColor) = ItemSpacesStorage.GetColors();
+        Disable();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(!_canPlace) return;
+        _image.color = DragItem.CanPlaceCurrent(_type) ? _highlightedColor : _errorColor;
         DragItem.OnDragDrop.AddListener(PlaceItem);
-        _image.color = _highlightedColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!_canPlace) return;
         _image.color = _simpleColor;
         DragItem.OnDragDrop.RemoveListener(PlaceItem);
     }
@@ -58,17 +60,45 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (_canPlace && item.Item.CanPlaceInThisSpace(_type))
         {
+            if (_type == ItemSpaceType.Garnish)
+            {
+                _canPlace = false;
+                _image.sprite = item.Item.GarnishSprite;
+                _image.SetNativeSize();
+                _image.color = Color.white;
+            }
+
             var spawnWorkItem = item.Item.SpawnWorkItem(_itemSpawnPivot);
 
             if (item.Item.TakeMousePosition())
             {
                 spawnWorkItem.transform.position = item.transform.position;
+                if (spawnWorkItem.TryGetComponent<DropItem>(out var dropItem))
+                {
+                    dropItem.TrySpawnDuplicates();
+                }
                 return;
             }
 
+            spawnWorkItem.transform.SetAsLastSibling();
+
             spawnWorkItem.GetComponent<PourItem>().SetPosition(_number);
             spawnWorkItem.GetComponent<Returner>().OnReturn.AddListener(DeleteItem);
+            _image.color = _simpleColor;
+            _canvasGroup.alpha = 0;
             _canPlace = false;
         }
+    }
+
+    public void Enable()
+    {
+        if (!_canPlace) return;
+        _canvasGroup.alpha = 1;
+    }
+
+    public void Disable()
+    {
+        if(!_canPlace) return;
+        _canvasGroup.alpha = 0;
     }
 }

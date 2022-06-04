@@ -6,13 +6,15 @@ using UnityEngine;
 public class StaticLiquid : MonoBehaviour
 {
     private const float Spring = 0.02f; // скорость волны
-    private const float Damping = 0.04f; // чем меньше тем выше волна
+    private const float Damping = 0.1f; // чем меньше тем выше волна
     private const float Spread = 0.05f;
+    private const float MaxVelocityDelta = 0.0f;
 
     [SerializeField] private int _edgeCount;
     [SerializeField] private LiquidTrigger _trigger;
     [SerializeField] private int _density;
     [SerializeField] private float _relaxation;
+    [SerializeField] private float _increaseSpeed = 0.1f;
     private readonly List<Vector2> _uvs = new();
     private float[] _accelerations;
     private float _baseHeight = 0.1f;
@@ -27,6 +29,8 @@ public class StaticLiquid : MonoBehaviour
     private float[] _velocities;
     private Vector3[] _vertices;
     private AnimationCurve _widthCurve;
+
+    private float _targetHeight;
 
     private void Awake()
     {
@@ -72,6 +76,8 @@ public class StaticLiquid : MonoBehaviour
 
         _trigger.OnHit.AddListener(Splash);
         _trigger.ReColor.AddListener(UpdateColor);
+        _targetHeight = _rect.height;
+        StartCoroutine(FadeVolumeIncrease());
     }
 
     private void Splash(float x, float force = 0.3f, float volume = 0f)
@@ -81,18 +87,17 @@ public class StaticLiquid : MonoBehaviour
             var a = Mathf.RoundToInt((x - _rect.x) / _distanceBetweenVertices);
             _velocities[2 * a + 1] -= force;
 
-            StartCoroutine(FadeVolumeIncrease(_rect.height + volume * _currentWidth / _rect.width));
+            //print(volume);
+            _targetHeight += volume * _currentWidth / _rect.width;
         }
-
-        StopAllCoroutines();
     }
 
-    private IEnumerator FadeVolumeIncrease(float targetHeight)
+    private IEnumerator FadeVolumeIncrease()
     {
-        var delta = Mathf.Lerp(_rect.height, targetHeight, Time.deltaTime) - _rect.height;
-        while (targetHeight > _rect.height)
+        while (true)
         {
-            for (var i = 1; i < _velocities.Length; i += 2)
+            var delta = Mathf.MoveTowards(_rect.height, _targetHeight, _increaseSpeed * Time.deltaTime) - _rect.height;
+            for (var i = 1; i < _vertices.Length; i += 2)
                 _vertices[i].y += delta;
             _rect.height += delta;
             yield return null;

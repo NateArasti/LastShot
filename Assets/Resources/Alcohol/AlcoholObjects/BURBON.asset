@@ -22,10 +22,12 @@ MonoBehaviour:
       \xABBonded\xBB. \u0412\u0438\u0434\u0438\u043C\u043E, \u044D\u0442\u043E \u0435\u0449\u0435
       \u043E\u0434\u043D\u0430 \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u043D\u0430
       \u043F\u043E\u0434\u043B\u0438\u043D\u043D\u043E\u0441\u0442\u044C."
+    _workSprite: {fileID: 0}
     _countType: 0
     _buyQuantityStep: 1
     _costPerObject: 29
     _ignorePurchase: 0
+    _garnishable: 0
     _class: 0
     _containingDrinks:
     - {fileID: 11400000, guid: a0fcb691885e1784caebbdcd5bb9e6d8, type: 2}
@@ -34,4 +36,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 68cd2b765128f5c48a02c365ace46740, type: 2}
     - {fileID: 11400000, guid: edc618ffe5f519742842e4ca11f48621, type: 2}
     - {fileID: 11400000, guid: 79c23dc0bfadfb34bba97494ad98f854, type: 2}
-  _mainColor: {r: 0, g: 0, b: 0, a: 0}
+  _mainColor: {r: 0.54509807, g: 0.4039216, b: 0.2509804, a: 0.6}
+  _maxDelayBetweenDrops: 0.05

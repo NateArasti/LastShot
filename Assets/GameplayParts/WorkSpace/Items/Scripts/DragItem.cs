@@ -3,31 +3,47 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(RectTransform), typeof(CanvasGroup), typeof(Image))]
+[RequireComponent(
+    typeof(RectTransform),
+    typeof(CanvasGroup), 
+    typeof(Image))]
 public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
+    private static DragItem _currentDragItem;
     public static UnityEvent<DragItem> OnDragDrop = new();
+
     private Canvas _canvas;
     private CanvasGroup _canvasGroup;
 
     private ListItem _parentListItem;
     private RectTransform _rectTransform;
+    private Image _image;
+
     public Ingredient Item => _parentListItem.Item;
+
+    public static bool CanPlaceCurrent(ItemSpace.ItemSpaceType type) => 
+        _currentDragItem != null && _currentDragItem.Item.CanPlaceInThisSpace(type);
 
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        _canvas = GameObject.FindGameObjectWithTag("WorkSpaceCanvas").GetComponent<Canvas>();
+        _image = GetComponent<Image>();
+        _canvas = ItemSpacesStorage.Canvas;
         _canvasGroup = GetComponent<CanvasGroup>();
         _parentListItem = transform.parent.GetComponent<ListItem>();
+        _canvasGroup.alpha = 0;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Awake();
+        _currentDragItem = this;
         Instantiate(gameObject, transform.parent);
-        GetComponent<Image>().SetNativeSize();
-        transform.SetParent(_canvas.transform);
+        _image.SetNativeSize();
+        _rectTransform.SetParent(_canvas.transform);
+        _rectTransform.SetAsLastSibling();
         _canvasGroup.blocksRaycasts = false;
+        _canvasGroup.alpha = 1;
         ItemSpacesStorage.SetSpacesActive(true);
     }
 
@@ -38,6 +54,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //_currentDragItem = null;
         OnDragDrop.Invoke(this);
         OnDragDrop.RemoveAllListeners();
         ItemSpacesStorage.SetSpacesActive(false);

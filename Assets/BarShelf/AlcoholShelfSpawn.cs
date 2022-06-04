@@ -55,7 +55,7 @@ public class AlcoholShelfSpawn : MonoBehaviour
             if (_chosenAlcohols[i].shelfBottle == null) continue;
             _chosenAlcohols[i].shelfBottle = shelfBottle;
             _chosenAlcohols[i].iconImage.enabled = true;
-            _chosenAlcohols[i].iconImage.sprite = alcohol.Sprite;
+            _chosenAlcohols[i].iconImage.sprite = alcohol.Icon;
             _chosenAlcohols[i].button.interactable = true;
             var j = i;
             _chosenAlcohols[i].button.onClick.AddListener(() => Unchoose(j));

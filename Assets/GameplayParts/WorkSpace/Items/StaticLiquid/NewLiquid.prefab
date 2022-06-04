@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f4d6cdefef6dd4e9cb61b7e51d0a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0, g: 0, b: 0, a: 0}
+  _triggerTopOffset: 0.1
 --- !u!1 &5241163772247465278
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   _trigger: {fileID: 5241163771928771800}
   _density: 1
   _relaxation: 1
-  _topOffset: 2
+  _increaseSpeed: 10
 --- !u!33 &5241163772247465251
 MeshFilter:
   m_ObjectHideFlags: 0

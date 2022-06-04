@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2471280567729050500, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Points.Array.data[0].x
-      value: -27.772156
+      value: -28.799744
       objectReference: {fileID: 0}
     - target: {fileID: 2471280567729050500, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Points.Array.data[0].y
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2471280567729050500, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Points.Array.data[2].x
-      value: 27.153862
+      value: 27.83892
       objectReference: {fileID: 0}
     - target: {fileID: 2471280567729050500, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Points.Array.data[2].y
@@ -54,7 +54,7 @@ PrefabInstance:
     - target: {fileID: 3098133277002394575, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5904746943230375324, guid: a7d3371acc3e609408eb569d70d5d99f, type: 3}
+      objectReference: {fileID: -8214406227550798238, guid: a7d3371acc3e609408eb569d70d5d99f, type: 3}
     - target: {fileID: 3098133278082450100, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 56
@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3098133278672876436, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3098133278672876436, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -157,12 +157,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3098133278672876437, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Name
-      value: "Glass(\u0440\u044E\u043C\u043A\u0430)"
+      value: Shot
       objectReference: {fileID: 0}
     - target: {fileID: 3098133278672876439, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5904746943230375324, guid: a7d3371acc3e609408eb569d70d5d99f, type: 3}
+      objectReference: {fileID: -8214406227550798238, guid: a7d3371acc3e609408eb569d70d5d99f, type: 3}
     - target: {fileID: 3871618285292731549, guid: 9010b1682c3c2ad4a9c71ead608e2ce9, type: 3}
       propertyPath: _sprite
       value: 

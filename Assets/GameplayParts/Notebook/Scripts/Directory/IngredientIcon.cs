@@ -15,12 +15,12 @@ public class IngredientIcon : MonoBehaviour
 
     public void SetData(Ingredient ingredient, UnityAction<Ingredient> chooseAction)
     {
-        _icon.sprite = ingredient.Sprite;
+        _icon.sprite = ingredient.Icon;
         _button.onClick.AddListener(() => chooseAction.Invoke(ingredient));
     }
     public void SetData(Instrument instrument, UnityAction<Instrument> chooseAction)
     {
-        _icon.sprite = instrument.Sprite;
+        _icon.sprite = instrument.Icon;
         _button.onClick.AddListener(() => chooseAction.Invoke(instrument));
     }
 }

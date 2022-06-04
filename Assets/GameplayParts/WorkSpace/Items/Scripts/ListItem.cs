@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+
 class ListItem : MonoBehaviour
 {
-    [SerializeField] private Sprite _simpleSprite;
-    [SerializeField] private Sprite _chosenSprite;
-    [Space(20f)]
+    [SerializeField] private Ingredient _overridenIngredient;
     [SerializeField] private Image _icon;
     [SerializeField] private Image _dragItemIcon;
 
     public Ingredient Item { get; private set; }
 
+    private void Start()
+    {
+        if (_overridenIngredient == null) return;
+        SetItem(_overridenIngredient);
+    }
 
     public void SetItem(Ingredient item)
     {
         Item = item;
-        _icon.sprite = item.Sprite;
-        _dragItemIcon.sprite = item.Sprite;
+        _icon.sprite = item.Icon;
+        _dragItemIcon.sprite = item.WorkSprite;
     }
 }

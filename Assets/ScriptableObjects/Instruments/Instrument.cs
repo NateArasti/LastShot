@@ -28,7 +28,7 @@ public class Instrument : ScriptableObject, IDatabaseObject, ISpriteDatabaseObje
     {
     }
 
-    public Sprite Sprite
+    public Sprite Icon
     {
         get => Data.ObjectSprite;
         set => Data.ObjectSprite = value;

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class WaterDrop : MonoBehaviour
 {
-    public const float Mass = 2f;
+    public const float Mass = 0.05f;
 
     public readonly UnityEvent<WaterDrop> KillAction = new();
 
@@ -18,6 +18,17 @@ public class WaterDrop : MonoBehaviour
             if (_rigidbody == null) Awake();
 
             _rigidbody.velocity = value;
+        }
+    }
+
+    private float _currentMass = Mass;
+    public float CurrentMass
+    {
+        get
+        {
+            var res = _currentMass;
+            _currentMass = 0;
+            return res;
         }
     }
 
@@ -36,5 +47,6 @@ public class WaterDrop : MonoBehaviour
         yield return UnityExtensions.Wait(0.01f);
         KillAction.Invoke(this);
         KillAction.RemoveAllListeners();
+        _currentMass = Mass;
     }
 }

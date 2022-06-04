@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b353ba13b9dede49b6ee08a975c6aff, type: 3}
+  m_Script: {fileID: 11500000, guid: 599807c86281c154f9ae29f85a155a60, type: 3}
   m_Name: SALT
   m_EditorClassIdentifier: 
   _keyName: SALT
@@ -18,10 +18,12 @@ MonoBehaviour:
     _name: "\u0421\u043E\u043B\u044C"
     _description: "\u0413\u043B\u0430\u0432\u043D\u043E\u0435 \u043D\u0435 \u0441\u044B\u043F\u0430\u0442\u044C
       \u0435\u0435 \u043D\u0430 \u0440\u0430\u043D\u0443."
+    _workSprite: {fileID: 0}
     _countType: 1
     _buyQuantityStep: 1000
     _costPerObject: 2
     _ignorePurchase: 0
+    _garnishable: 0
     _class: 1
     _containingDrinks:
     - {fileID: 11400000, guid: 8624e2efd3c32aa47bed19fb783cfde3, type: 2}
@@ -29,5 +31,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3b926832edaff31498bb98c2a5101177, type: 2}
     - {fileID: 11400000, guid: ff1d4cdedc8bd7845a13b9f6550ab6c5, type: 2}
     - {fileID: 11400000, guid: 4b5eaaf471398664f80c4540866f5f43, type: 2}
-  _mass: 0
-  _float: 0
+  _color: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}

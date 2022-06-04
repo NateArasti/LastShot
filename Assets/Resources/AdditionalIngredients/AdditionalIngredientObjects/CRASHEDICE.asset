@@ -16,12 +16,14 @@ MonoBehaviour:
   _infoData:
     _sprite: {fileID: 21300000, guid: 8cdc011f17b3cd44694d507503a2cf7a, type: 3}
     _name: "\u0414\u0440\u043E\u0431\u043B\u0435\u043D\u044B\u0439 \u043B\u0435\u0434"
-    _description: "\u041A\u0442\u043E \u043B\u0435\u0434 \u0440\u0430\u0437\u044A\u0435\u0431\u0430\u043B
-      \u0431\u043B\u044F\u0442\u044C."
+    _description: "\u041B\u043E\u043C\u0430\u0439, \u043B\u043E\u043C\u0430\u0439,
+      \u043C\u044B \u0436\u0435 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u0435\u0440\u044B..."
+    _workSprite: {fileID: 0}
     _countType: 1
     _buyQuantityStep: 0
     _costPerObject: 0
     _ignorePurchase: 1
+    _garnishable: 0
     _class: 1
     _containingDrinks:
     - {fileID: 11400000, guid: cf4be5783f3549b4eb2ad76cde475c44, type: 2}
@@ -30,5 +32,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21e5e969ca385884ca61cda74dc41d68, type: 2}
     - {fileID: 11400000, guid: 4ff47f0e6bbba5e468dd9fcbd3c3e628, type: 2}
     - {fileID: 11400000, guid: 59dfc75aac5738e41b5b7c6f8c4e83e9, type: 2}
-  _mass: 0
-  _float: 0
+  _mass: 0.1
+  _volume: 1.5
+  _additionalSpawnCount: 12
+  _rigidbodyTurnOffDelay: 5

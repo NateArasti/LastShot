@@ -11,6 +11,7 @@ public class DrinkInfoPage : MonoBehaviour
     [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _tags;
     [SerializeField] private TMP_Text _description;
+    [SerializeField] private TMP_Text _price;
     [SerializeField] private TMP_Text _textReceipt;
     [SerializeField] private IngredientIcon _ingredientIconPrefab;
     [SerializeField] private UnityEvent<Ingredient> _ingredientChoose;
@@ -31,6 +32,7 @@ public class DrinkInfoPage : MonoBehaviour
         _tags.text = string.Join(" / ", infoData.Tags.Select(drinkTag => drinkTag.ToString()));
         _description.text = infoData.Description;
         _textReceipt.text = infoData.TextReceipt;
+        _price.text = $"Цена: {drink.InfoData.Cost}$";
 
         _contentFiller.FillContent(
             _ingredientIconPrefab, 

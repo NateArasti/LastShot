@@ -21,10 +21,23 @@ MonoBehaviour:
     _textReceipt: 
     _locked: 0
     _cost: 0
+  _coefficients:
+    _coefsString: 
   _receipt:
-    _glassPrefab: {fileID: 0}
+    _approximateTimeOfMaking: 10
+    _glassPrefab: {fileID: 1531874527851521329, guid: 55c93f9e89716364189ab6b6096b27e6, type: 3}
     _instruments: []
-    _ingredients: []
+    _ingredients:
+    - {fileID: 11400000, guid: d6c9597e76e531842b5b9037219492de, type: 2}
+    - {fileID: 11400000, guid: 08cda4e7cd6e9274facc80dce02bc517, type: 2}
+    - {fileID: 11400000, guid: 656ed4777e18e54408a0e3f62b1bea26, type: 2}
+    - {fileID: 11400000, guid: f97032ebb3659fa4582e2ba76a96a98f, type: 2}
+    - {fileID: 11400000, guid: 9a5f6cc21521f3d48b727a1a47d951d6, type: 2}
+    - {fileID: 11400000, guid: 3052f4639b8d3fe49b85687814def88f, type: 2}
+    - {fileID: 11400000, guid: 374d882eaee3743428d732de09341c74, type: 2}
+    - {fileID: 11400000, guid: ae0ebbce20a7ece4c865a7d13e8db0d1, type: 2}
+    - {fileID: 11400000, guid: be7060afd000bcf48948ce791aff8edb, type: 2}
+    - {fileID: 11400000, guid: dad5a69e1b0b13c44a1c323c5ff38877, type: 2}
     _perfectActions: []
   references:
     version: 2

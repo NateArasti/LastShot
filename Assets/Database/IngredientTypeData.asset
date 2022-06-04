@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297d576d20b74bf44946e961cba0c285, type: 3}
   m_Name: IngredientTypeData
   m_EditorClassIdentifier: 
-  _isInstance: 0
   _datas:
   - _type: 0
     _prefab: {fileID: 6222663483342751037, guid: 46ab06f5afe847e41a2a6f85444c51ce, type: 3}
   - _type: 1
     _prefab: {fileID: 371453097685146764, guid: 58d699eeaeb0a59409614510141ea70e, type: 3}
+  - _type: 2
+    _prefab: {fileID: 1800372062307820109, guid: 1421ffe5252401b4d9f9f605b4f287a9, type: 3}

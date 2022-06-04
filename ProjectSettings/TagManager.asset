@@ -8,6 +8,7 @@ TagManager:
   - WorkSpaceCanvas
   - WaterDropPrefab
   - DropSpawner
+  - GlassSpace
   layers:
   - Default
   - TransparentFX

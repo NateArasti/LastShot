@@ -11,7 +11,7 @@ public class SpriteDatabase<T> : Database<T> where T : Object, IDatabaseObject, 
         {
             if (TryGetValue(sprite.name, out var obj))
             {
-                obj.Sprite = sprite;
+                obj.Icon = sprite;
 #if UNITY_EDITOR
                 EditorUtility.SetDirty(obj);
 #endif

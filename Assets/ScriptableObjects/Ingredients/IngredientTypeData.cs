@@ -7,6 +7,7 @@ public class IngredientTypeData : ScriptableSingleton
     {
         Pour,
         Drop,
+        ParticleDrop
     }
 
     private static IngredientTypeData _instance;

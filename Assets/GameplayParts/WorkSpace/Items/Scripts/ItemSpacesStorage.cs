@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Canvas))]
@@ -5,7 +7,7 @@ public class ItemSpacesStorage : MonoBehaviour
 {
     private static ItemSpacesStorage _instance;
 
-    [SerializeField] private ItemSpace[] _itemSpaces;
+    [SerializeField] private List<ItemSpace> _itemSpaces;
     [SerializeField] private Color _simpleColor;
     [SerializeField] private Color _highlightedColor;
     [SerializeField] private Color _errorColor;
@@ -27,7 +29,8 @@ public class ItemSpacesStorage : MonoBehaviour
         }
     }
 
-    public static void ConnectGarnsihSpaces(GarnishSpace[] garnishSpaces) => _instance._garnishSpaces = garnishSpaces;
+    public static void ConnectGarnishSpaces(ItemSpace[] garnishSpaces) => 
+        _instance._itemSpaces.AddRange(garnishSpaces);
 
     public static void DisconnectGarnishSpaces()
     {
@@ -36,7 +39,7 @@ public class ItemSpacesStorage : MonoBehaviour
             if (garnishSpace.Garnished) continue;
             garnishSpace.gameObject.SetActive(false);
         }
-        _instance._garnishSpaces = new GarnishSpace[0];
+        _instance._garnishSpaces = Array.Empty<GarnishSpace>();
     }
 
     public static (Color simpleColor, Color highlightedColor, Color errorColor) GetColors() => 
@@ -46,12 +49,10 @@ public class ItemSpacesStorage : MonoBehaviour
     {
         foreach(var space in _instance._itemSpaces)
         {
-            space.gameObject.SetActive(active);
-            space.OnPointerExit(null);
-        }
-        foreach (var space in _instance._garnishSpaces)
-        {
-            space.gameObject.SetActive(active);
+            if(active)
+                space.Enable();
+            else
+                space.Disable();
             space.OnPointerExit(null);
         }
     }

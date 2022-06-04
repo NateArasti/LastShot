@@ -4,10 +4,10 @@
 public struct ContentStorage
 {
     [SerializeField] private ItemContent.ItemType _type;
-    [SerializeField] private GameObject _contentPanel;
+    [SerializeField] private RectTransform _contentPanel;
     [SerializeField] private string _typeName;
 
     public ItemContent.ItemType Type => _type;
-    public GameObject ContentPanel => _contentPanel;
+    public RectTransform ContentPanel => _contentPanel;
     public string TypeName => _typeName;
 }

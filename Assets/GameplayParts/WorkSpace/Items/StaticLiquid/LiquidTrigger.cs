@@ -4,7 +4,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider2D))]
 public class LiquidTrigger : MonoBehaviour
 {
-    public Color _color;
+    [SerializeField] private float _triggerTopOffset = 0.1f;
+    //public Color Color;
 
     public readonly UnityEvent<float, float, float> OnHit = new();
     public readonly UnityEvent<Color> ReColor = new();
@@ -23,16 +24,16 @@ public class LiquidTrigger : MonoBehaviour
         var x = col.transform.position.x;
         if (col.TryGetComponent<DropItem>(out var dropItem))
         {
-            OnHit.Invoke(x, dropItem.Mass / 2, dropItem.Mass);
+            OnHit.Invoke(x, dropItem.Force, dropItem.Volume);
         }
         else if (col.TryGetComponent<WaterDrop>(out var waterDrop))
         {
             ReColor.Invoke(waterDrop.DropColor);
 
             if (_smthLies)
-                OnHit.Invoke(x, 0.1f, WaterDrop.Mass * 2); // доп увеличение объема воды при соприкосновении с кубиком
+                OnHit.Invoke(x, 0.1f, waterDrop.CurrentMass * 2); // доп увеличение объема воды при соприкосновении с кубиком
             else
-                OnHit.Invoke(x, 0.1f, WaterDrop.Mass);
+                OnHit.Invoke(x, 0.1f, waterDrop.CurrentMass);
         }
     }
 
@@ -43,16 +44,15 @@ public class LiquidTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        _smthLies = true;
+        if (other.TryGetComponent<DropItem>(out var mass)) _smthLies = true;
     }
 
     public void SetTriggerBounds(float width, float topPosition, float xOffset = 0)
     {
         var height = _boxCollider.size.y;
         _boxCollider.size = new Vector2(width, height);
-        if (xOffset == 0)
-            _boxCollider.offset = new Vector2(_boxCollider.offset.x, topPosition - height / 2);
-        else
-            _boxCollider.offset = new Vector2(xOffset, topPosition - height / 2);
+        _boxCollider.offset =
+            new Vector2(xOffset == 0 ? _boxCollider.offset.x : xOffset, 
+                topPosition - height / 2 + _triggerTopOffset);
     }
 }
