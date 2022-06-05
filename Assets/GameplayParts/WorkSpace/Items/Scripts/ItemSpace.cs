@@ -98,6 +98,14 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (!instrument.CanPlaceInSpace(_type)) return;
         var spawnedInstrument = Instantiate(instrument.Prefab, _itemSpawnPivot);
+        if (spawnedInstrument.TryGetComponent<ShakerGlass>(out var shakerGlass))
+        {
+            spawnedInstrument.transform.SetAsLastSibling();
+            _image.color = _simpleColor;
+            _canvasGroup.alpha = 0;
+            _canPlace = false;
+            shakerGlass.SetUp(DeleteItem, _number);
+        }
     }
 
     public void Enable()

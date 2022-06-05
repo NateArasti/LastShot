@@ -11,20 +11,23 @@ public class LiquidRenderer : MonoBehaviour
     private GradientAlphaKey[] _alphaKeys;
     private bool _firstGradientUpdate = true;
     private MeshRenderer _renderer;
+    private Material _material;
 
     public Color TopColor => _previousGradient.Evaluate(1).GetRGB();
+    public Gradient CurrentGradient => _previousGradient;
 
     private void Awake()
     {
         _renderer = GetComponent<MeshRenderer>();
+        _material = _renderer.material;
     }
 
-    public void SmoothLiquid(float step)
+    public static (GradientColorKey[] colorKeys, GradientAlphaKey[] alphaKeys) GetGradientSmoothing(float step, Gradient gradient)
     {
-        var length = _previousGradient.colorKeys.Length;
-        var colorKeys = _previousGradient.colorKeys;
-        var alphaKeys = _previousGradient.alphaKeys;
-        var averageColor = new Vector4(0,0,0,0);
+        var length = gradient.colorKeys.Length;
+        var colorKeys = gradient.colorKeys;
+        var alphaKeys = gradient.alphaKeys;
+        var averageColor = new Vector4(0, 0, 0, 0);
         for (var i = 0; i < length; i++)
         {
             var currentColor = colorKeys[i].color;
@@ -40,6 +43,13 @@ public class LiquidRenderer : MonoBehaviour
             colorKeys[i].color = Color.Lerp(colorKeys[i].color, endColor.GetRGB(), step);
             alphaKeys[i].alpha = Mathf.Lerp(alphaKeys[i].alpha, endColor.a, step);
         }
+
+        return (colorKeys, alphaKeys);
+    }
+
+    public void SmoothLiquid(float step)
+    {
+        var (colorKeys, alphaKeys) = GetGradientSmoothing(step, _previousGradient);
         _previousGradient.SetKeys(colorKeys, alphaKeys);
         UpdateTexture();
     }
@@ -71,17 +81,15 @@ public class LiquidRenderer : MonoBehaviour
     public void UpdateTexture()
     {
         var gradientTexture = GenerateTexture();
-        var material = _renderer.sharedMaterial;
-        material.SetTexture(GradientTexture, gradientTexture);
+        _material.SetTexture(GradientTexture, gradientTexture);
     }
 
     public void UpdateGradient(Color color, float liquidHeight)
     {
-        var gck = new GradientColorKey[2];
-        var gak = new GradientAlphaKey[2];
-
         if (_firstGradientUpdate)
         {
+            var gck = new GradientColorKey[2];
+            var gak = new GradientAlphaKey[2];
             for (var i = 0; i < gck.Length; i++)
             {
                 gck[i].color = color;
@@ -125,7 +133,6 @@ public class LiquidRenderer : MonoBehaviour
         for (var i = 0; i < keyLength - 1; i++)
             newColorHeight[i] = _colorHeight[i];
         newColorHeight[^1] = liquidHeight;
-
         for (var i = 0; i < keyLength; i++)
         {
             var position = newColorHeight[i] / liquidHeight;

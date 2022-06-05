@@ -29,7 +29,7 @@ MonoBehaviour:
       \u043B\u0438\u043A\u0435\u0440 15 \u043C\u043B, \u043B\u0438\u043C\u043E\u043D\u043D\u044B\u0439
       \u0441\u043E\u043A 15 \u043C\u043B \u0438 \u043A\u043E\u043D\u044C\u044F\u043A
       15 \u043C\u043B"
-    _locked: 0
+    _locked: 1
     _cost: 5
   _coefficients:
     _coefsString: 'Strong: 0,6

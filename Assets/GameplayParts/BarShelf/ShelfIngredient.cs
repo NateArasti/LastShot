@@ -24,7 +24,7 @@ public class ShelfIngredient : MonoBehaviour
     public void SetIngredient(Ingredient ingredient, UnityAction<Ingredient> chooseAction)
     {
         _ingredient = ingredient;
-        _tooltipTrigger._name = ingredient.Data.Name;
+        _tooltipTrigger.Name = ingredient.Data.Name;
         _image.sprite = ingredient.Data.ObjectSprite;
         _image.SetNativeSize();
         _button.onClick.AddListener(() => chooseAction.Invoke(_ingredient));

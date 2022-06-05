@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SHAKER
   m_EditorClassIdentifier: 
   _keyName: SHAKER
+  _prefab: {fileID: 8306698181069424450, guid: 0a9cb0ef438397d43a46af37004ac00c, type: 3}
+  _allowableSpaceType: 2
   _infoData:
     _sprite: {fileID: 21300000, guid: cfea16ca91bffad4a8773528483990fd, type: 3}
     _name: "\u0428\u0435\u0439\u043A\u0435\u0440"

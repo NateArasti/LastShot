@@ -8,7 +8,6 @@ public class StaticLiquid : MonoBehaviour
     private const float Spring = 0.02f; // скорость волны
     private const float Damping = 0.1f; // чем меньше тем выше волна
     private const float Spread = 0.05f;
-    private const float MaxVelocityDelta = 0.0f;
 
     [SerializeField] private int _edgeCount;
     [SerializeField] private LiquidTrigger _trigger;

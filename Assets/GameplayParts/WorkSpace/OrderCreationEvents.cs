@@ -8,11 +8,12 @@ public class OrderCreationEvents : MonoBehaviour
 
     [SerializeField] private WorkSpaceClocks _clocks;
     [SerializeField] private BarShelf _barShelf;
-    [SerializeField] private SpoonMix _spoonMix;
+    [SerializeField] private ItemContent _itemContent;
     [SerializeField] private GlassSpaceFix _glassSpace;
     [SerializeField] private RectTransform _glassPivot;
-    [SerializeField] private ItemContent _itemContent;
-   
+    [Header("Instruments")]
+    [SerializeField] private SpoonMix _spoonMix;
+
     [SerializeField] private Drink _drink;
 
     private Glass _spawnedGlass;
@@ -39,7 +40,6 @@ public class OrderCreationEvents : MonoBehaviour
     {
         _itemContent.ClearContent(ItemContent.ItemType.Alcohol);
         _itemContent.ClearContent(ItemContent.ItemType.Ingredient);
-
         _itemContent.FillContent(ItemContent.ItemType.Alcohol,
             ingredients.Where(ingredient =>
                 ingredient.Data.Class == Ingredient.IngredientInfoData.ClassType.Alcohol
@@ -58,7 +58,7 @@ public class OrderCreationEvents : MonoBehaviour
 
     public void SwitchToSpoonLayerEvent()
     {
-
+        Debug.LogError("SPOON LAYERING NOT IMPLEMENTED");
     }
 
     public void SwitchToShakerEvent()

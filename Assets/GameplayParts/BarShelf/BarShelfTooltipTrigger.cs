@@ -4,15 +4,17 @@ using UnityEngine.EventSystems;
 
 public class BarShelfTooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public string _name;
+    public string Name { get; set; }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        BarShelfTooltip.TryShow(_name);
+        BarShelfTooltip.TryShow(Name);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         BarShelfTooltip.Hide();
     }
+
+    public void Hide() => OnPointerExit(null);
 }

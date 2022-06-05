@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DropSpawner : MonoBehaviour
 {
@@ -42,5 +43,13 @@ public class DropSpawner : MonoBehaviour
             drop.DropColor = DropColor;
             drop.KillAction.AddListener(_pool.ReleaseInstance);
         }
+    }
+
+    public void ConnectDrop(Color color, UnityEvent<bool> isDropping, (Vector2 position, Vector2 direction) dropData)
+    {
+        DropData = dropData;
+        DropColor = color;
+        DropDelay = 0.5f;
+        isDropping.AddListener(dropping => IsDropping = dropping);
     }
 }

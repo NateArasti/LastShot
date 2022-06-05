@@ -1,29 +1,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
-public class Glass : MonoBehaviour
+[RequireComponent(typeof(Returner))]
+public class ShakerGlass : MonoBehaviour
 {
-
     [SerializeField] private float _v;
-
     [Space(20)] [SerializeField] private RectTransform _textureTransform;
-
     [SerializeField] private Image _glassImage;
     [SerializeField] private Image _glassMask;
-    [SerializeField] private ItemSpace[] _garnishSpaces;
     [SerializeField] private GameObject _liquidPrefab;
-
-    [Space(50)] [SerializeField] private Sprite _sprite;
+    [SerializeField] private Shaker _shaker;
 
     [SerializeField] private AnimationCurve _widthHeight;
+    [Space(50)] [SerializeField] private Sprite _sprite;
+
+    private UnityAction _endAction;
+    private LiquidRenderer _liquidRenderer;
+    private ItemSpace.ItemSpaceNumber _number;
 
     public float V => _v;
-
-    public LiquidRenderer LiquidRenderer { get; private set; }
-    public StaticLiquid Liquid { get; private set; }
 
     private void Start()
     {
@@ -34,17 +32,22 @@ public class Glass : MonoBehaviour
 
         var startLiquid = Instantiate(_liquidPrefab);
         startLiquid.gameObject.SetActive(true);
-        Liquid = startLiquid.GetComponent<StaticLiquid>();
-        Liquid.SpawnStartLiquid(_glassMask.rectTransform, _widthHeight);
-        LiquidRenderer = startLiquid.GetComponent<LiquidRenderer>();
-
-        ItemSpacesStorage.ConnectGarnishSpaces(_garnishSpaces);
-        var garnishSpacesParent = _garnishSpaces[0].transform.parent;
-        garnishSpacesParent.SetParent(transform.parent);
-        garnishSpacesParent.SetAsLastSibling();
+        startLiquid.GetComponent<StaticLiquid>().SpawnStartLiquid(_glassMask.rectTransform, _widthHeight);
+        _liquidRenderer = startLiquid.GetComponent<LiquidRenderer>();
+        GetComponent<Returner>().OnReturn.AddListener(OnReturn);
     }
 
-    public float GetTopPosition() => GetComponent<RectTransform>().rect.yMax;
+    public void OnReturn()
+    {
+        Instantiate(_shaker, transform.parent).SetUp(_liquidRenderer.CurrentGradient, _endAction, _number);
+        Destroy(_liquidRenderer.gameObject);
+    }
+
+    public void SetUp(UnityAction endAction, ItemSpace.ItemSpaceNumber number)
+    {
+        _endAction = endAction;
+        _number = number;
+    }
 
     [ContextMenu("CalculateCurve")]
     private void CalculateCurve()
