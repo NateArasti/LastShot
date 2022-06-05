@@ -5,6 +5,8 @@ using UnityEngine;
 public class Instrument : ScriptableObject, IDatabaseObject, ISpriteDatabaseObject
 {
     [SerializeField] private string _keyName;
+    [SerializeField] private GameObject _prefab;
+    [SerializeField] private ItemSpace.ItemSpaceType _allowableSpaceType;
     [SerializeField] private InstrumentInfoData _infoData;
     [SerializeField] private List<Drink> _containingDrinks;
 
@@ -23,6 +25,8 @@ public class Instrument : ScriptableObject, IDatabaseObject, ISpriteDatabaseObje
         
     }
 
+    public bool CanPlaceInSpace(ItemSpace.ItemSpaceType type) => _allowableSpaceType == type;
+
     [System.Serializable]
     public class InstrumentInfoData : InfoData
     {
@@ -33,4 +37,6 @@ public class Instrument : ScriptableObject, IDatabaseObject, ISpriteDatabaseObje
         get => Data.ObjectSprite;
         set => Data.ObjectSprite = value;
     }
+
+    public GameObject Prefab => _prefab;
 }

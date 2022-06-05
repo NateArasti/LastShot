@@ -64,7 +64,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4c81be63e31d7e24ea5ca8fddb5a71ec, type: 2}
     - {fileID: 11400000, guid: ba36ba240e253d44a9726e64c8ec8d6d, type: 2}
     - {fileID: 11400000, guid: 879b429794665b842bc67841421a5046, type: 2}
-    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
     _perfectActions: []
   references:
     version: 2

@@ -50,7 +50,6 @@ MonoBehaviour:
     _instruments:
     - {fileID: 11400000, guid: cb8d8f1d57bd5114885e6b466133098c, type: 2}
     _ingredients:
-    - {fileID: 11400000, guid: a681c62da2f8b16418df379bc7712d90, type: 2}
     - {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
     - {fileID: 11400000, guid: eef8028c3ffbdd347b9db269be9ffc08, type: 2}
     _perfectActions:

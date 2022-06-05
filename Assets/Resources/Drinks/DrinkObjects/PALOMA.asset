@@ -57,8 +57,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2d34224dcdef8fd4caec437b95468685, type: 2}
     - {fileID: 11400000, guid: 4f92d05e2304ff14691f689c3c011bb1, type: 2}
     _ingredients:
-    - {fileID: 11400000, guid: df825f11740e703499ecdc51e6519b4c, type: 2}
-    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
+    - {fileID: 11400000, guid: dad5a69e1b0b13c44a1c323c5ff38877, type: 2}
     - {fileID: 11400000, guid: ca04bb24cb61baf4085ff02f3f12d46a, type: 2}
     - {fileID: 11400000, guid: 3efd2220ffd9edb46be25a494e48ab0f, type: 2}
     - {fileID: 11400000, guid: ba36ba240e253d44a9726e64c8ec8d6d, type: 2}

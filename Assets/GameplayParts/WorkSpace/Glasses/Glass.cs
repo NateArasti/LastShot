@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Glass : MonoBehaviour
 {
+
     [SerializeField] private float _v;
 
     [Space(20)] [SerializeField] private RectTransform _textureTransform;
@@ -21,6 +22,8 @@ public class Glass : MonoBehaviour
 
     public float V => _v;
 
+    public LiquidRenderer LiquidRenderer { get; private set; }
+
     private void Start()
     {
         GetComponent<Image>().SetNativeSize();
@@ -31,6 +34,7 @@ public class Glass : MonoBehaviour
         var startLiquid = Instantiate(_liquidPrefab);
         startLiquid.gameObject.SetActive(true);
         startLiquid.GetComponent<StaticLiquid>().SpawnStartLiquid(_glassMask.rectTransform, _widthHeight);
+        LiquidRenderer = startLiquid.GetComponent<LiquidRenderer>();
 
         ItemSpacesStorage.ConnectGarnishSpaces(_garnishSpaces);
         var garnishSpacesParent = _garnishSpaces[0].transform.parent;

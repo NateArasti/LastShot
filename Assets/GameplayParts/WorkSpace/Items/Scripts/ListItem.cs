@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-class ListItem : MonoBehaviour
+public class ListItem : MonoBehaviour
 {
     [SerializeField] private Ingredient _overridenIngredient;
-    [SerializeField] private Image _icon;
-    [SerializeField] private Image _dragItemIcon;
+    [SerializeField] protected Image _icon;
+    [SerializeField] protected Image _dragItemIcon;
 
     public Ingredient Item { get; private set; }
 
-    private void Start()
+    public virtual void Start()
     {
         if (_overridenIngredient == null) return;
         SetItem(_overridenIngredient);

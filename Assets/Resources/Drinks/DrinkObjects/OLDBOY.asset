@@ -64,12 +64,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2d34224dcdef8fd4caec437b95468685, type: 2}
     - {fileID: 11400000, guid: dd3e6d84d0072f347841fbc9a94857aa, type: 2}
     _ingredients:
-    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
     - {fileID: 11400000, guid: 9cb6eaab8851b6041abdd526f86abfa8, type: 2}
     - {fileID: 11400000, guid: 879b429794665b842bc67841421a5046, type: 2}
     - {fileID: 11400000, guid: 3efd2220ffd9edb46be25a494e48ab0f, type: 2}
     - {fileID: 11400000, guid: ab3715075d28d944fb9e5e4e42f6dee3, type: 2}
-    - {fileID: 11400000, guid: f9e009182a682d74e8709bc2b973179d, type: 2}
+    - {fileID: 11400000, guid: 3052f4639b8d3fe49b85687814def88f, type: 2}
     - {fileID: 11400000, guid: 09e65e4b363c73e4a8d7288d4ef6df1d, type: 2}
     _perfectActions: []
   references:

@@ -58,36 +58,46 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void PlaceItem(DragItem item)
     {
-        if (_canPlace && item.Item.CanPlaceInThisSpace(_type))
+        if (!_canPlace) return;
+        if (item.Instrument != null)
         {
-            if (_type == ItemSpaceType.Garnish)
-            {
-                _canPlace = false;
-                _image.sprite = item.Item.GarnishSprite;
-                _image.SetNativeSize();
-                _image.color = Color.white;
-            }
-
-            var spawnWorkItem = item.Item.SpawnWorkItem(_itemSpawnPivot);
-
-            if (item.Item.TakeMousePosition())
-            {
-                spawnWorkItem.transform.position = item.transform.position;
-                if (spawnWorkItem.TryGetComponent<DropItem>(out var dropItem))
-                {
-                    dropItem.TrySpawnDuplicates();
-                }
-                return;
-            }
-
-            spawnWorkItem.transform.SetAsLastSibling();
-
-            spawnWorkItem.GetComponent<PourItem>().SetPosition(_number);
-            spawnWorkItem.GetComponent<Returner>().OnReturn.AddListener(DeleteItem);
-            _image.color = _simpleColor;
-            _canvasGroup.alpha = 0;
-            _canPlace = false;
+            PlaceInstrument(item.Instrument);
+            return;
         }
+        if (!item.Item.CanPlaceInThisSpace(_type)) return;
+        if (_type == ItemSpaceType.Garnish)
+        {
+            _canPlace = false;
+            _image.sprite = item.Item.GarnishSprite;
+            _image.SetNativeSize();
+            _image.color = Color.white;
+        }
+
+        var spawnWorkItem = item.Item.SpawnWorkItem(_itemSpawnPivot);
+
+        if (item.Item.TakeMousePosition())
+        {
+            spawnWorkItem.transform.position = item.transform.position;
+            if (spawnWorkItem.TryGetComponent<DropItem>(out var dropItem))
+            {
+                dropItem.TrySpawnDuplicates();
+            }
+            return;
+        }
+
+        spawnWorkItem.transform.SetAsLastSibling();
+
+        spawnWorkItem.GetComponent<PourItem>().SetPosition(_number);
+        spawnWorkItem.GetComponent<Returner>().OnReturn.AddListener(DeleteItem);
+        _image.color = _simpleColor;
+        _canvasGroup.alpha = 0;
+        _canPlace = false;
+    }
+
+    public void PlaceInstrument(Instrument instrument)
+    {
+        if (!instrument.CanPlaceInSpace(_type)) return;
+        var spawnedInstrument = Instantiate(instrument.Prefab, _itemSpawnPivot);
     }
 
     public void Enable()

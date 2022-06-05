@@ -57,7 +57,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f97032ebb3659fa4582e2ba76a96a98f, type: 2}
     - {fileID: 11400000, guid: ba396c018b8faf24091f23ec5deefb16, type: 2}
     - {fileID: 11400000, guid: ab3715075d28d944fb9e5e4e42f6dee3, type: 2}
-    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
     _perfectActions:
     - rid: 4723403559277691072
     - rid: 4723403559277691073

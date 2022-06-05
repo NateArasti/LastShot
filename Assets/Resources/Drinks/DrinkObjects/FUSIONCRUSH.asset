@@ -60,7 +60,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4f92d05e2304ff14691f689c3c011bb1, type: 2}
     _ingredients:
     - {fileID: 11400000, guid: 9cb6eaab8851b6041abdd526f86abfa8, type: 2}
-    - {fileID: 11400000, guid: a681c62da2f8b16418df379bc7712d90, type: 2}
     - {fileID: 11400000, guid: ca04bb24cb61baf4085ff02f3f12d46a, type: 2}
     - {fileID: 11400000, guid: 316d7109f4bfe7b4aa9301ce8f1a22fa, type: 2}
     - {fileID: 11400000, guid: ab3715075d28d944fb9e5e4e42f6dee3, type: 2}

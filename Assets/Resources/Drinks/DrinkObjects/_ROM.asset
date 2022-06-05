@@ -52,7 +52,6 @@ MonoBehaviour:
     _instruments:
     - {fileID: 11400000, guid: cb8d8f1d57bd5114885e6b466133098c, type: 2}
     _ingredients:
-    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
     - {fileID: 11400000, guid: 1051d09df3875af418d268b002827f13, type: 2}
     _perfectActions:
     - rid: 4723403559277690926

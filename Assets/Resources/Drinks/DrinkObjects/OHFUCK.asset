@@ -62,8 +62,8 @@ MonoBehaviour:
     _ingredients:
     - {fileID: 11400000, guid: 08fcd85fda9df1943a66bc4eec7a50d0, type: 2}
     - {fileID: 11400000, guid: 374d882eaee3743428d732de09341c74, type: 2}
-    - {fileID: 11400000, guid: df825f11740e703499ecdc51e6519b4c, type: 2}
-    - {fileID: 11400000, guid: 45046a93f5f396c44a018bfda17079f0, type: 2}
+    - {fileID: 11400000, guid: dad5a69e1b0b13c44a1c323c5ff38877, type: 2}
+    - {fileID: 11400000, guid: 9a5f6cc21521f3d48b727a1a47d951d6, type: 2}
     - {fileID: 11400000, guid: ab3715075d28d944fb9e5e4e42f6dee3, type: 2}
     - {fileID: 11400000, guid: 08cda4e7cd6e9274facc80dce02bc517, type: 2}
     _perfectActions:
@@ -96,14 +96,14 @@ MonoBehaviour:
       data:
         _actionName: IngredientAddAction
         _weight: 1
-        _ingredient: {fileID: 11400000, guid: df825f11740e703499ecdc51e6519b4c, type: 2}
+        _ingredient: {fileID: 11400000, guid: dad5a69e1b0b13c44a1c323c5ff38877, type: 2}
         _quantity: 5
     - rid: 4723403559277691018
       type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddAction
         _weight: 1
-        _ingredient: {fileID: 11400000, guid: 45046a93f5f396c44a018bfda17079f0, type: 2}
+        _ingredient: {fileID: 11400000, guid: 9a5f6cc21521f3d48b727a1a47d951d6, type: 2}
         _quantity: 5
     - rid: 4723403559277691019
       type: {class: OrderAction/SpoonLayerAction, ns: , asm: Assembly-CSharp}

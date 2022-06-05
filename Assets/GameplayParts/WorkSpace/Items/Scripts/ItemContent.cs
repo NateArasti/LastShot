@@ -27,10 +27,20 @@ public class ItemContent : MonoBehaviour
         }
     }
 
+    public void ClearContent(ItemType type)
+    {
+        foreach (Transform item in _contents[(int)type].ContentPanel)
+        {
+            Destroy(item.gameObject);
+        }
+    }
+
     public void SwitchPage(int switchAmount)
     {
         _contents[_currentItemsType].ContentPanel.gameObject.SetActive(false);
-        _currentItemsType = (_currentItemsType + switchAmount) % 3;
+        var newIndex = _currentItemsType + switchAmount;
+        if (newIndex < 3) newIndex += 3;
+        _currentItemsType = newIndex % 3;
         _itemsScrollRect.content = _contents[_currentItemsType].ContentPanel;
         _itemsTittle.text = _contents[_currentItemsType].TypeName;
         _contents[_currentItemsType].ContentPanel.gameObject.SetActive(true);

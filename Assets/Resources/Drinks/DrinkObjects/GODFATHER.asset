@@ -51,7 +51,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cb8d8f1d57bd5114885e6b466133098c, type: 2}
     - {fileID: 11400000, guid: 4f92d05e2304ff14691f689c3c011bb1, type: 2}
     _ingredients:
-    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
     - {fileID: 11400000, guid: 308c1e943b995b04c8a3907fb279f693, type: 2}
     - {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
     _perfectActions: []

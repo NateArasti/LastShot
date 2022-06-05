@@ -56,7 +56,6 @@ MonoBehaviour:
     _ingredients:
     - {fileID: 11400000, guid: 9cb6eaab8851b6041abdd526f86abfa8, type: 2}
     - {fileID: 11400000, guid: 1cd0c831217b948409d6a2eb5ee57f1c, type: 2}
-    - {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
     _perfectActions: []
   references:
     version: 2

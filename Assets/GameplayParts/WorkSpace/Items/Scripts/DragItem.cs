@@ -19,10 +19,15 @@ public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     private RectTransform _rectTransform;
     private Image _image;
 
+    public Instrument Instrument { get; private set; }
+
     public Ingredient Item => _parentListItem.Item;
 
     public static bool CanPlaceCurrent(ItemSpace.ItemSpaceType type) => 
-        _currentDragItem != null && _currentDragItem.Item.CanPlaceInThisSpace(type);
+        _currentDragItem != null &&
+        (_currentDragItem.Item != null && _currentDragItem.Item.CanPlaceInThisSpace(type)
+         ||
+        _currentDragItem.Instrument != null && _currentDragItem.Instrument.CanPlaceInSpace(type));
 
     private void Awake()
     {
@@ -32,6 +37,12 @@ public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         _canvasGroup = GetComponent<CanvasGroup>();
         _parentListItem = transform.parent.GetComponent<ListItem>();
         _canvasGroup.alpha = 0;
+    }
+
+    private void Start()
+    {
+        var check = _parentListItem as InstrumentListItem;
+        Instrument = check == null ? null : check.Instrument;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

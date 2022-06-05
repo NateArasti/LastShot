@@ -12,9 +12,36 @@ public class LiquidRenderer : MonoBehaviour
     private bool _firstGradientUpdate = true;
     private MeshRenderer _renderer;
 
+    public Color TopColor => _previousGradient.Evaluate(1).GetRGB();
+
     private void Awake()
     {
         _renderer = GetComponent<MeshRenderer>();
+    }
+
+    public void SmoothLiquid(float step)
+    {
+        var length = _previousGradient.colorKeys.Length;
+        var colorKeys = _previousGradient.colorKeys;
+        var alphaKeys = _previousGradient.alphaKeys;
+        var averageColor = new Vector4(0,0,0,0);
+        for (var i = 0; i < length; i++)
+        {
+            var currentColor = colorKeys[i].color;
+            currentColor.a = alphaKeys[i].alpha;
+            averageColor += new Vector4(currentColor.r, currentColor.g, currentColor.b, currentColor.a);
+        }
+
+        averageColor /= length;
+
+        var endColor = new Color(averageColor.x, averageColor.y, averageColor.z, averageColor.w);
+        for (var i = 0; i < length; i++)
+        {
+            colorKeys[i].color = Color.Lerp(colorKeys[i].color, endColor.GetRGB(), step);
+            alphaKeys[i].alpha = Mathf.Lerp(alphaKeys[i].alpha, endColor.a, step);
+        }
+        _previousGradient.SetKeys(colorKeys, alphaKeys);
+        UpdateTexture();
     }
 
     private Texture2D GenerateTexture(bool makeNoLongerReadable = false)
