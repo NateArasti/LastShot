@@ -14,29 +14,21 @@ public class DrinksDescriptionCoefficients
         Citrus
     }
 
-    [ReadOnly, SerializeField, TextArea(5, 10)] private string _coefsString;
-
-    private readonly Dictionary<Coefficients, float> _coefficients;
-    public IReadOnlyDictionary<Coefficients, float> CoefficientsDictionary => _coefficients;
+    [ReadOnly, SerializeField] private List<float> _coefficients;
+    public IReadOnlyList<float> CoefficientsDictionary => _coefficients;
 
     public DrinksDescriptionCoefficients(float[] coefficients)
     {
-        _coefsString = "";
-        _coefficients = new Dictionary<Coefficients, float>();
+        _coefficients = new List<float>();
         var i = 0;
         for (; i < coefficients.Length; ++i)
         {
-            var coefName = (Coefficients)i;
-            _coefficients.Add(coefName, coefficients[i]);
-            _coefsString += $"{coefName}: {_coefficients[coefName]}\n";
+            _coefficients.Add(coefficients[i]);
         }
         for(; i < 6; ++i)
         {
-            var coefName = (Coefficients)i;
-            _coefficients.Add(coefName, 0.5f);
-            _coefsString += $"{coefName}: {_coefficients[coefName]}\n";
+            _coefficients.Add(0.5f);
         }
-        Debug.Log($"Successfully created coefficients:\n {_coefsString}");
     }
 
     public float GetAverageDifference(DrinksDescriptionCoefficients anotherCoefficients)
@@ -45,8 +37,8 @@ public class DrinksDescriptionCoefficients
         for (var i = 0; i < _coefficients.Count; i++)
         {
             average += Mathf.Abs(
-                _coefficients[(Coefficients) i] - 
-                anotherCoefficients.CoefficientsDictionary[(Coefficients) i]
+                _coefficients[i] - 
+                anotherCoefficients.CoefficientsDictionary[i]
                 );
         }
 

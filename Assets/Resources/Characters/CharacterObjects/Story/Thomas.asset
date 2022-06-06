@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Thomas
   m_EditorClassIdentifier: 
   _keyName: THOMAS
+  _dialogueKeyName: THOMAS
   _portrait: {fileID: 21300000, guid: 1a740a9175e58a74b9adc517ddd12631, type: 3}
-  _characterType: 1
-  _dialogue: {fileID: 0}
-  _coefficientsTable: {fileID: 0}
+  _prefab: {fileID: 0}
+  _coefficients:
+    _coefsString: 

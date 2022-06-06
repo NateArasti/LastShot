@@ -17,17 +17,10 @@ MonoBehaviour:
   _portrait: {fileID: 21300000, guid: 9b76b2308c3b2064298098b582325ec9, type: 3}
   _prefab: {fileID: 6085820410353451414, guid: 920418bc023d25e4cb6775ddc7235811, type: 3}
   _coefficients:
-    _coefsString: 'Strong: 0,5
-
-      Bitter: 0,6
-
-      Sour: 0,3
-
-      Sweet:
-      0
-
-      Spicy: 0
-
-      Citrus: 0
-
-'
+    _coefficients:
+    - 0.5
+    - 0.6
+    - 0.3
+    - 0
+    - 0
+    - 0

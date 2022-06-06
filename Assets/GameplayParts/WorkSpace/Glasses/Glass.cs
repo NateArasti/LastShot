@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -42,6 +43,11 @@ public class Glass : MonoBehaviour
         var garnishSpacesParent = _garnishSpaces[0].transform.parent;
         garnishSpacesParent.SetParent(transform.parent);
         garnishSpacesParent.SetAsLastSibling();
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(Liquid.gameObject);
     }
 
     public float GetTopPosition() => GetComponent<RectTransform>().rect.yMax;

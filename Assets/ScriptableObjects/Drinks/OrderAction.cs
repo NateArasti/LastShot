@@ -10,13 +10,14 @@ public class OrderAction
     public float Weight => _weight;
 
     /// <summary>
-    /// Compares action to another action and returns grade(0-1) how close it is
+    /// Compares actions that were made to drink reference actions and returns value in range (0, 1) representing comparison
     /// </summary>
-    /// <param name="comparableAction">Action to compare</param>
+    /// <param name="referenceActions"></param>
+    /// <param name="orderActions"></param>
     /// <returns></returns>
-    public virtual float Compare(OrderAction comparableAction)
+    public static float Compare(OrderAction[] referenceActions, OrderAction[] orderActions)
     {
-        return 0;
+        return 1;//TODO: implement correct comparison
     }
 
     public void SetActionName() => _actionName = ToString();

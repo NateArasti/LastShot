@@ -11,21 +11,24 @@ public class OrderCreationEvents : MonoBehaviour
     [SerializeField] private ItemContent _itemContent;
     [SerializeField] private GlassSpaceFix _glassSpace;
     [SerializeField] private RectTransform _glassPivot;
+    [Header("Items")]
+    [SerializeField] private ItemSpace[] _itemSpaces;
     [Header("Instruments")]
     [SerializeField] private SpoonMix _spoonMix;
 
-    [SerializeField] private Drink _drink;
-
     private Glass _spawnedGlass;
 
-    private void Start()
+    public bool DrinkInWork { get; private set; } 
+
+    private void Awake()
     {
         Instance = this;
-        StartCreatingDrink(_drink);
     }
 
     public void StartCreatingDrink(Drink drink)
     {
+        Debug.LogWarning(drink.KeyName);
+        DrinkInWork = true;
         var glass = Instantiate(drink.DrinkReceipt.GlassPrefab, _glassPivot);
         glass.transform.SetAsFirstSibling();
         _spawnedGlass = glass.GetComponent<Glass>();
@@ -34,6 +37,14 @@ public class OrderCreationEvents : MonoBehaviour
                            Random.Range(-0.25f, 0.25f) * drink.DrinkReceipt.ApproximateTimeOfMaking);
         _barShelf.gameObject.SetActive(true);
         _barShelf.ShuffleIngredients();
+    }
+
+    public void EndCreation()
+    {
+        GameStateManager.ExitWorkSpace();
+        DrinkInWork = false;
+        Destroy(_spawnedGlass.gameObject);
+        _itemSpaces.ForEachAction(itemSpace => itemSpace.ClearSpace());
     }
 
     public void SpawnIngredients(IReadOnlyCollection<Ingredient> ingredients)

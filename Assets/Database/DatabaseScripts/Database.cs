@@ -30,9 +30,8 @@ public  abstract class Database<T> : ScriptableObject where T : Object, IDatabas
 
     public virtual bool TryGetValue(string keyName, out T value)
     {
-        if (_dataDictionary.ContainsKey(keyName))
+        if (_databaseObjects.TryGetObject(keyName, (obj, s) => obj.KeyName == s, out value))
         {
-            value = _dataDictionary[keyName];
             return true;
         }
 

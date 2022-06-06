@@ -20,6 +20,7 @@ public class ShakerGlass : MonoBehaviour
     private UnityAction _endAction;
     private LiquidRenderer _liquidRenderer;
     private ItemSpace.ItemSpaceNumber _number;
+    private StaticLiquid _liquid;
 
     public float V => _v;
 
@@ -32,9 +33,15 @@ public class ShakerGlass : MonoBehaviour
 
         var startLiquid = Instantiate(_liquidPrefab);
         startLiquid.gameObject.SetActive(true);
-        startLiquid.GetComponent<StaticLiquid>().SpawnStartLiquid(_glassMask.rectTransform, _widthHeight);
+        _liquid = startLiquid.GetComponent<StaticLiquid>();
+        _liquid.SpawnStartLiquid(_glassMask.rectTransform, _widthHeight);
         _liquidRenderer = startLiquid.GetComponent<LiquidRenderer>();
         GetComponent<Returner>().OnReturn.AddListener(OnReturn);
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(_liquid.gameObject);
     }
 
     public void OnReturn()

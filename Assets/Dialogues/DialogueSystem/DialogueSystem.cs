@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Ink.Runtime;
@@ -141,6 +142,8 @@ public class DialogueSystem : MonoBehaviour
         {
             _currentState = DialogueState.SimplePhrase;
         }
+        print(_currentState);
+        print(_currentStory.currentTags.Count);
 
         InvokeStateEvent();
     }
@@ -238,21 +241,29 @@ public class DialogueSystem : MonoBehaviour
         UpdateDialogueState();
     }
 
+    private IEnumerator WaitForDrink()
+    {
+        yield return new WaitUntil(() => !OrderCreationEvents.Instance.DrinkInWork);
+        CurrentDialogue.CurrentOrderData.Grade =
+            CurrentDialogue.CurrentOrderData.Character
+                .GetCharacterGrade(CurrentDialogue.CurrentOrderData.Drink, null);
+        CurrentDialogue.CurrentOrderData.Character = null;
+        CurrentDialogue.CurrentOrderData.Drink = null;
+        UpdateDialogueState(true);
+    }
+
     private void CreateTagEvents()
     {
         _dialogueEvents[EventType.Order].AddListener(() =>
         {
-            CurrentDialogue.CurrentOrderData.Grade = 
-                CurrentDialogue.CurrentOrderData.Character
-                    .GetCharacterGrade(CurrentDialogue.CurrentOrderData.Drink, null);
-            CurrentDialogue.CurrentOrderData.Character = null;
-            CurrentDialogue.CurrentOrderData.Drink = null;
-            UpdateDialogueState(true);
+            GameStateManager.SwitchToWorkSpace();
+            OrderCreationEvents.Instance.StartCreatingDrink(CurrentDialogue.CurrentOrderData.Drink);
+            StartCoroutine(WaitForDrink());
         });
 
         _dialogueEvents[EventType.Check].AddListener(() =>
         {
-            var check = true;
+            var check = true;//TODO: implement check later
             if (check)
             {
                 _currentState = DialogueState.PlayerChoice;

@@ -8,6 +8,7 @@ public class DropSpawner : MonoBehaviour
     [SerializeField] private WaterDrop _dropPrefab;
     [SerializeField] private int _startDropsCount = 100;
     private UnityObjectPool<WaterDrop> _pool;
+    private static readonly int Property = Shader.PropertyToID("AlphaScale");
     public bool IsDropping { get; set; }
     public (Vector2 position, Vector2 direction) DropData { get; set; }
 
@@ -37,6 +38,8 @@ public class DropSpawner : MonoBehaviour
             if (!IsDropping)
                 continue;
             _dropMaterial.color = DropColor;
+            _dropMaterial.SetFloat(Property, DropColor.a);
+            print(_dropMaterial.GetFloat(Property));
             var drop = _pool.GetInstance();
             drop.transform.position = DropData.position;
             drop.Direction = DropData.direction;

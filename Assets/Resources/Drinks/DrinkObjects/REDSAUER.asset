@@ -39,22 +39,15 @@ MonoBehaviour:
     _locked: 0
     _cost: 8
   _coefficients:
-    _coefsString: 'Strong: 0,55
-
-      Bitter: 0
-
-      Sour: 0,6
-
-      Sweet: 0,4
-
-      Spicy:
-      0
-
-      Citrus: 0
-
-'
+    _coefficients:
+    - 0.55
+    - 0
+    - 0.6
+    - 0.4
+    - 0
+    - 0
   _receipt:
-    _approximateTimeOfMaking: 1
+    _approximateTimeOfMaking: 60
     _glassPrefab: {fileID: 3845340031205017563, guid: 66d95b287dc7a2a41b218a344af90b2b, type: 3}
     _instruments:
     - {fileID: 11400000, guid: cb8d8f1d57bd5114885e6b466133098c, type: 2}

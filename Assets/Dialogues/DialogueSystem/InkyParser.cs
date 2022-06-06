@@ -24,7 +24,6 @@ public static class InkyParser
             var orderTagValue = orderTag.Value;
             var orderText = orderTag.Groups[1].Value;
             var orderKeyName = Regex.Match(orderTagValue, @"_(.*?)>").Groups[1].Value;
-            Debug.Log(orderKeyName);
             if (DatabaseManager.DrinkDatabase.TryGetValue(orderKeyName, out drink))
             {
                 if (orderKeyName == DatabaseManager.DrinkDatabase.AnythingKeyName && overrideDrink != null)

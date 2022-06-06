@@ -18,9 +18,11 @@ public class DatabaseManager : ScriptableSingleton
     public override void SetAsInstance()
     {
         _instance = this;
-        AlcoholDatabase.LoadTableData();
-        AdditionalIngredientDatabase.LoadTableData();
-        CharacterDatabase.LoadTableData();
-        DrinkDatabase.LoadTableData();
+#if UNITY_EDITOR
+        //AlcoholDatabase.LoadTableData();
+        //AdditionalIngredientDatabase.LoadTableData();
+        //CharacterDatabase.LoadTableData();
+        //DrinkDatabase.LoadTableData();
+#endif
     }
 }

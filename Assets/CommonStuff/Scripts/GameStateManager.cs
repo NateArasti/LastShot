@@ -9,7 +9,6 @@ public class GameStateManager : MonoBehaviour
         Saloon,
         Dialogue,
         Notebook,
-        BarShelf,
         WorkSpace,
         Pause
     }
@@ -22,6 +21,7 @@ public class GameStateManager : MonoBehaviour
 
     [SerializeField] private StateEvent _pauseStateEvent;
     [SerializeField] private StateEvent _notebookStateEvent;
+    [SerializeField] private StateEvent _workspaceStateEvent;
     [SerializeField] private StateEvent[] _stateEvents;
     private readonly Dictionary<State, (UnityEvent turnOn, UnityEvent turnOff)> _stateEventsDictionary = new();
 
@@ -97,6 +97,18 @@ public class GameStateManager : MonoBehaviour
     public static void SwitchToDialogue()
     {
         OnStateChanged.Invoke(State.Dialogue);
+    }
+
+    public static void SwitchToWorkSpace()
+    {
+        _instance._workspaceStateEvent.TurnOnEvent.Invoke();
+        CurrentState = State.WorkSpace;
+    }
+
+    public static void ExitWorkSpace()
+    {
+        _instance._workspaceStateEvent.TurnOffEvent.Invoke();
+        CurrentState = _lastNormalState;
     }
 
     [System.Serializable]

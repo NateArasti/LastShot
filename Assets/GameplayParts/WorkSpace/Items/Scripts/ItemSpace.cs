@@ -56,6 +56,15 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         _canPlace = true;
     }
 
+    public void ClearSpace()
+    {
+        foreach (GameObject item in _itemSpawnPivot)
+        {
+            if(item == gameObject) continue;
+            Destroy(item);
+        }
+    }
+
     public void PlaceItem(DragItem item)
     {
         if (!_canPlace) return;
