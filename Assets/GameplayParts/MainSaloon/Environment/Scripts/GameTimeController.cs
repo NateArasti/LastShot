@@ -78,7 +78,7 @@ public class GameTimeController : MonoBehaviour
 
         public void Update()
         {
-            if (Mathf.Abs(_targetTime - CurrentTime) < float.Epsilon)
+            if (_targetTime < CurrentTime)
             {
                 Ended = true;
             }

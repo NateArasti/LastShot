@@ -119,7 +119,7 @@ public class Guest : MonoBehaviour
             if (_currentSpotType == SpotType.Chair) _onSitChair.Invoke();
             else if (_currentSpotType == SpotType.Table) _onSitTable.Invoke();
             if (!exitAfterTime) yield break;
-            var timer = GameTimeController.SetTimer(_sitTime / 3600);
+            var timer = GameTimeController.SetTimer(_sitTime);
             yield return new WaitUntil(() => timer.Ended);
             yield return StartCoroutine(Exit());
         }
@@ -127,12 +127,17 @@ public class Guest : MonoBehaviour
 
     public void EndVisit()
     {
-        _onDialogueEnd.Invoke();
         StartCoroutine(Exit());
     }
 
     private IEnumerator Exit()
     {
+        _onDialogueEnd.Invoke();
+        yield return new WaitUntil(() =>
+        {
+            var state = _animator.GetCurrentAnimatorStateInfo(0);
+            return state.IsName("ChairSitting") || state.IsName("TableSitState");
+        });
         Sitting = false;
         _animator.SetBool(_currentSpotType == SpotType.Table ? SitToTable : SitOnChair, false);
         if (_currentSpotType == SpotType.Table)
