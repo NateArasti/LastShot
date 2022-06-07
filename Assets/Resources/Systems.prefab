@@ -666,3 +666,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344f9a203a441b042b925e61337a92db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeProfile: {fileID: 11400000, guid: 587961b18c5cab940824ade6d1872bf9, type: 2}
