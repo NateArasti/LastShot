@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
+    public enum Scene
+    {
+        MainMenu,
+        Game,
+        Tutorial
+    }
+
     private static SceneLoader _instance;
     private static float _currentLoadValue;
     [SerializeField] private CanvasGroup _loadScreen;
@@ -37,6 +44,8 @@ public class SceneLoader : MonoBehaviour
         } while (sceneLoad.progress < 0.9f);
         sceneLoad.allowSceneActivation = true;
     }
+
+    public static void LoadScene(Scene scene, LoadSceneMode mode) => LoadScene(scene.ToString(), mode);
 
     private void EnableLoadScreen()
     {

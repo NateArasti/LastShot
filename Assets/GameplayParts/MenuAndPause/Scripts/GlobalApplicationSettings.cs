@@ -7,7 +7,7 @@ public class GlobalApplicationSettings : MonoBehaviour
     private static GlobalApplicationSettings _instance;
     private static float _soundVolume = 1;
     private static float _musicVolume = 1;
-    private static float _brightness = 1;
+    private static float _brightness = 0.5f;
     private static bool _fullScreen = true;
     private static Resolution _screenResolution = Resolution._1920x1080;
     private const string SoundVolumeKey = "Sound";
@@ -114,8 +114,17 @@ public class GlobalApplicationSettings : MonoBehaviour
     {
         SoundVolume = PlayerPrefs.GetFloat(SoundVolumeKey, 1);
         MusicVolume = PlayerPrefs.GetFloat(MusicVolumeKey, 1);
-        Brightness = PlayerPrefs.GetFloat(BrightnessKey, 1);
+        Brightness = PlayerPrefs.GetFloat(BrightnessKey, 0.5f);
         FullScreen = PlayerPrefs.GetInt(FullscreenKey, 1) == 1;
         ScreenResolution = (Resolution)PlayerPrefs.GetInt(ResolutionKey, 2);
+    }
+
+    public static void SetDefaultSettings()
+    {
+        SoundVolume = 1;
+        MusicVolume = 1;
+        Brightness = 0.5f;
+        FullScreen = true;
+        ScreenResolution = (Resolution)2;
     }
 }

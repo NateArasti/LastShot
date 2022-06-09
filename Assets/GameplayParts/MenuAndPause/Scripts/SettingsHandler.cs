@@ -52,4 +52,6 @@ public class SettingsHandler : MonoBehaviour
     {
         GlobalApplicationSettings.ScreenResolution = (GlobalApplicationSettings.Resolution) resolutionIndex;
     }
+
+    public void ResetSettings() => GlobalApplicationSettings.SetDefaultSettings();
 }
