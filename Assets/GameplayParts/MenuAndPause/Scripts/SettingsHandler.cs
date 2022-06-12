@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,22 +11,22 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] private Toggle _fullscreenToggle;
     [SerializeField] private TMP_Dropdown _resolution;
 
+    private void Awake()
+    {
+        _soundVolume.onValueChanged.AddListener(ChangeSoundVolume);
+        _musicVolume.onValueChanged.AddListener(ChangeMusicVolume);
+        _brightness.onValueChanged.AddListener(ChangeBrightness);
+        _fullscreenToggle.onValueChanged.AddListener(ToggleFullscreen);
+        _resolution.onValueChanged.AddListener(ChangeResolution);
+    }
+
     private void OnEnable()
     {
         _soundVolume.value = GlobalApplicationSettings.SoundVolume;
-        _soundVolume.onValueChanged.AddListener(ChangeSoundVolume);
-
         _musicVolume.value = GlobalApplicationSettings.MusicVolume;
-        _musicVolume.onValueChanged.AddListener(ChangeMusicVolume);
-
         _brightness.value = GlobalApplicationSettings.Brightness;
-        _brightness.onValueChanged.AddListener(ChangeBrightness);
-
         _fullscreenToggle.isOn = GlobalApplicationSettings.FullScreen;
-        _fullscreenToggle.onValueChanged.AddListener(ToggleFullscreen);
-
         _resolution.value = (int)GlobalApplicationSettings.ScreenResolution;
-        _resolution.onValueChanged.AddListener(ChangeResolution);
     }
 
     public void ChangeSoundVolume(float volume)
@@ -53,5 +54,9 @@ public class SettingsHandler : MonoBehaviour
         GlobalApplicationSettings.ScreenResolution = (GlobalApplicationSettings.Resolution) resolutionIndex;
     }
 
-    public void ResetSettings() => GlobalApplicationSettings.SetDefaultSettings();
+    public void ResetSettings()
+    {
+        GlobalApplicationSettings.SetDefaultSettings();
+        OnEnable();
+    }
 }

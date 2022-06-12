@@ -22,7 +22,8 @@ public class LiquidRenderer : MonoBehaviour
         _material = _renderer.material;
     }
 
-    public static (GradientColorKey[] colorKeys, GradientAlphaKey[] alphaKeys) GetGradientSmoothing(float step, Gradient gradient)
+    public static (GradientColorKey[] colorKeys, GradientAlphaKey[] alphaKeys) 
+        GetGradientSmoothing(float step, Gradient gradient)
     {
         var length = gradient.colorKeys.Length;
         var colorKeys = gradient.colorKeys;
@@ -45,6 +46,24 @@ public class LiquidRenderer : MonoBehaviour
         }
 
         return (colorKeys, alphaKeys);
+    }
+
+    public Color GetCurrentAverageGradientColor()
+    {
+        var length = _previousGradient.colorKeys.Length;
+        var colorKeys = _previousGradient.colorKeys;
+        var alphaKeys = _previousGradient.alphaKeys;
+        var averageColor = new Vector4(0, 0, 0, 0);
+        for (var i = 0; i < length; i++)
+        {
+            var currentColor = colorKeys[i].color;
+            currentColor.a = alphaKeys[i].alpha;
+            averageColor += new Vector4(currentColor.r, currentColor.g, currentColor.b, currentColor.a);
+        }
+
+        averageColor /= length;
+
+        return new Color(averageColor.x, averageColor.y, averageColor.z, averageColor.w);
     }
 
     public void SmoothLiquid(float step)

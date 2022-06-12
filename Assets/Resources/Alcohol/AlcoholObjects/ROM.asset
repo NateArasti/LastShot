@@ -35,4 +35,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: fcfd1f00fc9d2bc48b5b09c2b7b43ee4, type: 2}
     - {fileID: 11400000, guid: 21e5e969ca385884ca61cda74dc41d68, type: 2}
   _mainColor: {r: 0.98427033, g: 1, b: 0.72075474, a: 0.5019608}
-  _maxDelayBetweenDrops: 0.05
+  _minDelayBetweenDrops: 0.01

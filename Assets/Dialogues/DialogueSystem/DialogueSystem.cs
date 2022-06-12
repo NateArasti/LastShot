@@ -142,8 +142,6 @@ public class DialogueSystem : MonoBehaviour
         {
             _currentState = DialogueState.SimplePhrase;
         }
-        print(_currentState);
-        print(_currentStory.currentTags.Count);
 
         InvokeStateEvent();
     }
@@ -231,7 +229,6 @@ public class DialogueSystem : MonoBehaviour
 
         if(CurrentDialogue.CurrentOrderData.Character == null)
             CurrentDialogue.CurrentOrderData.Character = data.PhraseCharacter;
-        print(CurrentDialogue.CurrentOrderData.Character);
     }
 
     private void MakeDecision(int choiceIndex)
@@ -246,7 +243,10 @@ public class DialogueSystem : MonoBehaviour
         yield return new WaitUntil(() => !OrderCreationEvents.Instance.DrinkInWork);
         CurrentDialogue.CurrentOrderData.Grade =
             CurrentDialogue.CurrentOrderData.Character
-                .GetCharacterGrade(CurrentDialogue.CurrentOrderData.Drink, null);
+                .GetCharacterGrade(
+                    CurrentDialogue.CurrentOrderData.Drink, 
+                    OrderCreationEvents.Instance.OrderActionsTracker.GetOrderActions()
+                    );
         CurrentDialogue.CurrentOrderData.Character = null;
         CurrentDialogue.CurrentOrderData.Drink = null;
         UpdateDialogueState(true);

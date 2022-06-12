@@ -8,6 +8,9 @@ public class DropSpawner : MonoBehaviour
     [SerializeField] private WaterDrop _dropPrefab;
     [SerializeField] private int _startDropsCount = 100;
     private UnityObjectPool<WaterDrop> _pool;
+
+    private int _spawnedDropsCount;
+
     private static readonly int Property = Shader.PropertyToID("AlphaScale");
     public bool IsDropping { get; set; }
     public (Vector2 position, Vector2 direction) DropData { get; set; }
@@ -30,6 +33,7 @@ public class DropSpawner : MonoBehaviour
     {
         StartCoroutine(DropSpawn());
     }
+
     private IEnumerator DropSpawn()
     {
         while (true)
@@ -39,13 +43,21 @@ public class DropSpawner : MonoBehaviour
                 continue;
             _dropMaterial.color = DropColor;
             _dropMaterial.SetFloat(Property, DropColor.a);
-            print(_dropMaterial.GetFloat(Property));
             var drop = _pool.GetInstance();
             drop.transform.position = DropData.position;
             drop.Direction = DropData.direction;
             drop.DropColor = DropColor;
             drop.KillAction.AddListener(_pool.ReleaseInstance);
+
+            _spawnedDropsCount += 1;
         }
+    }
+
+    public int GetSpawnedDelta()
+    {
+        var result = _spawnedDropsCount;
+        _spawnedDropsCount = 0;
+        return result;
     }
 
     public void ConnectDrop(Color color, UnityEvent<bool> isDropping, (Vector2 position, Vector2 direction) dropData)

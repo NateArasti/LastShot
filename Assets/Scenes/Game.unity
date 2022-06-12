@@ -18689,20 +18689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialogues:
   - {fileID: 11400000, guid: 8de55a80a8b0043449003505cc9fff64, type: 2}
-  - {fileID: 11400000, guid: f51f206b8f67fc5469ae20195e919bb3, type: 2}
-  - {fileID: 11400000, guid: ce0ec849571387348b5507d067c8a58a, type: 2}
-  - {fileID: 11400000, guid: 50850b4818b4f9c459cfbe4123507291, type: 2}
-  - {fileID: 11400000, guid: 8e8b924a0ded4844ea0bbc28e52a2ac4, type: 2}
-  - {fileID: 11400000, guid: 3a9ad87d94401224b96b5ac9fb88414d, type: 2}
-  - {fileID: 11400000, guid: 6088e5b0b28e3c6438577ed9a6eec131, type: 2}
-  - {fileID: 11400000, guid: 60ddeab46ca8c1040b43aca8002048f7, type: 2}
-  - {fileID: 11400000, guid: 3f2cb232ff2ac254c9ec0a43e42d6f55, type: 2}
-  - {fileID: 11400000, guid: 9b62db4f0751cd642b6eff90d6737883, type: 2}
-  - {fileID: 11400000, guid: fc649a6880124d243b8d7b51cc19532b, type: 2}
-  - {fileID: 11400000, guid: 9a392e8fc8dffce4e841b7b15c9a1048, type: 2}
-  - {fileID: 11400000, guid: 1d86f89033a0d594f9f481b835430193, type: 2}
-  - {fileID: 11400000, guid: ced620084861f54448056ccc56f2d432, type: 2}
-  - {fileID: 11400000, guid: 8780976bcefa38f4f98672db7780877e, type: 2}
   _leftSpawnPoint: {fileID: 1818513109}
   _rightSpawnPoint: {fileID: 1943181903}
   _tableTransforms:

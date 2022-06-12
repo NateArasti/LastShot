@@ -24,6 +24,8 @@ public class Shaker : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHa
 
     private ItemSpace.ItemSpaceNumber _number;
 
+    private Color _startColor;
+
     private void Awake()
     {
         _returner = GetComponent<Returner>();
@@ -34,13 +36,16 @@ public class Shaker : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHa
     {
         _intensitySlider.value -= _resistance * Time.deltaTime;
         var (colorKeys, alphaKeys) = 
-            LiquidRenderer.GetGradientSmoothing(_intensitySlider.value * _smoothingApplier * Time.deltaTime, _gradient);
+            LiquidRenderer.GetGradientSmoothing(_intensitySlider.value * 
+                                                _smoothingApplier * Time.deltaTime, 
+                                                _gradient);
         _gradient.SetKeys(colorKeys, alphaKeys);
     }
 
     public void SetUp(Gradient gradient, UnityAction endAction, ItemSpace.ItemSpaceNumber number)
     {
         _gradient = gradient;
+        _startColor = _gradient.Evaluate(1);
         _number = number;
         _endAction = endAction;
         _intensitySlider.value = 0;
@@ -50,8 +55,19 @@ public class Shaker : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHa
 
     private void OnEnd()
     {
+        var endColor = _gradient.Evaluate(1);
+        var (colorKeys, alphaKeys) =
+            LiquidRenderer.GetGradientSmoothing(100,
+                                                _gradient);
+        var distance = _startColor.GetDistanceTo(colorKeys[^1].color);
+        var passed = _startColor.GetDistanceTo(endColor);
+        OrderCreationEvents.Instance.OrderActionsTracker.AddAction(new OrderAction.ShakerMixAction(false)
+        {
+            Intensity = passed / distance
+        });
+
         var pour = Instantiate(_pourShaker, transform.parent);
-        pour.SetItem(_pourSprite, _gradient.Evaluate(1), _delayBetweenDrops);
+        pour.SetItem(_pourSprite, endColor, _delayBetweenDrops, 60, "SHAKER");
         pour.SetPosition(_number);
         pour.GetComponent<Returner>().OnReturn.AddListener(_endAction);
     }

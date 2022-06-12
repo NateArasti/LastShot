@@ -58,8 +58,7 @@ MonoBehaviour:
       data:
         _actionName: DecorateAction
         _weight: 1
-        _ingredient: {fileID: 11400000, guid: df825f11740e703499ecdc51e6519b4c, type: 2}
-        _quantity: 0.005
+        _ingredient: {fileID: 11400000, guid: dad5a69e1b0b13c44a1c323c5ff38877, type: 2}
     - rid: 4723403559277690931
       type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
       data:
@@ -73,4 +72,3 @@ MonoBehaviour:
         _actionName: DecorateAction
         _weight: 2
         _ingredient: {fileID: 11400000, guid: ae0ebbce20a7ece4c865a7d13e8db0d1, type: 2}
-        _quantity: 1

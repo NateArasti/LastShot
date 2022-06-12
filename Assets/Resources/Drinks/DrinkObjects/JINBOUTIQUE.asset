@@ -58,6 +58,9 @@ MonoBehaviour:
     - rid: 4723403559277690990
     - rid: 4723403559277690991
     - rid: 4723403559277690992
+    - rid: 4723403559277690992
+    - rid: 4723403559277690992
+    - rid: 4723403559277690992
     - rid: 4723403559277690993
   references:
     version: 2
@@ -89,7 +92,7 @@ MonoBehaviour:
         _actionName: IngredientAddToShakerAction
         _weight: 1
         _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
-        _quantity: 4
+        _quantity: 1
     - rid: 4723403559277690993
       type: {class: OrderAction/ShakerPourAction, ns: , asm: Assembly-CSharp}
       data:

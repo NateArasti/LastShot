@@ -45,6 +45,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
     _perfectActions:
     - rid: 4723403559277690933
+    - rid: 4723403559277690933
+    - rid: 4723403559277690933
     - rid: 4723403559277690934
   references:
     version: 2
@@ -55,11 +57,11 @@ MonoBehaviour:
         _actionName: IngredientAddAction
         _weight: 1
         _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
-        _quantity: 3
+        _quantity: 1
     - rid: 4723403559277690934
       type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddAction
-        _weight: 1
+        _weight: 5
         _ingredient: {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
         _quantity: 0.1

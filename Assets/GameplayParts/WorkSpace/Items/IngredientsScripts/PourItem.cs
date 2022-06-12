@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
+    public static string PouringItemKeyName { get; private set; }
+
     [SerializeField] private Vector2 _minMaxAngles = new(0, 45);
     [SerializeField] private float _rotationSpeed = 1f;
     [SerializeField] private float _dropSpawnStartAngle = 70f;
@@ -18,7 +20,7 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     private bool _needPauseInRotation;
 
     private Color _color;
-    private float _maxDelayBetweenDrops;
+    private float _minDelayBetweenDrops;
     private float _flowForce; // сила отклонения струи
     private float _rotationAngle;
     private bool _right;
@@ -32,6 +34,8 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     private Vector2 _startPosition;
     private Vector2 _jetDirection;
 
+    private float _currentVolume;
+    private string _itemKeyName;
 
     private float ZAngle
     {
@@ -108,10 +112,13 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         _rectTransform.eulerAngles = Vector3.zero;
     }
 
-    public void SetItem(Sprite icon, Color color, float maxDelayBetweenDrops)
+    public void SetItem(Sprite icon, Color color, float minDelayBetweenDrops, float totalVolume, string keyName)
     {
+        _currentVolume = totalVolume;
+        _itemKeyName = keyName;
+
         _color = color;
-        _maxDelayBetweenDrops = maxDelayBetweenDrops;
+        _minDelayBetweenDrops = minDelayBetweenDrops;
 
         _image.sprite = icon;
         _image.SetNativeSize();
@@ -130,16 +137,29 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         while (true)
         {
             yield return null;
+            _currentVolume -= _spawner.GetSpawnedDelta() * WaterDrop.Mass;
+            if(_currentVolume <= 0)
+            {
+                _spawner.IsDropping = false;
+                _spawner.DropDelay = 0;
+                if (PouringItemKeyName == "SHAKER")
+                    OrderCreationEvents.Instance.OrderActionsTracker.AddAction(new OrderAction.ShakerPourAction());
+                yield break;
+            }
             if (CanSpawnDrops && Mathf.Abs(ZAngle) > 1)
             {
                 _spawner.IsDropping = Mathf.Abs(ZAngle) > _dropSpawnStartAngle;
-                _spawner.DropDelay = _maxDelayBetweenDrops * (1 - Mathf.Abs(ZAngle) / _minMaxAngles.y);
+                _spawner.DropDelay = _minDelayBetweenDrops + 
+                                     Mathf.Clamp01(4 * _minDelayBetweenDrops) * 
+                                     (1 - Mathf.Abs(ZAngle) / _minMaxAngles.y);
             }
             else
             {
                 _spawner.IsDropping = false;
                 _spawner.DropDelay = 0;
             }
+
+            PouringItemKeyName = _spawner.IsDropping ? _itemKeyName : string.Empty;
 
             if (_needPauseInRotation)
                 yield return UnityExtensions.Wait(_delayBeforeRepeatRotation);

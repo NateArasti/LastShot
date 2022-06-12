@@ -34,7 +34,7 @@ public class ShakerGlass : MonoBehaviour
         var startLiquid = Instantiate(_liquidPrefab);
         startLiquid.gameObject.SetActive(true);
         _liquid = startLiquid.GetComponent<StaticLiquid>();
-        _liquid.SpawnStartLiquid(_glassMask.rectTransform, _widthHeight);
+        _liquid.SpawnStartLiquid(_glassMask.rectTransform, _widthHeight, LiquidTrigger.LiquidContainerType.Shaker);
         _liquidRenderer = startLiquid.GetComponent<LiquidRenderer>();
         GetComponent<Returner>().OnReturn.AddListener(OnReturn);
     }

@@ -43,8 +43,11 @@ public class StaticLiquid : MonoBehaviour
     }
 
 
-    public void SpawnStartLiquid(RectTransform maskRect, AnimationCurve curve)
+    public void SpawnStartLiquid(RectTransform maskRect, AnimationCurve curve, 
+        LiquidTrigger.LiquidContainerType containerType = LiquidTrigger.LiquidContainerType.Glass)
     {
+        _trigger.ContainerType = containerType;
+
         _widthCurve = curve;
         var corners = new Vector3[4];
         maskRect.GetWorldCorners(corners);

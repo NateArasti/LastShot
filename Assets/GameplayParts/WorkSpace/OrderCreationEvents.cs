@@ -18,6 +18,8 @@ public class OrderCreationEvents : MonoBehaviour
 
     private Glass _spawnedGlass;
 
+    public OrderActionsTracker OrderActionsTracker { get; private set; }
+
     public bool DrinkInWork { get; private set; } 
 
     private void Awake()
@@ -27,7 +29,7 @@ public class OrderCreationEvents : MonoBehaviour
 
     public void StartCreatingDrink(Drink drink)
     {
-        Debug.LogWarning(drink.KeyName);
+        OrderActionsTracker = new OrderActionsTracker();
         DrinkInWork = true;
         var glass = Instantiate(drink.DrinkReceipt.GlassPrefab, _glassPivot);
         glass.transform.SetAsFirstSibling();

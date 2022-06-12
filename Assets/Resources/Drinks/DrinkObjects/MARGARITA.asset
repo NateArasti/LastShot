@@ -67,6 +67,9 @@ MonoBehaviour:
     - rid: 4723403559277691003
     - rid: 4723403559277691004
     - rid: 4723403559277691005
+    - rid: 4723403559277691005
+    - rid: 4723403559277691005
+    - rid: 4723403559277691005
     - rid: 4723403559277691006
     - rid: 4723403559277691007
     - rid: 4723403559277691008
@@ -79,7 +82,6 @@ MonoBehaviour:
         _actionName: DecorateAction
         _weight: 2
         _ingredient: {fileID: 11400000, guid: dad5a69e1b0b13c44a1c323c5ff38877, type: 2}
-        _quantity: 0
     - rid: 4723403559277691001
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
@@ -114,7 +116,7 @@ MonoBehaviour:
         _actionName: IngredientAddToShakerAction
         _weight: 2
         _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
-        _quantity: 4
+        _quantity: 1
     - rid: 4723403559277691006
       type: {class: OrderAction/ShakerMixAction, ns: , asm: Assembly-CSharp}
       data:
@@ -132,4 +134,3 @@ MonoBehaviour:
         _actionName: DecorateAction
         _weight: 1
         _ingredient: {fileID: 11400000, guid: ae0ebbce20a7ece4c865a7d13e8db0d1, type: 2}
-        _quantity: 0

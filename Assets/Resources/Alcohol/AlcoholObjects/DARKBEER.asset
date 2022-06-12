@@ -31,4 +31,4 @@ MonoBehaviour:
     _containingDrinks:
     - {fileID: 11400000, guid: 71108ecb449ae8a41807b48ce403d69c, type: 2}
   _mainColor: {r: 0.21960786, g: 0.14117648, b: 0.07450981, a: 0.9019608}
-  _maxDelayBetweenDrops: 0.05
+  _minDelayBetweenDrops: 0.01

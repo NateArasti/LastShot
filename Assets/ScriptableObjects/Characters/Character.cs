@@ -26,9 +26,16 @@ public class Character : ScriptableObject, IDatabaseObject
     public DrinksDescriptionCoefficients Coefficients => _coefficients;
 
 
-    public CharacterGuestGrade GetCharacterGrade(Drink drink, OrderAction[] orderActions)
+    public CharacterGuestGrade GetCharacterGrade(Drink drink, IReadOnlyList<OrderAction> orderActions)
     {
-        return CharacterGuestGrade.Excellent;
+        var comparison = OrderAction.Compare(drink.DrinkReceipt.PerfectActions, orderActions);
+        Debug.Log(comparison);
+        return comparison switch
+        {
+            > 0.6f => CharacterGuestGrade.Excellent,
+            > 0.3f => CharacterGuestGrade.Good,
+            _ => CharacterGuestGrade.Bad
+        };
     }
 
     public bool CheckSuggestedDrink(Drink drink) => 

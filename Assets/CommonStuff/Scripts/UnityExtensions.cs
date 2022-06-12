@@ -148,4 +148,11 @@ public static class UnityExtensions
     }
 
     public static Color GetRGB(this Color color) => new(color.r, color.g, color.b, 1);
+
+    public static float GetDistanceTo(this Color color, Color endColor)
+    {
+        var start = new Vector4(color.r, color.g, color.b, color.a);
+        var end = new Vector4(endColor.r, endColor.g, endColor.b, endColor.a);
+        return Vector4.Distance(start, end);
+    }
 }

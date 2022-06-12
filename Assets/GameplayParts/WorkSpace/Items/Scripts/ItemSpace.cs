@@ -76,6 +76,11 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (!item.Item.CanPlaceInThisSpace(_type)) return;
         if (_type == ItemSpaceType.Garnish)
         {
+            OrderCreationEvents.Instance.OrderActionsTracker.AddAction(new OrderAction.DecorateAction(false)
+            {
+                Ingredient = item.Item
+            });
+
             _canPlace = false;
             _image.sprite = item.Item.GarnishSprite;
             _image.SetNativeSize();
@@ -113,7 +118,12 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             _image.color = _simpleColor;
             _canvasGroup.alpha = 0;
             _canPlace = false;
-            shakerGlass.SetUp(DeleteItem, _number);
+            _type = ItemSpaceType.Glass;
+            shakerGlass.SetUp(() =>
+            {
+                DeleteItem();
+                _type = ItemSpaceType.SideObject;
+            }, _number);
         }
     }
 

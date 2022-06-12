@@ -24,12 +24,16 @@ public class SpoonMix : MonoBehaviour
     private Vector3 _lastCirclePosition;
     private LiquidRenderer _liquidRenderer;
     private bool _started;
+    private Color _startColor;
+    private Color _targetColor;
 
     public void StartMixing(LiquidRenderer liquidRenderer)
     {
         _started = true;
         _liquidRenderer = liquidRenderer;
-        _liquidMask.color = liquidRenderer.TopColor;
+        _startColor = liquidRenderer.TopColor;
+        _targetColor = liquidRenderer.GetCurrentAverageGradientColor();
+        _liquidMask.color = _startColor;
         _rotationTween.Kill();
         _rotationTween = _rotationPivot
             .DOLocalRotate(
@@ -42,6 +46,13 @@ public class SpoonMix : MonoBehaviour
 
     public void EndMixing()
     {
+        var endColor = _liquidRenderer.TopColor;
+        var distance = _startColor.GetDistanceTo(_targetColor);
+        var passed = _startColor.GetDistanceTo(endColor);
+        OrderCreationEvents.Instance.OrderActionsTracker.AddAction(new OrderAction.ShakerMixAction(false)
+        {
+            Intensity = passed / distance
+        });
         _started = false; 
         _rotationTween.Kill();
         _rotationPivot.localEulerAngles = Vector3.zero;

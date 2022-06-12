@@ -65,6 +65,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9a5f6cc21521f3d48b727a1a47d951d6, type: 2}
     _perfectActions:
     - rid: 4723403559277690949
+    - rid: 4723403559277690949
+    - rid: 4723403559277690949
+    - rid: 4723403559277690949
     - rid: 4723403559277690950
     - rid: 4723403559277690951
     - rid: 4723403559277690952
@@ -72,6 +75,9 @@ MonoBehaviour:
     - rid: 4723403559277690954
     - rid: 4723403559277690955
     - rid: 4723403559277690956
+    - rid: 4723403559277690957
+    - rid: 4723403559277690957
+    - rid: 4723403559277690957
     - rid: 4723403559277690957
     - rid: 4723403559277690958
     - rid: 4723403559277690965
@@ -84,7 +90,7 @@ MonoBehaviour:
         _actionName: IngredientAddAction
         _weight: 1
         _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
-        _quantity: 4
+        _quantity: 1
     - rid: 4723403559277690950
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
@@ -140,7 +146,7 @@ MonoBehaviour:
         _actionName: IngredientAddToShakerAction
         _weight: 1
         _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
-        _quantity: 4
+        _quantity: 1
     - rid: 4723403559277690958
       type: {class: OrderAction/ShakerMixAction, ns: , asm: Assembly-CSharp}
       data:

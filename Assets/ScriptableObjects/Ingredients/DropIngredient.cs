@@ -7,6 +7,7 @@ public class DropIngredient : Ingredient
     [Space(20f)]
     [SerializeField] private float _mass;
     [SerializeField] private float _volume;
+    [SerializeField] private float _dropCount = 1;
     [SerializeField] private int _additionalSpawnCount;
     [SerializeField] private float _rigidbodyTurnOffDelay;
 
@@ -20,6 +21,12 @@ public class DropIngredient : Ingredient
 
     public override GameObject SpawnWorkItem(Transform container)
     {
+        var action = new OrderAction.IngredientAddAction(false)
+        {
+            Ingredient = this,
+            Quantity = _dropCount
+        };
+        OrderCreationEvents.Instance.OrderActionsTracker.AddAction(action);
         var item = Instantiate(IngredientTypeData.GetPrefab(Type), container);
         item.GetComponent<DropItem>()
             .SetItem(WorkSprite, _mass, _volume, _additionalSpawnCount, _rigidbodyTurnOffDelay);
