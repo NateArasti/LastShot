@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GuestsManager : MonoBehaviour
 {
+    [SerializeField] private UnityEvent _onDayEndEvent;
     [SerializeField] private Dialogue[] _dialogues;
     [Header("Pivots")]
     [SerializeField] private Transform _leftSpawnPoint;
@@ -26,6 +28,7 @@ public class GuestsManager : MonoBehaviour
         _currentlyAvailableTables = new HashSet<TableTransform>(_tableTransforms);
         _availableDialogues = _dialogues.ToHashSet();
         StartCoroutine(SpawnGuests());
+        GameTimeController.OnDayEnd.AddListener(EndDay);
     }
 
     private IEnumerator SpawnGuests()
@@ -37,6 +40,7 @@ public class GuestsManager : MonoBehaviour
             {
                 if (_availableDialogues.Count == 0)
                 {
+                    yield return new WaitUntil(() => transform.childCount == 1);
                     EndDay();
                     yield break;
                 }
@@ -49,8 +53,10 @@ public class GuestsManager : MonoBehaviour
         }
     }
 
-    private void EndDay()
+    public void EndDay()
     {
+        StopAllCoroutines();
+        _onDayEndEvent.Invoke();
         Debug.Log("END OF THE DAY");
     }
 

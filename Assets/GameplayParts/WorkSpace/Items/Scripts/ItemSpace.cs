@@ -85,6 +85,7 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             _image.sprite = item.Item.GarnishSprite;
             _image.SetNativeSize();
             _image.color = Color.white;
+            return;
         }
 
         var spawnWorkItem = item.Item.SpawnWorkItem(_itemSpawnPivot);

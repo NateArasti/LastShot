@@ -43,7 +43,7 @@ MonoBehaviour:
     - 0
     - 0.2
   _receipt:
-    _approximateTimeOfMaking: 60
+    _approximateTimeOfMaking: 90
     _glassPrefab: {fileID: 899954872950476208, guid: 77f8c99921adc77478275b5800db6300, type: 3}
     _instruments:
     - {fileID: 11400000, guid: dd3e6d84d0072f347841fbc9a94857aa, type: 2}
@@ -73,28 +73,28 @@ MonoBehaviour:
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 3
+        _weight: 7
         _ingredient: {fileID: 11400000, guid: 14dab4df88bd1624dae88bacd6716f39, type: 2}
         _quantity: 0.015
     - rid: 4723403559277691041
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 3
+        _weight: 7
         _ingredient: {fileID: 11400000, guid: 9af86427b82eae742aa77e2665786db3, type: 2}
         _quantity: 0.015
     - rid: 4723403559277691042
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 3
+        _weight: 7
         _ingredient: {fileID: 11400000, guid: 9a0981884abb2384bb81039e679e3744, type: 2}
         _quantity: 0.075
     - rid: 4723403559277691043
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 2
+        _weight: 6
         _ingredient: {fileID: 11400000, guid: 08cda4e7cd6e9274facc80dce02bc517, type: 2}
         _quantity: 0.001
     - rid: 4723403559277691044
@@ -114,7 +114,7 @@ MonoBehaviour:
       type: {class: OrderAction/ShakerPourAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: ShakerPourAction
-        _weight: 1
+        _weight: 7
     - rid: 4723403559277691047
       type: {class: OrderAction/DecorateAction, ns: , asm: Assembly-CSharp}
       data:

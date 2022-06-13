@@ -247,6 +247,9 @@ public class DialogueSystem : MonoBehaviour
                     CurrentDialogue.CurrentOrderData.Drink, 
                     OrderCreationEvents.Instance.OrderActionsTracker.GetOrderActions()
                     );
+        PlayerStorage.MoneyData.AddOrderMoney(
+            CurrentDialogue.CurrentOrderData.Drink,
+            CurrentDialogue.CurrentOrderData.Grade);
         CurrentDialogue.CurrentOrderData.Character = null;
         CurrentDialogue.CurrentOrderData.Drink = null;
         UpdateDialogueState(true);

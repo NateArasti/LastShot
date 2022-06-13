@@ -8,6 +8,7 @@ public class SpoonMix : MonoBehaviour
 {
     [Header("Liquid")]
     [SerializeField] private Image _liquidMask;
+    [SerializeField] private Material _liquidMaskMaterial;
     [SerializeField] private float _liquidMixingSpeed = 1f;
     [Header("Circle")]
     [SerializeField] private RectTransform _rotationPivot;
@@ -26,6 +27,7 @@ public class SpoonMix : MonoBehaviour
     private bool _started;
     private Color _startColor;
     private Color _targetColor;
+    private static readonly int Speed = Shader.PropertyToID("_Speed");
 
     public void StartMixing(LiquidRenderer liquidRenderer)
     {
@@ -94,12 +96,14 @@ public class SpoonMix : MonoBehaviour
     private void ConfirmPoint(RectTransform pointTransform)
     {
         _rotationTween.timeScale += 0.1f;
+        _liquidMaskMaterial.DOFloat(_rotationTween.timeScale, Speed, 0.5f);
         pointTransform.DOScale(_endScale * Vector3.one, _confirmDuration).SetLoops(2, LoopType.Yoyo);
     }
 
     private void ErrorCircle()
     {
         _rotationTween.timeScale -= 0.3f;
+        _liquidMaskMaterial.DOFloat(_rotationTween.timeScale, Speed, 0.5f);
         if (_rotationTween.timeScale < 1)
         {
             _rotationTween.timeScale = 1;

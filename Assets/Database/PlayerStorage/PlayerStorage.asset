@@ -20,6 +20,6 @@ MonoBehaviour:
     _volumes:
     - 1
   _moneyManager:
-    _stock: 475
-    _gainedOnCurrentDay: 52
-    _currentMoney: 527
+    _stock: 75
+    _gainedOnCurrentDay: 8
+    _currentMoney: 75

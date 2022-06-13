@@ -14,7 +14,7 @@ public class LiquidTrigger : MonoBehaviour
 
     [SerializeField] private float _triggerTopOffset = 0.1f;
 
-    public readonly UnityEvent<float, float, float> OnHit = new();
+    public readonly UnityEvent<float, float, float, bool> OnHit = new();
     public readonly UnityEvent<Color> ReColor = new();
 
     private BoxCollider2D _boxCollider;
@@ -33,7 +33,7 @@ public class LiquidTrigger : MonoBehaviour
         var x = col.transform.position.x;
         if (col.TryGetComponent<DropItem>(out var dropItem))
         {
-            OnHit.Invoke(x, dropItem.Force, dropItem.Volume);
+            OnHit.Invoke(x, dropItem.Force, dropItem.Volume, true);
         }
         else if (col.TryGetComponent<WaterDrop>(out var waterDrop))
         {
@@ -41,9 +41,9 @@ public class LiquidTrigger : MonoBehaviour
             var waterDropMass = waterDrop.CurrentMass;
 
             if (_smthLies)
-                OnHit.Invoke(x, 0.1f, waterDropMass * 2); // доп увеличения объема воды при соприкосновении с кубиком
+                OnHit.Invoke(x, 0.1f, waterDropMass * 2, false); // доп увеличения объема воды при соприкосновении с кубиком
             else
-                OnHit.Invoke(x, 0.1f, waterDropMass);
+                OnHit.Invoke(x, 0.1f, waterDropMass, false);
 
             if (_currentWaterDropAction != null && 
                 PourItem.PouringItemKeyName != _currentWaterDropAction.Ingredient.KeyName && 

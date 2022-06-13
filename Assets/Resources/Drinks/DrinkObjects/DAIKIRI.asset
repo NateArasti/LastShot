@@ -40,7 +40,7 @@ MonoBehaviour:
     - 0
     - 0.7
   _receipt:
-    _approximateTimeOfMaking: 60
+    _approximateTimeOfMaking: 75
     _glassPrefab: {fileID: 4688351758044794544, guid: 94a3800494f0f6d488db2446ccb790c6, type: 3}
     _instruments:
     - {fileID: 11400000, guid: dd3e6d84d0072f347841fbc9a94857aa, type: 2}
@@ -80,7 +80,7 @@ MonoBehaviour:
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 3
+        _weight: 7
         _ingredient: {fileID: 11400000, guid: 1051d09df3875af418d268b002827f13, type: 2}
         _quantity: 0.06
     - rid: 4723403559277690983
@@ -100,4 +100,4 @@ MonoBehaviour:
       type: {class: OrderAction/ShakerPourAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: ShakerPourAction
-        _weight: 2
+        _weight: 7

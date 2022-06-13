@@ -28,5 +28,5 @@ Material:
     - _AlphaScale: 0.85
     - _Cutoff: 0.459
     m_Colors:
-    - _Color: {r: 0.7803922, g: 0.454902, b: 0.050980397, a: 0.6}
+    - _Color: {r: 0.9176471, g: 0.6039216, b: 0.121568635, a: 0.9019608}
   m_BuildTextureStacks: []

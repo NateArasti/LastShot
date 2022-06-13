@@ -63,7 +63,7 @@ MonoBehaviour:
       type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddAction
-        _weight: 2
+        _weight: 5
         _ingredient: {fileID: 11400000, guid: ba36ba240e253d44a9726e64c8ec8d6d, type: 2}
         _quantity: 0.05
     - rid: 4723403559277690932

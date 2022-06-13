@@ -48,7 +48,7 @@ MonoBehaviour:
     - 0.1
     - 0.3
   _receipt:
-    _approximateTimeOfMaking: 60
+    _approximateTimeOfMaking: 90
     _glassPrefab: {fileID: 899954872950476208, guid: 77f8c99921adc77478275b5800db6300, type: 3}
     _instruments:
     - {fileID: 11400000, guid: ce2ff6b9ca3f0f74eac833febc28ff1a, type: 2}
@@ -80,41 +80,41 @@ MonoBehaviour:
       type: {class: OrderAction/DecorateAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: DecorateAction
-        _weight: 2
+        _weight: 3
         _ingredient: {fileID: 11400000, guid: dad5a69e1b0b13c44a1c323c5ff38877, type: 2}
     - rid: 4723403559277691001
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 2
+        _weight: 3
         _ingredient: {fileID: 11400000, guid: ca04bb24cb61baf4085ff02f3f12d46a, type: 2}
         _quantity: 0.03
     - rid: 4723403559277691002
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 2
+        _weight: 3
         _ingredient: {fileID: 11400000, guid: 316d7109f4bfe7b4aa9301ce8f1a22fa, type: 2}
         _quantity: 0.01
     - rid: 4723403559277691003
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 3
+        _weight: 8
         _ingredient: {fileID: 11400000, guid: 4c81be63e31d7e24ea5ca8fddb5a71ec, type: 2}
         _quantity: 0.025
     - rid: 4723403559277691004
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 3
+        _weight: 8
         _ingredient: {fileID: 11400000, guid: ba36ba240e253d44a9726e64c8ec8d6d, type: 2}
         _quantity: 0.05
     - rid: 4723403559277691005
       type: {class: OrderAction/IngredientAddToShakerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddToShakerAction
-        _weight: 2
+        _weight: 1
         _ingredient: {fileID: 11400000, guid: 2cd7fefea02b7bd4c9e76ec824f958a5, type: 2}
         _quantity: 1
     - rid: 4723403559277691006

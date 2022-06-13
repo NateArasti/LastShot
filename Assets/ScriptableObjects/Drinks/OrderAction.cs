@@ -59,7 +59,11 @@ public class OrderAction
 
     private static float Compare(OrderAction referenceAction, OrderAction orderAction)
     {
-        if (referenceAction.GetType() != orderAction.GetType()) return 0;
+        var referenceType = referenceAction.GetType();
+        var orderActionType = orderAction.GetType();
+        if (referenceType != orderActionType && 
+            !(referenceAction is IngredientAddToShakerAction 
+              && orderAction is IngredientAddAction {Ingredient: not PourIngredient})) return 0;
         switch (referenceAction)
         {
             case IngredientAddToShakerAction castedReferenceAction:

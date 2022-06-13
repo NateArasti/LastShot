@@ -30,3 +30,4 @@ MonoBehaviour:
     _containingDrinks:
     - {fileID: 11400000, guid: 37fe35bc54175bd46ba56ecb445cf464, type: 2}
   _color: {r: 0.9622642, g: 0.56551385, b: 0.32135987, a: 1}
+  _dropCount: 5

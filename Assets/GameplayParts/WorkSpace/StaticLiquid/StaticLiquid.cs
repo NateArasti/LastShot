@@ -82,9 +82,9 @@ public class StaticLiquid : MonoBehaviour
         StartCoroutine(FadeVolumeIncrease());
     }
 
-    private void Splash(float x, float force = 0.3f, float volume = 0f)
+    private void Splash(float x, float force = 0.3f, float volume = 0f, bool dropIngredient = false)
     {
-        if (_rect.height <= _fixedTopGlassEdge)
+        if (_rect.height <= _fixedTopGlassEdge || dropIngredient && _baseHeight <= 0.1f)
         {
             var a = Mathf.RoundToInt((x - _rect.x) / _distanceBetweenVertices);
             _velocities[2 * a + 1] -= force;

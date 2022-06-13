@@ -41,9 +41,10 @@ public class BarShelf : MonoBehaviour
         }
     }
 
-    public void ChooseIngredient(Ingredient ingredient)
+    public void ChooseIngredient(Ingredient ingredient, GameObject ingredientGameObject)
     {
         if(_chosenIngredients.Count == _chosenIngredientCap) return;
+        ingredientGameObject.SetActive(false);
         Instantiate(_chosenIngredientPrefab, _chosenIngredientParent).SetIngredient(ingredient, UnChooseIngredient);
         _chosenIngredients.Add(ingredient);
     }

@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Transform _sitSpot;
     [Header("Menu")]
     [SerializeField] private GameObject _settings;
+    [SerializeField] private GameObject _credits;
 
     private void Start()
     {
@@ -21,6 +22,13 @@ public class MainMenu : MonoBehaviour
     public void ToggleSettings()
     {
         _settings.SetActive(!_settings.activeSelf);
+        if(_settings.activeSelf) _credits.SetActive(false);
+    }
+
+    public void ToggleCredits()
+    {
+        _credits.SetActive(!_credits.activeSelf);
+        if (_credits.activeSelf) _settings.SetActive(false);
     }
 
     public void QuitGame() => GlobalApplicationSettings.QuitGame();

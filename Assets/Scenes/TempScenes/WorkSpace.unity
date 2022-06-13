@@ -11600,6 +11600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _liquidMask: {fileID: 215253626}
+  _liquidMaskMaterial: {fileID: 2100000, guid: fa9057e169fc85342abec84e58ab0ccd, type: 2}
   _liquidMixingSpeed: 0.1
   _rotationPivot: {fileID: 351948349}
   _rotationDuration: 7.5

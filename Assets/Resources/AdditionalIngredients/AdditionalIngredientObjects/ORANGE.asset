@@ -27,7 +27,8 @@ MonoBehaviour:
     _class: 1
     _containingDrinks:
     - {fileID: 11400000, guid: bdd40a13d531d914d95b382b2a54911f, type: 2}
-  _mass: 0
-  _volume: 0
+  _mass: 1.2
+  _volume: 3.5
+  _dropCount: 1
   _additionalSpawnCount: 0
   _rigidbodyTurnOffDelay: 0

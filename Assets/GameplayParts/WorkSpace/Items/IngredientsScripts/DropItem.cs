@@ -8,7 +8,7 @@ public class DropItem : MonoBehaviour
 
     [SerializeField] private float _randomSpawnRadius = 2;
 
-    private BoxCollider2D _collider;
+    private CircleCollider2D _collider;
     private Image _image;
     private float _volume;
     private RectTransform _rectTransform;
@@ -33,7 +33,7 @@ public class DropItem : MonoBehaviour
     {
         _image = GetComponent<Image>();
         _rectTransform = GetComponent<RectTransform>();
-        _collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<CircleCollider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -46,9 +46,10 @@ public class DropItem : MonoBehaviour
     {
         _volume = volume;
         _image.sprite = icon;
+        _image.SetNativeSize();
         _rigidbody2D.mass = mass;
         _duplicatesCount = duplicatesCount;
-        _collider.size = new Vector2(_rectTransform.rect.width, _rectTransform.rect.height);
+        _collider.radius = 0.5f * Mathf.Min(_rectTransform.rect.width, _rectTransform.rect.height);
         transform.SetAsFirstSibling();
         if(delayBeforeRBTurnOff == 0) return;
         StartCoroutine(RBTurnOff(delayBeforeRBTurnOff));

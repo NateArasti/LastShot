@@ -46,7 +46,7 @@ MonoBehaviour:
     - 0.5
     - 0
   _receipt:
-    _approximateTimeOfMaking: 60
+    _approximateTimeOfMaking: 80
     _glassPrefab: {fileID: 8848479997441821599, guid: dfadaf434eb91b147b9a890d6042110d, type: 3}
     _instruments:
     - {fileID: 11400000, guid: c4c2667c30069fd4bb9aee08397ca2c3, type: 2}
@@ -101,19 +101,19 @@ MonoBehaviour:
       type: {class: OrderAction/SpoonLayerAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: SpoonLayerAction
-        _weight: 2
+        _weight: 5
         _ingredient: {fileID: 11400000, guid: ab3715075d28d944fb9e5e4e42f6dee3, type: 2}
         _quantity: 0.02
     - rid: 4723403559277691020
       type: {class: OrderAction/IngredientAddAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: IngredientAddAction
-        _weight: 2
+        _weight: 5
         _ingredient: {fileID: 11400000, guid: 08cda4e7cd6e9274facc80dce02bc517, type: 2}
         _quantity: 0.001
     - rid: 4723403559277691021
       type: {class: OrderAction/ShakerMixAction, ns: , asm: Assembly-CSharp}
       data:
         _actionName: ShakerMixAction
-        _weight: 1
+        _weight: 2
         _intensity: 0.7

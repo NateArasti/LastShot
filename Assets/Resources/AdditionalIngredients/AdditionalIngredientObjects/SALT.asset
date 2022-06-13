@@ -32,3 +32,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ff1d4cdedc8bd7845a13b9f6550ab6c5, type: 2}
     - {fileID: 11400000, guid: 4b5eaaf471398664f80c4540866f5f43, type: 2}
   _color: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
+  _dropCount: 5

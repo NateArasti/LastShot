@@ -30,8 +30,6 @@ public class DropIngredient : Ingredient
         var item = Instantiate(IngredientTypeData.GetPrefab(Type), container);
         item.GetComponent<DropItem>()
             .SetItem(WorkSprite, _mass, _volume, _additionalSpawnCount, _rigidbodyTurnOffDelay);
-        item.GetComponent<Image>().SetNativeSize();
-        item.GetComponent<BoxCollider2D>().size = item.GetComponent<RectTransform>().sizeDelta;
         return item;
     }
 }

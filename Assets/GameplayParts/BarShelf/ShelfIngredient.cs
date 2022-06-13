@@ -21,13 +21,12 @@ public class ShelfIngredient : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetIngredient(Ingredient ingredient, UnityAction<Ingredient> chooseAction)
+    public void SetIngredient(Ingredient ingredient, UnityAction<Ingredient, GameObject> chooseAction)
     {
         _ingredient = ingredient;
         _tooltipTrigger.Name = ingredient.Data.Name;
         _image.sprite = ingredient.Data.ObjectSprite;
         _image.SetNativeSize();
-        _button.onClick.AddListener(() => chooseAction.Invoke(_ingredient));
-        _button.onClick.AddListener(() => gameObject.SetActive(false));
+        _button.onClick.AddListener(() => chooseAction.Invoke(_ingredient, gameObject));
     }
 }

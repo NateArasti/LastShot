@@ -23,6 +23,7 @@ public class WorkSpaceClocks : MonoBehaviour
         if (Mathf.Approximately(_clockMaskImage.fillAmount, 1))
         {
             _clockIsGoing = false;
+            OrderCreationEvents.Instance.EndCreation();
         }
     }
 }

@@ -33,7 +33,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 11159bdf75a033447a572444ad62de4e, type: 2}
     - {fileID: 11400000, guid: 37fe35bc54175bd46ba56ecb445cf464, type: 2}
     - {fileID: 11400000, guid: 35e5a29b9852e5d4f90eb4d3c12f7ae6, type: 2}
-  _mass: 0
-  _volume: 0
+  _mass: 1.5
+  _volume: 3.5
+  _dropCount: 1
   _additionalSpawnCount: 0
   _rigidbodyTurnOffDelay: 0

@@ -19,12 +19,13 @@ public class BillsHandler : MonoBehaviour
     {
         _stockText.text = $"{PlayerStorage.MoneyData.Stock}$";
         _earnedText.text = $"{PlayerStorage.MoneyData.GainedOnCurrentDay}$";
+        _ordersText.text = PlayerStorage.MoneyData.EarnedData();
         _sumText.text = $"{PlayerStorage.MoneyData.TotalMoney}$";
     }
 
     public void SetPurchaseBillText()
     {
-        _wasText.text = $"{PlayerStorage.MoneyData.TotalMoney}$";
+        _wasText.text = $"{PlayerStorage.MoneyData.Stock}$";
         _totalText.text = $"{PlayerStorage.MoneyData.CurrentMoney}$";
         var stringBuilder = new StringBuilder();
         PlayerStorage.MoneyData.CurrentBill.ForEachAction(data =>
