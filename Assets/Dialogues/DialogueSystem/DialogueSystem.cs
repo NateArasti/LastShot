@@ -68,6 +68,7 @@ public class DialogueSystem : MonoBehaviour
 
     [SerializeField] private UnityEvent _playerSuggestEvent;
     private DialogueState _currentState;
+    private DialogueState _nextState;
     private Story _currentStory;
     private DialogueUI _dialogueUI;
 
@@ -104,7 +105,14 @@ public class DialogueSystem : MonoBehaviour
         if (_dialogueUI.IsTypingPhrase)
             _dialogueUI.EndTyping();
         else
+        {
+            if (_nextState != DialogueState.None)
+            {
+                _currentState = _nextState;
+                _nextState = DialogueState.None;
+            }
             UpdateDialogueState();
+        }
     }
 
     public void StartDialogue()
@@ -210,6 +218,11 @@ public class DialogueSystem : MonoBehaviour
         }
         var data = InkyParser.ParsePhrase(text, CurrentDialogue.Participants, overrideDrink);
 
+        if (data.Drink != null && overrideDrink == null && data.Drink.KeyName == DatabaseManager.DrinkDatabase.AnythingKeyName)
+        {
+            _nextState = DialogueState.PlayerSuggest;
+        }
+
         ParseOrderData(data);
 
         _dialogueUI.SetCharacterUI(
@@ -221,7 +234,9 @@ public class DialogueSystem : MonoBehaviour
 
     private void ParseOrderData(InkyParser.PhraseData data)
     {
-        if (data.Drink != null && CurrentDialogue.CurrentOrderData.SuggestedDrink == null)
+        if (data.Drink != null 
+            && data.Drink.KeyName != DatabaseManager.DrinkDatabase.AnythingKeyName 
+            && CurrentDialogue.CurrentOrderData.SuggestedDrink == null)
         {
             CurrentDialogue.CurrentOrderData.Character = data.PhraseCharacter;
             CurrentDialogue.CurrentOrderData.Drink = data.Drink;
@@ -266,7 +281,9 @@ public class DialogueSystem : MonoBehaviour
 
         _dialogueEvents[EventType.Check].AddListener(() =>
         {
-            var check = true;//TODO: implement check later
+            //TODO: implement check later
+            var check = CurrentDialogue.CurrentOrderData.Drink != null 
+                        && !CurrentDialogue.CurrentOrderData.Drink.InfoData.Locked;
             if (check)
             {
                 _currentState = DialogueState.PlayerChoice;

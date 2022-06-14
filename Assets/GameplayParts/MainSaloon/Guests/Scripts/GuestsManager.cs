@@ -15,7 +15,7 @@ public class GuestsManager : MonoBehaviour
     [SerializeField] private Transform[] _chairTransforms;
     [Header("Params")]
     [SerializeField] private int _maxGuestAmount = 7;
-    [SerializeField] private float _delayBetweenSpawnTry = 3f;
+    [SerializeField] private Vector2 _delayBetweenSpawnTryRange = new Vector2(15, 45);
 
     private readonly HashSet<Guest> _guests = new();
     private HashSet<Transform> _currentlyAvailableChairs;
@@ -49,7 +49,8 @@ public class GuestsManager : MonoBehaviour
                 _availableDialogues.Remove(dialogue);
                 SpawnGuestsForDialogue(dialogue);
             }
-            yield return UnityExtensions.Wait(_delayBetweenSpawnTry);
+
+            yield return UnityExtensions.Wait(Random.Range(_delayBetweenSpawnTryRange.x, _delayBetweenSpawnTryRange.y));
         }
     }
 

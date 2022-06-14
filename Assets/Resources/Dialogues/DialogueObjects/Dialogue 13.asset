@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4c29ea206a35d42a4a654e3958e424, type: 3}
   m_Name: Dialogue 13
   m_EditorClassIdentifier: 
-  _inkyDialogue: {fileID: 4900000, guid: fea9ee80888c66a4b821188d445cd563, type: 3}
+  _inkyDialogue: {fileID: 4900000, guid: f6efb773a55e8ae4c805ada3be0a3d09, type: 3}
   _participants:
-  - {fileID: 11400000, guid: 2ccc32e2203bfdf499705c8a90e4e8f1, type: 2}
-  - {fileID: 11400000, guid: da9658c5dd9414b41adc50d48812e081, type: 2}
+  - {fileID: 11400000, guid: 3e944c864e94f4144869ef9ab5f0375a, type: 2}
+  - {fileID: 11400000, guid: b7717736f18ee0048aa8f308b41cbee0, type: 2}

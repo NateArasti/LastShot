@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c22ca7ad2c00504fb6245be6250963f, type: 3}
+  m_Name: 19-GUEST_MAN
+  m_EditorClassIdentifier: 
+  _keyName: 19-GUEST_MAN
+  _dialogueKeyName: GUEST_MAN
+  _portrait: {fileID: 21300000, guid: 97bad012b79f961439eddbec9db38bbf, type: 3}
+  _prefab: {fileID: 7295898478564524205, guid: 3fc75a4e0a1e3d84799ca354d3985d8c, type: 3}
+  _coefficients:
+    _coefficients:
+    - 0.5
+    - 0.5
+    - 0.3
+    - 0.1
+    - 0
+    - 0.15
