@@ -32,6 +32,7 @@ public class GlobalApplicationSettings : MonoBehaviour
         set
         {
             value = Mathf.Clamp01(value);
+            AudioManager.ChangeSoundVolume(value);
             PlayerPrefs.SetFloat(SoundVolumeKey, value);
             _soundVolume = value;
         }
@@ -42,6 +43,7 @@ public class GlobalApplicationSettings : MonoBehaviour
         set
         {
             value = Mathf.Clamp01(value);
+            AudioManager.ChangeMusicVolume(value);
             PlayerPrefs.SetFloat(MusicVolumeKey, value);
             _musicVolume = value;
         }
