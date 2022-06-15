@@ -33,9 +33,9 @@ public class SceneLoader : MonoBehaviour
 
     public static async void LoadScene(string sceneName, LoadSceneMode mode)
     {
+        _instance.EnableLoadScreen();
         var sceneLoad = SceneManager.LoadSceneAsync(sceneName, mode);
         sceneLoad.allowSceneActivation = false;
-        _instance.EnableLoadScreen();
 
         do
         {
@@ -45,7 +45,22 @@ public class SceneLoader : MonoBehaviour
         sceneLoad.allowSceneActivation = true;
     }
 
+    public static async void UnloadScene(string sceneName)
+    {
+        _instance.EnableLoadScreen();
+        var sceneLoad = SceneManager.UnloadSceneAsync(sceneName);
+        sceneLoad.allowSceneActivation = false;
+
+        do
+        {
+            await Task.Delay(1000);
+            _currentLoadValue = sceneLoad.progress;
+        } while (sceneLoad.progress < 0.9f);
+        sceneLoad.allowSceneActivation = true;
+    }
+
     public static void LoadScene(Scene scene, LoadSceneMode mode) => LoadScene(scene.ToString(), mode);
+    public static void UnloadScene(Scene scene) => UnloadScene(scene.ToString());
 
     private void EnableLoadScreen()
     {
