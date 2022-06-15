@@ -12,7 +12,7 @@ GUEST_MAN: Коктейль какой-нибудь хочу... <alc_GODFATHER>�
 === Order ===
 #check
 * THOMAS: Налью.
-#order
+    #order
   THOMAS: Держи. 
   -> Grade
 * THOMAS: Может какой другой коктейль? Например <alc_ANYTHING></alc>.
@@ -27,11 +27,12 @@ GUEST_MAN: Коктейль какой-нибудь хочу... <alc_GODFATHER>�
     THOMAS: Держи. 
     -> Grade
 * THOMAS: Отца нет, может лучше <alc_ANYTHING></alc>?
-  #guestchoice:
+  THOMAS: Отца нет, может лучше <alc_ANYTHING></alc>?
+  #guestchoice
   ** GUEST_MAN: Похер, давай.
      #order
      THOMAS: Держи. 
-     -> Grade
+     -> Grade  
   ** GUEST_MAN: Похуй, возле участка шерифа подожду... -> END
 
 === Grade

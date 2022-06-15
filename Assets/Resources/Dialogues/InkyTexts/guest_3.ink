@@ -27,6 +27,7 @@ GUEST_WOMAN: Что вы можете предложить приличной д
   
 ===order
 THOMAS: Могу предложить вам <alc_ANYTHING></alc>?
+THOMAS: Могу предложить вам <alc_ANYTHING></alc>?
   #guestchoice
   * GUEST_WOMAN: Хм... Ну давай попробуем.
     #order
@@ -34,6 +35,7 @@ THOMAS: Могу предложить вам <alc_ANYTHING></alc>?
     -> grade
   * GUEST_WOMAN: Ох, может у вас найдётся что-то поинтереснее?
     #guestchoice
+    THOMAS: Что на счёт <alc_ANYTHING></alc>?
     THOMAS: Что на счёт <alc_ANYTHING></alc>?
     ** GUEST_WOMAN: А давай!
        #order

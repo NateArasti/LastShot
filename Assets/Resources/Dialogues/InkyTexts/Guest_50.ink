@@ -12,12 +12,14 @@ GUEST_WOMAN: Плесни мне в стакан чего-то крепкого.
 
 === Order ===
  THOMAS: Понимаю твой настрой. Могу предложить <alc_ANYTHING></alc>.
+ THOMAS: Понимаю твой настрой. Могу предложить <alc_ANYTHING></alc>.
   #guestchoice
   * GUEST_WOMAN: Да что угодно.
      #order
      THOMAS: Получай заказ. 
      -> Grade
   * GUEST_WOMAN: Нет, не хочется этого...
+    THOMAS: <alc_ANYTHING></alc> для таких случев в самый раз.
     THOMAS: <alc_ANYTHING></alc> для таких случев в самый раз.
     #guestchoice
     **GUEST_WOMAN: А плевать. Тащи.

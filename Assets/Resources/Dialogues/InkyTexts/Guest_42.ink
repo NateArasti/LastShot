@@ -8,6 +8,7 @@ GUEST_WOMAN: Мне бы хотелось чего-нибудь кисленьк
 
 === Order ===
  THOMAS: Я уверен, вам подойдёт <alc_ANYTHING></alc>.
+ THOMAS: Я уверен, вам подойдёт <alc_ANYTHING></alc>.
   #guestchoice
   * GUEST_WOMAN: Прекрасно.
     GUEST_WOMAN: Вы прямо таки мастер своего дела. С ходу поняли что мне нужно.
@@ -16,6 +17,7 @@ GUEST_WOMAN: Мне бы хотелось чего-нибудь кисленьк
      THOMAS: Надеюсь вам понравится. 
      -> Grade
   * GUEST_WOMAN: Вы не совсем поняли что мне нужно...
+    THOMAS: В таком случае, может вам больше понравится <alc_ANYTHING></alc>?
     THOMAS: В таком случае, может вам больше понравится <alc_ANYTHING></alc>?
     #guestchoice
     **GUEST_WOMAN: Вот это мне больше по душе. Не откажусь.

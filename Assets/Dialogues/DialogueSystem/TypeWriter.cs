@@ -5,6 +5,7 @@ using UnityEngine;
 public class TypeWriter : MonoBehaviour
 {
     [SerializeField] private float _typingSpeed = 20f;
+    [SerializeField] private AudioClip _typingClip;
 
     public bool IsTypingEnded { get; private set; } = true;
 
@@ -25,12 +26,17 @@ public class TypeWriter : MonoBehaviour
         var t = 0f;
         var letterIndex = 0;
         var textLength = phrase.Length;
+        var lastIndex = 0;
         while (letterIndex < textLength)
         {
             t += Time.deltaTime * _typingSpeed;
             letterIndex = Mathf.FloorToInt(t);
             letterIndex = Mathf.Clamp(letterIndex, 0, textLength);
-
+            if (letterIndex > lastIndex)
+            {
+                AudioManager.PlaySound(_typingClip, 0.1f, true, 0.5f);
+                lastIndex = letterIndex;
+            }
             _currentTextLabel.text = phrase[..letterIndex];
 
             yield return null;

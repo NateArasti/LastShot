@@ -9,12 +9,14 @@ GUEST_MAN: Плесни мне чего крепкого, рома там, ил�
 
 === Order ===
  THOMAS: <alc_ANYTHING></alc> сойдёт?
+ THOMAS: <alc_ANYTHING></alc> сойдёт?
   #guestchoice
   * GUEST_MAN: Да, вполне.
      #order
      THOMAS:  Лови. 
      -> Grade
   * GUEST_MAN: Не, мне такого не надо. Получше не найдется?
+    THOMAS: Ну может <alc_ANYTHING></alc>?
     THOMAS: Ну может <alc_ANYTHING></alc>?
     #guestchoice
     **GUEST_MAN: Вот. Сразу бы так!

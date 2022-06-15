@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerTopOffset: 0.1
+  _dropClip: {fileID: 8300000, guid: 512dc5455a207654a8603b43b1130114, type: 3}
 --- !u!1 &5241163772247465278
 GameObject:
   m_ObjectHideFlags: 0

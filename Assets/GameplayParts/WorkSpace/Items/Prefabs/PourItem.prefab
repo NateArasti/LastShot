@@ -96,6 +96,7 @@ MonoBehaviour:
   _dropSpawnStartAngle: 70
   _delayBeforeRepeatRotation: 0.5
   _spawnPivot: {fileID: 6222663484390935136}
+  _dropClip: {fileID: 8300000, guid: 512dc5455a207654a8603b43b1130114, type: 3}
 --- !u!114 &-2506192611054738130
 MonoBehaviour:
   m_ObjectHideFlags: 0

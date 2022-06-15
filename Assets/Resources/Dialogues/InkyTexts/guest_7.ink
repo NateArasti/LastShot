@@ -61,12 +61,14 @@ GUEST_MAN: Налей-ка мне ещё чего.
 
 ===order2
 THOMAS: <alc_ANYTHING></alc> подойдет?
+THOMAS: <alc_ANYTHING></alc> подойдет?
   #guestchoice
   *GUEST_MAN: Ладно, давай этого.
   #order
   THOMAS: Ваш заказ.
   -> grade2
   *GUEST_MAN: Покрече не найдется?
+    THOMAS: <alc_ANYTHING></alc>?
     THOMAS: <alc_ANYTHING></alc>?
     #guestchoice
     **GUEST_MAN: Ладно, давай этого...

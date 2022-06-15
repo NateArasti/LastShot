@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 9143928049494775209}
   - component: {fileID: 9143928049494775214}
   - component: {fileID: 9143928049494775215}
+  - component: {fileID: -3259745998364377419}
   m_Layer: 5
   m_Name: IngredientIconCover
   m_TagString: Untagged
@@ -212,3 +213,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 9143928048918453671}
+--- !u!114 &-3259745998364377419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143928049494775211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ec56cac9e8f8d489b539bb9bb1ae4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: bc73dde2e7afe0c4a8234680556bc798, type: 3}

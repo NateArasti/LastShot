@@ -28,6 +28,7 @@ GUEST_MAN: Давай <alc_BURBON>бурбона</alc>.
      THOMAS: Держи. 
      -> Grade
 * THOMAS: Бурбона нет, может что-то другое? <alc_ANYTHING></alc>?
+THOMAS: Бурбона нет, может что-то другое? <alc_ANYTHING></alc>?
   #guestchoice:
   ** GUEST_MAN: Валяй, только серьёзное что-то. Не надо мне свою хрень бодяжить...
      #order

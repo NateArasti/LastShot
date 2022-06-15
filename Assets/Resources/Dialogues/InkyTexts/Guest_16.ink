@@ -13,6 +13,7 @@ GUEST_WOMAN: Я же говорю, у меня нет времени на бок
 
 === Order ===
 THOMAS: Я могу вам предложить... <alc_ANYTHING></alc>?
+THOMAS: Я могу вам предложить... <alc_ANYTHING></alc>?
   #guestchoice
   * GUEST_WOMAN: Да, да, самое то.
      #order
@@ -23,6 +24,7 @@ THOMAS: Я могу вам предложить... <alc_ANYTHING></alc>?
      THOMAS: Ммм... Ладно? 
      -> Grade
   * GUEST_WOMAN: Да ты издеваешься надо мной?
+    THOMAS: <alc_ANYTHING></alc>?
     THOMAS: <alc_ANYTHING></alc>?
     #guestchoice
     **GUEST_WOMAN: Да, да, самое то.

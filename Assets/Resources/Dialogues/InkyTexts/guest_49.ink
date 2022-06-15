@@ -24,6 +24,7 @@ GUEST_MAN: Мне просто нравится вкус.
    THOMAS: Ваш напиток. 
    -> grade
 *THOMAS: Не получится. Может попробуете <alc_ANYTHING></alc>?
+THOMAS: Не получится. Может попробуете <alc_ANYTHING></alc>?
   #guestchoice
   **GUEST_MAN: Пиздец. Ну давай.
   #order

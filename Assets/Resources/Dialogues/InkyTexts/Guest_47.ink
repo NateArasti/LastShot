@@ -13,12 +13,14 @@ GUEST_MAN: Тогда на твое усмотрение, но только чт
 
 === Order ===
 THOMAS: Думаю, тебе подойдёт <alc_ANYTHING></alc>.
+THOMAS: Думаю, тебе подойдёт <alc_ANYTHING></alc>.
   #guestchoice
   * GUEST_MAN: Неплохое предложение.
      #order
      THOMAS: Готово. 
      -> Grade
   * GUEST_MAN: Эхх... А говорили, что вы разбираетесь...
+    THOMAS: А если <alc_ANYTHING></alc>?
     THOMAS: А если <alc_ANYTHING></alc>?
     #guestchoice
     **GUEST_MAN: А ты хорош мужик, успел среагировать.

@@ -13,7 +13,7 @@ public class PourItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     [SerializeField] private float _dropSpawnStartAngle = 70f;
     [SerializeField] private float _delayBeforeRepeatRotation = .1f;
     [SerializeField] private RectTransform _spawnPivot;
-   
+
     private bool _isDragging;
     private bool _isRotating;
     public bool CanSpawnDrops { get; set; } = false;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -107,6 +108,10 @@ public class GlobalApplicationSettings : MonoBehaviour
         }
 
         _instance = this;
+    }
+
+    private void Start()
+    {
         LoadAllSettings();
     }
 

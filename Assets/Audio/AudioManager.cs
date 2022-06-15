@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _soundSource;
     [SerializeField] private AudioMixerGroup _musicGroup;
     [SerializeField] private AudioMixerGroup _soundGroup;
+
+    [Space(10f)] [SerializeField] private AudioClip[] _musicClips;
+    private bool _paused;
 
     private void Awake()
     {
@@ -20,8 +25,19 @@ public class AudioManager : MonoBehaviour
         _instance = this;
     }
 
-    public static void PlaySound(AudioClip clip, float pitchRandomRange = 0, bool playExclusivly = false)
+    private IEnumerator Start()
     {
+        while (true)
+        {
+            yield return new WaitUntil(() => !_musicSource.isPlaying);
+            _musicSource.clip = _musicClips.GetRandomObject();
+            _musicSource.Play();
+        }
+    }
+
+    public static void PlaySound(AudioClip clip, float pitchRandomRange = 0, bool playExclusivly = false, float volume = 1)
+    {
+        print(clip.name);
         AudioSource source;
         if (_instance._soundSource.isPlaying && !playExclusivly)
         {
@@ -32,6 +48,7 @@ public class AudioManager : MonoBehaviour
             source = _instance._soundSource;
         source.Stop();
         source.clip = clip;
+        source.volume = volume;
         source.pitch = Random.Range(1 - pitchRandomRange, 1 + pitchRandomRange);
         source.Play();
 
@@ -44,11 +61,11 @@ public class AudioManager : MonoBehaviour
 
     public static void ChangeSoundVolume(float volume)
     {
-        _instance._soundGroup.audioMixer.SetFloat("SoundVolume", Mathf.Lerp(-80, 0, volume));
+        _instance._soundGroup.audioMixer.SetFloat("SoundVolume", Mathf.Lerp(-60, 0, volume));
     }
 
     public static void ChangeMusicVolume(float volume)
     {
-        _instance._musicGroup.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-80, 0, volume));
+        _instance._musicGroup.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-60, 0, volume));
     }
 }

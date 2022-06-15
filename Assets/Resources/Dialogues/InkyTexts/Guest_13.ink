@@ -17,6 +17,7 @@ GUEST_MAN: Только давай не сильно крепкое и с фру
 
 === Order ===
 THOMAS: Как насчёт <alc_ANYTHING></alc>?
+THOMAS: Как насчёт <alc_ANYTHING></alc>?
   #guestchoice
   * GUEST_MAN: Самое то!
      THOMAS: Сейчас сделаю. 
@@ -24,6 +25,7 @@ THOMAS: Как насчёт <alc_ANYTHING></alc>?
      THOMAS: Твой заказ готов. 
      -> Grade
   * GUEST_MAN: Не думаю, что мне это по душе...
+    THOMAS: <alc_ANYTHING></alc>.
     THOMAS: <alc_ANYTHING></alc>.
     #guestchoice
     **GUEST_MAN: Надеюсь на вкус оно лучше, чем звучит.

@@ -38,6 +38,7 @@ GUEST_MAN: Ооо, а можешь его приготовить?
      THOMAS: Твой заказ. 
      -> Grade
 * THOMAS: К сожалению, сейчас не могу его приготовить, может лучше <alc_ANYTHING></alc>?
+THOMAS: К сожалению, сейчас не могу его приготовить, может лучше <alc_ANYTHING></alc>?
   #guestchoice
   ** GUEST_MAN: Хмм... Сойдёт.
      #order

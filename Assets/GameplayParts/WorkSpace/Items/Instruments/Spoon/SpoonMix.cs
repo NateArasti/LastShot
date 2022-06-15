@@ -16,6 +16,7 @@ public class SpoonMix : MonoBehaviour
     [SerializeField] private Image _circleImage;
     [SerializeField] private Gradient _circleGradient;
     [SerializeField] private float _colorChangeDuration = 0.3f;
+    [SerializeField] private AudioClip _errorClip;
     [Header("Points")]
     [SerializeField] private float _confirmDuration = 0.2f;
     [SerializeField] private float _endScale = 1.2f;
@@ -102,6 +103,7 @@ public class SpoonMix : MonoBehaviour
 
     private void ErrorCircle()
     {
+        AudioManager.PlaySound(_errorClip, 0.1f, true);
         _rotationTween.timeScale -= 0.3f;
         _liquidMaskMaterial.DOFloat(_rotationTween.timeScale, Speed, 0.5f);
         if (_rotationTween.timeScale < 1)

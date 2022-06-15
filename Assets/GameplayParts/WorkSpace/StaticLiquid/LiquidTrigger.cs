@@ -13,6 +13,7 @@ public class LiquidTrigger : MonoBehaviour
     public LiquidContainerType ContainerType { get; set; }
 
     [SerializeField] private float _triggerTopOffset = 0.1f;
+    [SerializeField] private AudioClip _dropClip;
 
     public readonly UnityEvent<float, float, float, bool> OnHit = new();
     public readonly UnityEvent<Color> ReColor = new();
@@ -34,6 +35,7 @@ public class LiquidTrigger : MonoBehaviour
         if (col.TryGetComponent<DropItem>(out var dropItem))
         {
             OnHit.Invoke(x, dropItem.Force, dropItem.Volume, true);
+            AudioManager.PlaySound(_dropClip, 0.2f);
         }
         else if (col.TryGetComponent<WaterDrop>(out var waterDrop))
         {

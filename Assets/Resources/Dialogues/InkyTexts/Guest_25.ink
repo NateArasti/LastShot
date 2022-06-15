@@ -31,6 +31,7 @@ GUEST_MAN: Можно мне <alc_JINBOUTIQUE>Джин Бутик</alc>?
 * THOMAS: Извини, закончилось ингридиенты. 
   GUEST_MAN: Ну... Если есть, можно что-нибудь разливное, эля, там, или пива, например...
   THOMAS: Могу я вам предложить <alc_ANYTHING></alc>.
+  THOMAS: Могу я вам предложить <alc_ANYTHING></alc>.
   #guestchoice:
   **GUEST_MAN: Наливай.
      #order

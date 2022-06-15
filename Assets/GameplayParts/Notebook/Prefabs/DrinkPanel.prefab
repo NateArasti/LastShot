@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 7713363727838391159}
   - component: {fileID: 2929652136814590517}
   - component: {fileID: 4159737522600208540}
+  - component: {fileID: 7176478617018849913}
   m_Layer: 5
   m_Name: DrinkPanel
   m_TagString: Untagged
@@ -772,6 +773,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7176478617018849913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713363727838391157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ec56cac9e8f8d489b539bb9bb1ae4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: bc73dde2e7afe0c4a8234680556bc798, type: 3}
 --- !u!1001 &3274454821685412975
 PrefabInstance:
   m_ObjectHideFlags: 0

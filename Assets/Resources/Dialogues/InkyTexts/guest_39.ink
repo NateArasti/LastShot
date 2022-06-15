@@ -23,6 +23,7 @@ GUEST_MAN: Мне, п-пожалуйста, <alc_WHISPER>Шёпот</alc>.
    THOMAS: Для вас. 
    -> grade
 *THOMAS: Нет уже ее. Можете попробовать <alc_ANYTHING></alc>.
+THOMAS: Нет уже ее. Можете попробовать <alc_ANYTHING></alc>.
   #guestchoice
   **GUEST_MAN: Д-да, давайте. Мне лишь бы нервишки успокоить.
   #order

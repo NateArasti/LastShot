@@ -32,6 +32,7 @@ THOMAS: Сочту это за похвалу.
     -> grade
 *THOMAS: Увы, закончилось. 
   THOMAS: Могу предложить <alc_ANYTHING></alc>.
+  THOMAS: Могу предложить <alc_ANYTHING></alc>.
   #guestchoice
   **GUEST_MAN: Да поебать. Неси уже что есть.
     #order

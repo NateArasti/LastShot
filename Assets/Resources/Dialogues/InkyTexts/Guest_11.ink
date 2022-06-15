@@ -12,12 +12,14 @@ THOMAS: Сейчас посмотрим...
 
 === Order ===
 THOMAS: <alc_ANYTHING></alc> будешь?
+THOMAS: <alc_ANYTHING></alc> будешь?
   #guestchoice
   * GUEST_MAN: Наливай!
      #order
      THOMAS: Держи. 
      -> Grade
   * GUEST_MAN: Я похож на богатого джентельмена по твоему? Не неси чепухи!
+    THOMAS: В таком случае, может <alc_ANYTHING></alc>?
     THOMAS: В таком случае, может <alc_ANYTHING></alc>?
     #guestchoice
     **GUEST_MAN: Ну это уже получше.

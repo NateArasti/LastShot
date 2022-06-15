@@ -72,6 +72,8 @@ public class DialogueSystem : MonoBehaviour
     private Story _currentStory;
     private DialogueUI _dialogueUI;
 
+    private float _startDelay = 0.5f;
+
     private void Awake()
     {
         _dialogueUI = GetComponent<DialogueUI>();
@@ -101,9 +103,12 @@ public class DialogueSystem : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (GameStateManager.CurrentState != GameStateManager.State.Dialogue || _currentState != DialogueState.SimplePhrase || !KeyCodesToSkip.Any(Input.GetKeyDown)) return;
+        if (_startDelay > 0) _startDelay -= Time.deltaTime;
+        if (_startDelay > 0 || GameStateManager.CurrentState != GameStateManager.State.Dialogue || _currentState != DialogueState.SimplePhrase || !KeyCodesToSkip.Any(Input.GetKeyDown)) return;
         if (_dialogueUI.IsTypingPhrase)
+        {
             _dialogueUI.EndTyping();
+        }
         else
         {
             if (_nextState != DialogueState.None)

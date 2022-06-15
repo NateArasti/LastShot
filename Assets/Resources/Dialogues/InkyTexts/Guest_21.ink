@@ -8,12 +8,14 @@ GUEST_WOMAN: Я не выпивоха, но заметила, что тягот�
 
 ===order
 THOMAS: Я могу предложить вам <alc_ANYTHING></alc>.
+THOMAS: Я могу предложить вам <alc_ANYTHING></alc>.
  #guestchoice
  *GUEST_WOMAN: Да, будет прекрасно...
    #order
    THOMAS: Заказ готов. 
    -> Grade
  *GUEST_WOMAN: Может что-то более приятное для дамы?
+   THOMAS: Эмм... <alc_ANYTHING></alc>?
    THOMAS: Эмм... <alc_ANYTHING></alc>?
    #guestchoice
     **GUEST_WOMAN: Так уже намного лучше.

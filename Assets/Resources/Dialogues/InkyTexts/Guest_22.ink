@@ -37,6 +37,7 @@ GUEST_MAN: У тебя есть <alc_S_WHISKEY>виски</alc>?
     -> Grade
 *THOMAS: Нет, к сожалению, нет...
   THOMAS: Могу я предложить вам что-нибудь на свой вкус? Может вам понравится <alc_ANYTHING></alc>?
+  THOMAS: Могу я предложить вам что-нибудь на свой вкус? Может вам понравится <alc_ANYTHING></alc>?
   #guestchoice
   **GUEST_MAN: Валяй, сынок...
     #order

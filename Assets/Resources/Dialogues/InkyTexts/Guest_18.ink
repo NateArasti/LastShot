@@ -32,6 +32,7 @@ GUEST_MAN: Так продаёшь или нет?
      THOMAS: Твой заказ. 
      -> Grade
 * THOMAS: Не могу, давай лучше <alc_ANYTHING></alc> налью? 
+THOMAS: Не могу, давай лучше <alc_ANYTHING></alc> налью? 
   #guestchoice
   ** GUEST_MAN: Да плевать уже... Наливай.
      #order

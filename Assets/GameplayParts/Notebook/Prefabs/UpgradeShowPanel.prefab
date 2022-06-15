@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 216293509110498158}
   - component: {fileID: 216293509110498157}
   - component: {fileID: 8917881644779831591}
+  - component: {fileID: 8890561679332881581}
   m_Layer: 5
   m_Name: UpgradeShowPanel
   m_TagString: Untagged
@@ -364,3 +365,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _asset: {fileID: 11400000, guid: 6f8614744c4656345a9505df9914f0e4, type: 2}
+--- !u!114 &8890561679332881581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216293509110498154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ec56cac9e8f8d489b539bb9bb1ae4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: bc73dde2e7afe0c4a8234680556bc798, type: 3}

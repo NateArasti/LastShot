@@ -21,6 +21,7 @@ GUEST_MAN: Дружище, налей мне <alc_ROM>рома</alc>. -> order
    THOMAS: Держите.
    -> grade
 * THOMAS: Извините, он закончился. Может <alc_ANYTHING></alc>?
+    THOMAS: Извините, он закончился. Может <alc_ANYTHING></alc>?
   #guestchoice
   **GUEST_MAN: Ну давай попробуем.
   #order

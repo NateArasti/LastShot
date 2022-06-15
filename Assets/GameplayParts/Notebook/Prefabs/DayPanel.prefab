@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 3152320653960501962}
   - component: {fileID: 3152320653960501965}
   - component: {fileID: 626944696238237165}
+  - component: {fileID: -8719093196041675313}
   m_Layer: 5
   m_Name: DayPanel
   m_TagString: Untagged
@@ -334,3 +335,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-8719093196041675313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152320653960501967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ec56cac9e8f8d489b539bb9bb1ae4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: bc73dde2e7afe0c4a8234680556bc798, type: 3}

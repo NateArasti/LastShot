@@ -29,6 +29,7 @@ GUEST_MAN: Ну и дыра...
        -> Grade
 * THOMAS: Извини, закончилось.
   THOMAS: Могу предложить тебе <alc_ANYTHING>...</alc>. Будешь?
+  THOMAS: Могу предложить тебе <alc_ANYTHING>...</alc>. Будешь?
     #guestchoice
     ** GUEST_MAN: А давай!
         #order

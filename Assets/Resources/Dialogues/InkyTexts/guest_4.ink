@@ -6,12 +6,14 @@ GUEST_WOMAN: Налей мне что-нибудь крепкого и поки�
 
 ===order1
 THOMAS: <alc_ANYTHING></alc>?
+THOMAS: <alc_ANYTHING></alc>?
   #guestchoice
   *GUEST_WOMAN: Давай...
    #order
    THOMAS: Вот, пожалуйста.
    -> grade1
   *GUEST_WOMAN: Какой-то отстой. Есть еще что?
+    THOMAS: <alc_ANYTHING></alc>.
     THOMAS: <alc_ANYTHING></alc>.
     #guestchoice
     **GUEST_WOMAN: Подойдет.
@@ -108,12 +110,14 @@ GUEST_WOMAN: Налей мне еще чего-нибудь...
 
 ===order2
 THOMAS: Что думаете по поводу <alc_ANYTHING></alc>?
+THOMAS: Что думаете по поводу <alc_ANYTHING></alc>?
   #guestchoice
   *GUEST_WOMAN: Да мне всё равно, наливай уже...
   #order
   THOMAS: Ваш напиток.
   -> grade2
   *GUEST_WOMAN: Не хочу. Есть еще что?
+    THOMAS: Вам может понравится <alc_ANYTHING></alc>.
     THOMAS: Вам может понравится <alc_ANYTHING></alc>.
     #guestchoice
     **GUEST_WOMAN: Уже лучше.

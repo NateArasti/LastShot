@@ -23,6 +23,7 @@ GUEST_MAN: Плесни мне <alc_LIGHTBEER>светлого пива</alc>.
    THOMAS: А вот и ваш напиток. 
    -> grade
 *THOMAS: Сейчас не в наличии. Попробуй <alc_ANYTHING></alc>.
+THOMAS: Сейчас не в наличии. Попробуй <alc_ANYTHING></alc>.
   #guestchoice
   **GUEST_MAN: Терять нечего. Тащи.
   #order
