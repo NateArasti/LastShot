@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class BarShelf : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class BarShelf : MonoBehaviour
     private readonly HashSet<Ingredient> _chosenIngredients = new();
     private readonly Dictionary<Ingredient, int> _shelfIngredientsIndexes = new();
 
+    private List<Ingredient> _ingredients;
+    private HashSet<Button> _chosenIngredientButtons = new();
+
     private void Awake()
     {
         _shelfIngredients = GetComponentsInChildren<ShelfIngredient>(true);
@@ -26,26 +30,41 @@ public class BarShelf : MonoBehaviour
 
     public void ShuffleIngredients()
     {
-        _shelfIngredientsIndexes.Clear();
-        var ingredients = DatabaseManager.AlcoholDatabase.GetObjectsCollection().ToList();
-        ingredients.AddRange(DatabaseManager.AdditionalIngredientDatabase.GetObjectsCollection()
-            .Where(ingredient => !ingredient.Data.IgnorePurchase));
-        var availablePositions = new HashSet<int>(_availablePositions);
-        foreach (var ingredient in ingredients)
+        if(_ingredients == null)
         {
-            var index = availablePositions.GetRandomObject();
-            availablePositions.Remove(index);
-            _shelfIngredients[index].gameObject.SetActive(true);
-            _shelfIngredients[index].SetIngredient(ingredient, ChooseIngredient);
-            _shelfIngredientsIndexes.Add(ingredient, index);
+            _shelfIngredientsIndexes.Clear();
+            _ingredients = DatabaseManager.AlcoholDatabase.GetObjectsCollection().ToList();
+            _ingredients.AddRange(DatabaseManager.AdditionalIngredientDatabase.GetObjectsCollection()
+                .Where(ingredient => !ingredient.Data.IgnorePurchase));
+            var availablePositions = new HashSet<int>(_availablePositions);
+            foreach (var ingredient in _ingredients)
+            {
+                var index = availablePositions.GetRandomObject();
+                availablePositions.Remove(index);
+                _shelfIngredients[index].gameObject.SetActive(true);
+                _shelfIngredients[index].SetIngredient(ingredient, ChooseIngredient);
+                _shelfIngredientsIndexes.Add(ingredient, index);
+            }
         }
+    }
+
+    public void ClearShelf()
+    {
+        var chosen = _chosenIngredientButtons.ToArray();
+        foreach (var ingredient in chosen)
+        {
+            ingredient.onClick.Invoke();
+        }
+
     }
 
     public void ChooseIngredient(Ingredient ingredient, GameObject ingredientGameObject)
     {
         if(_chosenIngredients.Count == _chosenIngredientCap) return;
         ingredientGameObject.SetActive(false);
-        Instantiate(_chosenIngredientPrefab, _chosenIngredientParent).SetIngredient(ingredient, UnChooseIngredient);
+        var chosen = Instantiate(_chosenIngredientPrefab, _chosenIngredientParent);
+        chosen.SetIngredient(ingredient, UnChooseIngredient);
+        _chosenIngredientButtons.Add(chosen.GetComponent<Button>());
         _chosenIngredients.Add(ingredient);
     }
 

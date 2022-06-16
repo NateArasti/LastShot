@@ -23,7 +23,7 @@ public class Guest : MonoBehaviour
     public UnityEvent<Transform, Guest> OnDestroyEvent { get; } = new();
     public bool Sitting { get; private set; }
 
-    private bool MouseEnabled => Sitting && GameStateManager.CurrentState == GameStateManager.State.Saloon;
+    private bool MouseEnabled => Sitting && GameStateManager.CurrentState == GameStateManager.State.Saloon && !_endedDialogue;
 
     [Header("Move Params")]
     [SerializeField] private float _secondsPerUnit = 5f;
@@ -56,6 +56,7 @@ public class Guest : MonoBehaviour
     private Coroutine _moveCoroutine;
 
     private Dialogue _guestDialogue;
+    private bool _endedDialogue;
 
     private void Awake()
     {
@@ -127,6 +128,7 @@ public class Guest : MonoBehaviour
 
     public void EndVisit()
     {
+        _endedDialogue = true;
         StartCoroutine(Exit());
     }
 

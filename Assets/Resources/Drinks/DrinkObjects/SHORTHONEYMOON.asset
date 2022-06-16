@@ -40,7 +40,7 @@ MonoBehaviour:
     - 0
     - 0
   _receipt:
-    _approximateTimeOfMaking: 60
+    _approximateTimeOfMaking: 90
     _glassPrefab: {fileID: 8848479997441821599, guid: dfadaf434eb91b147b9a890d6042110d, type: 3}
     _instruments:
     - {fileID: 11400000, guid: c4c2667c30069fd4bb9aee08397ca2c3, type: 2}

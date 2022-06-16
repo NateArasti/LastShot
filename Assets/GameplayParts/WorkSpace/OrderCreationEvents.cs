@@ -43,10 +43,11 @@ public class OrderCreationEvents : MonoBehaviour
 
     public void EndCreation()
     {
-        GameStateManager.ExitWorkSpace();
+        _itemSpaces.ForEachAction(itemSpace => itemSpace.ClearSpace());
+        _barShelf.ClearShelf();
         DrinkInWork = false;
         Destroy(_spawnedGlass.gameObject);
-        _itemSpaces.ForEachAction(itemSpace => itemSpace.ClearSpace());
+        GameStateManager.ExitWorkSpace();
     }
 
     public void SpawnIngredients(IReadOnlyCollection<Ingredient> ingredients)

@@ -13,12 +13,12 @@ GUEST_MAN: А кто сказал, что разрешается?
 GUEST_MAN: Мы просто никому об этом не скажем...
 THOMAS: Ха! Как скажете...
 THOMAS: Что вы желаете? 
-GUEST_MAN: У тебя есть <alc_S_WHISKEY>виски</alc>?
+GUEST_MAN: У тебя есть <alc_WHISKEY>виски</alc>?
 -> Order
 
 === Order ===
 #check
-*THOMAS: Для наших машинистов <alc_S_WHISKEY>виски</alc> всегда найдётся.
+*THOMAS: Для наших машинистов виски всегда найдётся.
   GUEST_MAN: Отлично, сынок...
   #order
   THOMAS: Держите. 

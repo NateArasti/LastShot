@@ -58,10 +58,10 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void ClearSpace()
     {
-        foreach (GameObject item in _itemSpawnPivot)
+        foreach (Transform item in _itemSpawnPivot)
         {
-            if(item == gameObject) continue;
-            Destroy(item);
+            if(item.gameObject == gameObject) continue;
+            Destroy(item.gameObject);
         }
     }
 
@@ -74,6 +74,7 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             return;
         }
         if (!item.Item.CanPlaceInThisSpace(_type)) return;
+        print(1);
         if (_type == ItemSpaceType.Garnish)
         {
             OrderCreationEvents.Instance.OrderActionsTracker.AddAction(new OrderAction.DecorateAction(false)
@@ -82,9 +83,12 @@ public class ItemSpace : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             });
 
             _canPlace = false;
-            _image.sprite = item.Item.GarnishSprite;
-            _image.SetNativeSize();
-            _image.color = Color.white;
+            if (item.Item.GarnishSprite != null)
+            {
+                _image.sprite = item.Item.GarnishSprite;
+                _image.SetNativeSize();
+                _image.color = Color.white;
+            }
             return;
         }
 
